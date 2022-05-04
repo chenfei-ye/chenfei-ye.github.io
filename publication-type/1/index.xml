@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1 | Chenfei Ye</title>
+    <link>https://chenfei-ye.github.io/publication-type/1/</link>
+      <atom:link href="https://chenfei-ye.github.io/publication-type/1/index.xml" rel="self" type="application/rss+xml" />
+    <description>1</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 23 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
+      <title>1</title>
+      <link>https://chenfei-ye.github.io/publication-type/1/</link>
+    </image>
+    
+    <item>
+      <title>Regularizing Brain Age Prediction via Gated Knowledge Distillation</title>
+      <link>https://chenfei-ye.github.io/publication/c_2022_c_midl_brainage/</link>
+      <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/publication/c_2022_c_midl_brainage/</guid>
+      <description>&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;[https://github.com/podismine/BrainAgeReg]%28https://github.com/podismine/BrainAgeReg%29&#34;&gt;code&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
