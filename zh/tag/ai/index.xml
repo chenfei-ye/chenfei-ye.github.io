@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI | 主页</title>
+    <link>https://chenfei-ye.github.io/zh/tag/ai/</link>
+      <atom:link href="https://chenfei-ye.github.io/zh/tag/ai/index.xml" rel="self" type="application/rss+xml" />
+    <description>AI</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sat, 11 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
+      <title>AI</title>
+      <link>https://chenfei-ye.github.io/zh/tag/ai/</link>
+    </image>
+    
+    <item>
+      <title>CUDA版本、显卡算力、Pytorch对应关系</title>
+      <link>https://chenfei-ye.github.io/zh/post/202206_cuda_pytorch/</link>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202206_cuda_pytorch/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;试用合作医院提供的堡垒机服务器，自带的NVIDIA-A6000显卡不支持结构像自动分割的pipeline镜像，运行时报错capability sm_86 is not compatible。发现是由于显卡的架构比较新，旧版pytorch库不支持。同时根据输出可以看到 The current PyTorch install supports CUDA capabilities sm_37 sm_50 sm_60 sm_70 sm_75当前pytorch只能支持上面几种（显卡算力）架构。&lt;/p&gt;
+&lt;h2 id=&#34;解决方案&#34;&gt;解决方案&lt;/h2&gt;
+&lt;p&gt;把基础镜像直接更新到&lt;code&gt;pytorch/pytorch:1.7.0-cuda11.0-cudnn8-runtime&lt;/code&gt;，解决。
+NOTE: CUDA10.x最高支持算力7.x; CUDA11.0最高支持算力8.x&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://secure2.wostatic.cn/static/b3r7DSVa2H8Nav1XP29N63/image.png?auth_key=1654945306-j83CitBJgMWBHF48LYi9SU-0-172c7c6b8b019bab06955b5100276704&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://secure2.wostatic.cn/static/fF5td6qVtvTMm47T3mW6ei/image.png?auth_key=1654945515-9MTmHa8W5ypegrzcerJuW1-0-e2f9660f9de7050611777753b5aa86cd&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dMRI | 主页</title>
+    <link>https://chenfei-ye.github.io/zh/tag/dmri/</link>
+      <atom:link href="https://chenfei-ye.github.io/zh/tag/dmri/index.xml" rel="self" type="application/rss+xml" />
+    <description>dMRI</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sat, 11 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
+      <title>dMRI</title>
+      <link>https://chenfei-ye.github.io/zh/tag/dmri/</link>
+    </image>
+    
+    <item>
+      <title>神经纤维格式转换：tck转trk</title>
+      <link>https://chenfei-ye.github.io/zh/post/202206_tck2trk/</link>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202206_tck2trk/</guid>
+      <description>&lt;h2 id=&#34;场景&#34;&gt;场景&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;MRtrix3&lt;/code&gt;输出的tck神经纤维文件，需要转换成&lt;code&gt;TrackVis&lt;/code&gt;能识别的trk格式&lt;/p&gt;
+&lt;h2 id=&#34;python实现&#34;&gt;Python实现&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#!/usr/bin/env python
+
+import json
+import nibabel as nib
+from nibabel.streamlines import Field
+from nibabel.orientations import aff2axcodes
+
+
+def main():
+
+    tck_file = &amp;#39;/home/amax/data/cye/TractSeg_testcase/KAIPU-mating/dwi_recon_output/fiber_tracts/Fibers/CC.tck&amp;#39;
+    anatomy_file = &amp;#39;/home/amax/data/cye/TractSeg_testcase/KAIPU-mating/dwi_recon_output/fiber_tracts/bundle_segmentations/CC.nii.gz&amp;#39;
+    trk_file = &amp;#39;/home/amax/data/cye/TractSeg_testcase/KAIPU-mating/dwi_recon_output/fiber_tracts/Fibers/CC.trk&amp;#39;
+
+    nii = nib.load(anatomy_file)
+
+    header = {}
+    header[Field.VOXEL_TO_RASMM] = nii.affine.copy()
+    header[Field.VOXEL_SIZES] = nii.header.get_zooms()[:3]
+    header[Field.DIMENSIONS] = nii.shape[:3]
+    header[Field.VOXEL_ORDER] = &amp;#34;&amp;#34;.join(aff2axcodes(nii.affine))
+
+    tck = nib.streamlines.load(tck_file)
+    nib.streamlines.save(tck.tractogram, trk_file, header=header)
+
+        
+if __name__ == &amp;#39;__main__&amp;#39;:
+    main()
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
