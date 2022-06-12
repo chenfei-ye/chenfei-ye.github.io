@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R | Chenfei Ye</title>
+    <link>https://chenfei-ye.github.io/tag/r/</link>
+      <atom:link href="https://chenfei-ye.github.io/tag/r/index.xml" rel="self" type="application/rss+xml" />
+    <description>R</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 31 May 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
+      <title>R</title>
+      <link>https://chenfei-ye.github.io/tag/r/</link>
+    </image>
+    
+    <item>
+      <title>R常见统计模型使用</title>
+      <link>https://chenfei-ye.github.io/post/202205_r_statistics/</link>
+      <pubDate>Tue, 31 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/post/202205_r_statistics/</guid>
+      <description>&lt;p&gt;数据描述：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;summary(A) psych::describe(A)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;直方图：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hist(A)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;概率密度图density plot:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hist(A,prob=TRUE) lines(density(A, bw=&amp;quot;SJ&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;累计分布图CDF：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;plot(ecdf(A), do.points=FALSE, verticals=TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;拟合同参数高斯分布的CDF：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;lines(x, pnorm(x, mean=mean(A), sd=sqrt(var(A))), lty=3)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;双样本检验&lt;/p&gt;
+&lt;p&gt;经典的two-sample t-test：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;t.test(A, B, var.equal=TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果不满足同方差，则用 Welch modified two-sample t-test :&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;res=t.test(A, B) res$p.val
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;检验同方差的方法可用F-test:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var.test(A, B)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果不满足正态性，则用非参数检验，即two-sample Mann-Whitney test:（但是仍然assume两个分布是相似的）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wilcox.test(A, B)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果连分布也很不相似，则考虑用permutation test&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;coin::independence_test(Length ~ Hand, data = Data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;是否满足正态分布，有三种方法检验：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;QQ图：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    par(pty=&amp;#34;s&amp;#34;) # arrange for a square figure region qqnorm(long) qqline(long)
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Shapiro-Wilk test：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    shapiro.test(A) # Shapiro-Wilk normality test
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Kolmogorov-Smirnov test：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    ks.test(A, &amp;#34;pnorm&amp;#34;, mean = mean(A), sd = sqrt(var(A)))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;独立性检验：&lt;/p&gt;
+&lt;p&gt;卡方分布有一个重要应用就是根据样本数据来检验两个分类变量的独立性，我们以CO2数据为例来说明chisq.test函数的使用，help(CO2)可以了解更多信息。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;data(CO2) #读入内置的数据包，其中Type和Treatmen是其中两个分类变量。 
+chisq.test(table(CO2$Type,CO2$Treatment)) #检验这两个因子之间是否独立
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;结果显示P值为0.82，因此可以认为两因子之间独立。在样本较小的情况下，还可以使用fisher精确检验，对应的函数是&lt;code&gt;fisher.test&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;proportion test&lt;/code&gt;:(在两个group的情况下，结果和卡方检验是一样的)&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;library(MASS) 
+table(quine$Eth, quine$Sex) 
+prop.test(table(quine$Eth, quine$Sex), correct=FALSE)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ANOVA：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;anova(lm(y~x)) 
+summary(aov(y~x)) # summary(aov(lm(y~x)))也是一样的结果 
+summary(aov(y~x+covariate)) # ANCOVA 
+summary(test)[[1]][[&amp;#34;Pr(&amp;gt;F)&amp;#34;]]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Post-hoc:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;TukeyHSD(aov(y ~ x, data))
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;对于ANCOVA的post hoc:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;TukeyHSD(aov(y ~ x+covariate, data),which=&amp;#39;x&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果ANOVA不满足正态性，用Kruskal-Wallis非参数检验：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kruskal.test(y~x, data = df) # post-hoc for Kruskal-Wallis Test： Steel-Dwass test library(FSA) dunnTest(y~x, data=df, method=&amp;#34;bonferroni&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;多重比较校正：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ps &amp;lt;- runif(20, max=.2) 
+def &amp;lt;- p.adjust(ps) 
+bon &amp;lt;- p.adjust(ps, method=&amp;#34;bonferroni&amp;#34;) 
+bh &amp;lt;- p.adjust(ps, method=&amp;#34;BH&amp;#34;) #Benjamini, Hochberg (1995) default fdr 
+by &amp;lt;- p.adjust(ps, method=&amp;#34;BY&amp;#34;) #Benjamini, Yekutieli (2001) another fdr 
+x = matrix(rnorm(10000*5),nrow=10000) 
+y = matrix(rnorm(10000*5),nrow=10000) 
+p = sapply(1:10000, function(i) t.test(x[i,],y[i,])$p.val) 
+q = p.adjust(p, method = &amp;#34;fdr&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
