@@ -295,7 +295,6 @@
   
   
     
-    
   
   
 
@@ -304,7 +303,7 @@
     
     
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
     <meta property="twitter:site" content="@wowchemy" />
     <meta property="twitter:creator" content="@wowchemy" />
@@ -312,8 +311,8 @@
   <meta property="og:site_name" content="主页" />
   <meta property="og:url" content="https://chenfei-ye.github.io/zh/post/202206_vscode_docker/" />
   <meta property="og:title" content="VScode远程调试docker容器 | 主页" />
-  <meta property="og:description" content="如何优雅的在远程容器中debug" /><meta property="og:image" content="https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png" />
-    <meta property="twitter:image" content="https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="zh-Hans" />
+  <meta property="og:description" content="如何优雅的在远程容器中debug" /><meta property="og:image" content="https://chenfei-ye.github.io/zh/post/202206_vscode_docker/featured.png" />
+    <meta property="twitter:image" content="https://chenfei-ye.github.io/zh/post/202206_vscode_docker/featured.png" /><meta property="og:locale" content="zh-Hans" />
   
     
       <meta
@@ -348,6 +347,10 @@
     "@id": "https://chenfei-ye.github.io/zh/post/202206_vscode_docker/"
   },
   "headline": "VScode远程调试docker容器",
+  
+  "image": [
+    "https://chenfei-ye.github.io/zh/post/202206_vscode_docker/featured.png"
+  ],
   
   "datePublished": "2022-06-12T00:00:00Z",
   "dateModified": "2022-06-12T00:00:00Z",
@@ -796,18 +799,25 @@
 
 
 
-  
+
+
+
+
+
+
+
+
 
   
   
-  
+
+
 <div class="article-container pt-3">
   <h1>VScode远程调试docker容器</h1>
 
   
 
   
-    
 
 
 <div class="article-metadata">
@@ -858,13 +868,20 @@
 
 </div>
 
-    
-
-
-
-
-
   
+
+
+
+
+
+</div>
+
+
+<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 897px; max-height: 289px;">
+  <div style="position: relative">
+    <img src="/zh/post/202206_vscode_docker/featured_hu827b041d5be6ea38f0bfc5c22e194257_65344_1200x2500_fit_q75_h2_lanczos_3.webp" width="897" height="289" alt="" class="featured-image">
+    
+  </div>
 </div>
 
 
@@ -913,163 +930,28 @@
 <h3 id="三在vscode上的相关配置"><strong>三、在vscode上的相关配置</strong></h3>
 <h4 id="1安装remote-ssh插件"><strong>1、安装remote-ssh插件</strong></h4>
 <blockquote>
-<p>在vscode最左侧应用“<strong>扩展</strong>”中搜索<strong>remote-ssh</strong>插件，然后安装。安装完成之后，会在“<strong>扩展</strong>”图标下方出现“<strong>远程资源管理器</strong>”图标。如下图所示：</p>
+<p>在vscode最左侧应用“<strong>扩展</strong>”中搜索<strong>remote-ssh</strong>插件，然后安装。安装完成之后，会在“<strong>扩展</strong>”图标下方出现“<strong>远程资源管理器</strong>”图标。</p>
 </blockquote>
-<p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<figure  >
-  <div class="d-flex justify-content-center">
-    <div class="w-100" ><img src="https://ask.qcloudimg.com/http-save/yehe-4941972/6da2583cea3c11e9ccb0d4a452bb113b.png?imageView2/2/w/1620" alt="" loading="lazy" data-zoomable /></div>
-  </div></figure>
-</p>
-<p>在这里插入图片描述</p>
 <h4 id="2配置vscode的config文件"><strong>2、配置vscode的config文件</strong></h4>
 <blockquote>
-<p>单击“<strong>远程资源管理器</strong>”图标，然后单击“<strong>配置</strong>”按钮进行配置，此时vscode会显示“Select SSH configuration file to update”，如下图所示，选择路径中带有“.ssh”的config文件。</p>
+<p>单击“<strong>远程资源管理器</strong>”图标，然后单击“<strong>配置</strong>”按钮进行配置，此时vscode会显示“Select SSH configuration file to update”，选择路径中带有“.ssh”的config文件。</p>
 </blockquote>
-<p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<figure  >
-  <div class="d-flex justify-content-center">
-    <div class="w-100" ><img src="https://ask.qcloudimg.com/http-save/yehe-4941972/68d9f8e4f70e9dfa368984a177d3da11.png?imageView2/2/w/1620" alt="" loading="lazy" data-zoomable /></div>
-  </div></figure>
-</p>
-<p>在这里插入图片描述</p>
 <p>填写config文件内容，注意按照如下格式填写：</p>
 <blockquote>
 <p><strong>Host</strong>可以根据自己的喜好起一个标志名称。<strong>HostName</strong>必须填写需要远程连接的服务器IP地址。<strong>User</strong>此处因为远程的是服务器上配置的docker容器，默认用户名是<strong>root</strong>，此处需要改下为root。</p>
 </blockquote>
 <p><strong>特别注意</strong>：由于需要远程连接的是服务器上的docker容器，而且前面提到：ssh服务器的22号端口已经映射为8010,因此，务必增加一个<strong>Port</strong>，填写自己映射的端口。如果只是远程服务器，不需要用docker容器，则，不需要增加Port这一行。配置完成后，保存配置。</p>
-<p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<figure  >
-  <div class="d-flex justify-content-center">
-    <div class="w-100" ><img src="https://ask.qcloudimg.com/http-save/yehe-4941972/50de9eac8a150373dd42e67b25677c55.png?imageView2/2/w/1620" alt="" loading="lazy" data-zoomable /></div>
-  </div></figure>
-</p>
-<p>在这里插入图片描述</p>
 <h4 id="3开启远程连接"><strong>3、开启远程连接</strong></h4>
 <blockquote>
 <p>如下图所示，config文件中写的Host名称alias就会显示在最左侧。此时，单击“新建连接”按钮，vscode会重新打开一个窗口，提示输入远程服务器的密码，注意，此时必须填入docker容器中创建的用户密码。</p>
 </blockquote>
-<p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<figure  >
-  <div class="d-flex justify-content-center">
-    <div class="w-100" ><img src="https://ask.qcloudimg.com/http-save/yehe-4941972/5e8fea4334daf91ce8d4d8b352f3766b.png?imageView2/2/w/1620" alt="" loading="lazy" data-zoomable /></div>
-  </div></figure>
-</p>
-<p>在这里插入图片描述</p>
 <blockquote>
-<p>在如下图中输入用户密码，回车即可。</p>
+<p>回车之后，可能会提示选择远程服务器的平台是哪一种系统类型，选项有linux\windows\MAC。应该选择vscode安装的系统平台类型。 选择完成之后，回车即可。此时，在vscode的“终端”窗口可以看到进入docker容器的命令行格式。</p>
 </blockquote>
-<p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<figure  >
-  <div class="d-flex justify-content-center">
-    <div class="w-100" ><img src="https://ask.qcloudimg.com/http-save/yehe-4941972/aba216149396d63929bb70b3f58a5f5f.png?imageView2/2/w/1620" alt="" loading="lazy" data-zoomable /></div>
-  </div></figure>
-</p>
-<p>在这里插入图片描述</p>
-<blockquote>
-<p>回车之后，可能会提示选择远程服务器的平台是哪一种系统类型，选项有linux\windows\MAC。应该选择vscode安装的系统平台类型。 选择完成之后，回车即可。此时，在vscode的“终端”窗口可以看到进入docker容器的命令行格式。如下图所示：</p>
-</blockquote>
-<p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<figure  >
-  <div class="d-flex justify-content-center">
-    <div class="w-100" ><img src="https://ask.qcloudimg.com/http-save/yehe-4941972/0d0d148354afeb0d5c462ef722a2bfc4.png?imageView2/2/w/1620" alt="" loading="lazy" data-zoomable /></div>
-  </div></figure>
-</p>
-<p>在这里插入图片描述</p>
 <blockquote>
 <p>在“终端”窗口可以查看以下远程连接的环境是否正确。 打开远程服务器上的代码，可以在代码任意行最左侧打断点，按F5快捷键可以debug运行。</p>
 </blockquote>
-<h1 id="四转载来源"><strong>四，转载来源</strong></h1>
+<h3 id="四转载来源"><strong>四，转载来源</strong></h3>
 <ul>
 <li><a href="https://cloud.tencent.com/developer/article/1851508" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1851508</a></li>
 <li><a href="https://blog.csdn.net/hanchaobiao/article/details/84069299" target="_blank" rel="noopener">https://blog.csdn.net/hanchaobiao/article/details/84069299</a></li>
