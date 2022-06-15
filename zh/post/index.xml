@@ -5,12 +5,38 @@
     <link>https://chenfei-ye.github.io/zh/post/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sun, 12 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Wed, 15 Jun 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
       <link>https://chenfei-ye.github.io/zh/post/</link>
     </image>
+    
+    <item>
+      <title>python进程传参踩坑：为何单变量参数被识别为多变量</title>
+      <link>https://chenfei-ye.github.io/zh/post/202206_python_tuple/</link>
+      <pubDate>Wed, 15 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202206_python_tuple/</guid>
+      <description>&lt;h3 id=&#34;背景&#34;&gt;背景：&lt;/h3&gt;
+&lt;p&gt;新建一个脚本进程，需要如下传参：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;fastcsr_input = [&amp;#39;--t1&amp;#39;,input_nu_image, &amp;#39;--L4&amp;#39;, t1_label_L4]
+p_fastcsr = multiprocessing.Process(target=FastCSR_pipeline.main, args=(fastcsr_input))
+p_fastcsr.start()
+p_fastcsr.join()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;脚本&lt;code&gt;FastCSR_pipeline.main&lt;/code&gt;函数只接受一个输入变量，但运行时报错：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;python TypeError: write() takes exactly 1 argument (but 4 were given)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;方案&#34;&gt;方案：&lt;/h3&gt;
+&lt;p&gt;折腾半天找到&lt;a href=&#34;https://stackoverflow.com/questions/1559125/string-arguments-in-python-multiprocessing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;原因&lt;/a&gt;，&lt;code&gt;multiprocessing.Process&lt;/code&gt;中&lt;code&gt;args&lt;/code&gt;变量是&lt;code&gt;tuple&lt;/code&gt;类型，&lt;code&gt;tuple&lt;/code&gt;中若只有一个对象，需要在后面加一个逗号。。&lt;/p&gt;
+&lt;p&gt;所以修改代码为：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;fastcsr_input = [&amp;#39;--t1&amp;#39;,input_nu_image, &amp;#39;--L4&amp;#39;, t1_label_L4]
+p_fastcsr = multiprocessing.Process(target=FastCSR_pipeline.main, args=(fastcsr_input,))
+p_fastcsr.start()
+p_fastcsr.join()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;即可顺利运行&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>FSL-Dokerfile编写</title>
