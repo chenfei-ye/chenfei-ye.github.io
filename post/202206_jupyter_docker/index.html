@@ -64,12 +64,12 @@
   
     
   
-  <meta name="description" content="A highly-customizable Hugo academic resume theme powered by Wowchemy website builder." />
+  <meta name="description" content="如何优雅的在远程容器中debug" />
 
   
-    <link rel="alternate" hreflang="zh" href="https://chenfei-ye.github.io/zh/categories/" />
+    <link rel="alternate" hreflang="zh" href="https://chenfei-ye.github.io/zh/post/202206_jupyter_docker/" />
   
-  <link rel="alternate" hreflang="en-us" href="https://chenfei-ye.github.io/categories/" />
+  <link rel="alternate" hreflang="en-us" href="https://chenfei-ye.github.io/post/202206_jupyter_docker/" />
 
   
   
@@ -276,8 +276,6 @@
   
 
   
-    <link rel="alternate" href="/categories/index.xml" type="application/rss+xml" title="Chenfei Ye" />
-  
 
   
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -286,7 +284,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="https://chenfei-ye.github.io/categories/" />
+  <link rel="canonical" href="https://chenfei-ye.github.io/post/202206_jupyter_docker/" />
 
   
   
@@ -297,7 +295,6 @@
   
   
     
-    
   
   
 
@@ -306,39 +303,92 @@
     
     
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
     <meta property="twitter:site" content="@wowchemy" />
     <meta property="twitter:creator" content="@wowchemy" />
   
   <meta property="og:site_name" content="Chenfei Ye" />
-  <meta property="og:url" content="https://chenfei-ye.github.io/categories/" />
-  <meta property="og:title" content="Categories | Chenfei Ye" />
-  <meta property="og:description" content="A highly-customizable Hugo academic resume theme powered by Wowchemy website builder." /><meta property="og:image" content="https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png" />
-    <meta property="twitter:image" content="https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:url" content="https://chenfei-ye.github.io/post/202206_jupyter_docker/" />
+  <meta property="og:title" content="Jupyter远程调试docker容器 | Chenfei Ye" />
+  <meta property="og:description" content="如何优雅的在远程容器中debug" /><meta property="og:image" content="https://chenfei-ye.github.io/post/202206_jupyter_docker/featured.png" />
+    <meta property="twitter:image" content="https://chenfei-ye.github.io/post/202206_jupyter_docker/featured.png" /><meta property="og:locale" content="en-us" />
   
     
-      <meta property="og:updated_time" content="2022-06-18T00:00:00&#43;00:00" />
+      <meta
+        property="article:published_time"
+        content="2022-06-18T00:00:00&#43;00:00"
+      />
     
+    <meta property="article:modified_time" content="2022-06-18T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://chenfei-ye.github.io/post/202206_jupyter_docker/"
+  },
+  "headline": "Jupyter远程调试docker容器",
+  
+  "image": [
+    "https://chenfei-ye.github.io/post/202206_jupyter_docker/featured.png"
+  ],
+  
+  "datePublished": "2022-06-18T00:00:00Z",
+  "dateModified": "2022-06-18T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Chenfei Ye"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Chenfei Ye",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "如何优雅的在远程容器中debug"
+}
+</script>
+
+  
+
+  
+
   
 
   
 
 
 
-  
-
-  
 
 
-
-
-
-  <title>Categories | Chenfei Ye</title>
+  <title>Jupyter远程调试docker容器 | Chenfei Ye</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   "  >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="6cb9f1c4558feaebc16cec47587f949e" >
 
   
   
@@ -712,7 +762,7 @@
               <span>English</span>
             </div>
             
-            <a class="dropdown-item" href="https://chenfei-ye.github.io/zh/categories/">
+            <a class="dropdown-item" href="https://chenfei-ye.github.io/zh/post/202206_jupyter_docker/">
               <span>中文 (简体)</span>
             </a>
             
@@ -734,7 +784,18 @@
     
     
 
-    
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
 
 
 
@@ -748,61 +809,29 @@
 
 
   
+  
 
-  
-  
-  
-    
-  
-<div class="universal-wrapper pt-3">
-  <h1>Categories</h1>
+
+<div class="article-container pt-3">
+  <h1>Jupyter远程调试docker容器</h1>
 
   
 
   
-</div>
-
-
-
-<div class="universal-wrapper">
-  
-
-  
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item view-compact">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/category/%E6%8A%80%E5%B7%A7/" >技巧</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
 
 
 <div class="article-metadata">
 
+  
+  
+  
+  
+  <div>
+    
+
+  <span class="author-highlighted">
+      Chenfei Ye</span>
+  </div>
   
   
 
@@ -819,108 +848,328 @@
   
 
   
-
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
-      
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item view-compact">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/category/%E8%B8%A9%E5%9D%91/" >踩坑</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
-    
-      
-    
-    Jun 15, 2022
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
   </span>
   
 
   
-
-  
-
-  
   
   
   
 
   
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/%E6%8A%80%E5%B7%A7/">技巧</a></span>
   
 
 </div>
 
-      
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 1200px; max-height: 348px;">
+  <div style="position: relative">
+    <img src="/post/202206_jupyter_docker/featured_hu9cc584d45947096b7b340ae2d4924993_129397_1200x2500_fit_q75_h2_lanczos_3.webp" width="1200" height="348" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h2 id="场景">场景</h2>
+<p><a href="https://chenfei-ye.github.io/zh/post/202206_vscode_docker/" target="_blank" rel="noopener">上一篇</a>写了如何使用vscode远程连接服务器的docker容器进行debug，这篇简单记录一下如何使用jupyter远程连接服务器的docker容器。</p>
+<p>场景： 本地win10笔记本，远程连接远程ubuntu服务器的docker容器</p>
+<p>使用jupyter相对于vscode的优势：</p>
+<ol>
+<li>动态笔记脚本，Markdown与code的完美结合</li>
+<li>画图，模型训练</li>
+<li>快速运行下载的开源<code>ipynb</code>文件</li>
+</ol>
+<p>当然对于神经影像pipeline项目，个人更偏爱vscode去debug</p>
+<p>言归正传：</p>
+<h3 id="一服务器端容器设置"><strong>一、服务器端容器设置</strong></h3>
+<h4 id="1容器启动设置端口"><strong>1、容器启动，设置端口</strong></h4>
+<pre tabindex="0"><code># 建议提前启动一个tmux窗口，防止远端服务断电断网
+docker run -it --rm --gpus all -p 9999:9999 mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:v1.1
+</code></pre><h4 id="2生成notebook-配置文件"><strong>2、生成notebook 配置文件</strong></h4>
+<pre tabindex="0"><code>apt-get install jupyter
+apt-get install ipython
+jupyter notebook --generate-config
+</code></pre><h4 id="3生成密码"><strong>3、生成密码</strong></h4>
+<pre tabindex="0"><code>jupyter notebook password
+</code></pre><p>此时会在<code>/root/.jupyter/jupyter_notebook_config.json</code>中生成密文。复制该密文，如<code>sha1:56a8dc892ab2:239cb1f1bda7f8614e546853e8298efc566489d9</code></p>
+<h4 id="4修改配置文件"><strong>4、修改配置文件</strong></h4>
+<p>在<code>/root/.jupyter/jupyter_notebook_config.py</code>中添加这几行</p>
+<pre tabindex="0"><code>c.NotebookApp.ip=&#39;*&#39;
+c.NotebookApp.password = u&#39;刚才复制的那个密文&#39;
+c.NotebookApp.open_browser = False
+c.NotebookApp.port =9999 
+</code></pre><h4 id="5安装python3-dev"><strong>5、安装python3-dev</strong></h4>
+<p>提前解决jupyter无法连接python3服务器内核 一直显示正在连接服务器的问题</p>
+<pre tabindex="0"><code>apt-get install python3-dev
+</code></pre><h4 id="6安装ipykernel"><strong>6、安装ipykernel</strong></h4>
+<pre tabindex="0"><code># 将当前python环境添加进jupyter kernel
+pip install ipykernel
+python -m ipykernel install --name cye（你的环境名）`
+</code></pre><h4 id="7启动jupyter"><strong>7、启动jupyter</strong></h4>
+<pre tabindex="0"><code>jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --port 9999
+</code></pre><h3 id="二win10本地相关配置"><strong>二、win10本地相关配置</strong></h3>
+<p>假设windows环境已成功安装anaconda和jupyter</p>
+<h4 id="1连接远程服务器"><strong>1、连接远程服务器：</strong></h4>
+<p>打开<code>Anaconda prompt</code>终端，连接远端：</p>
+<pre tabindex="0"><code>ssh -L 9999:localhost:9999 [用户名]@[主机IP]
+</code></pre><p>此时需输入远端服务器密码（不是docker容器中刚才新设的密码）</p>
+<h4 id="2浏览器打开jupyter"><strong>2、浏览器打开jupyter：</strong></h4>
+<p>本地浏览器输入<a href="http://localhost:9999/" target="_blank" rel="noopener">http://localhost:9999</a>
+然后输入登录Jupyter Notebook的密码（即docker容器中刚才新设的密码），选择刚才新建的kernel环境 (e.g., <code>cye</code>)。</p>
+<p>BINGO！</p>
+<h3 id="三参考资料"><strong>三，参考资料</strong></h3>
+<ul>
+<li><a href="https://blog.csdn.net/qq_42001765/article/details/96144442" target="_blank" rel="noopener">https://blog.csdn.net/qq_42001765/article/details/96144442</a></li>
+<li><a href="https://towardsdatascience.com/using-jupyter-notebook-running-on-a-remote-docker-container-via-ssh-ea2c3ebb9055" target="_blank" rel="noopener">https://towardsdatascience.com/using-jupyter-notebook-running-on-a-remote-docker-container-via-ssh-ea2c3ebb9055</a></li>
+<li><a href="https://blog.csdn.net/u012325865/article/details/99692108" target="_blank" rel="noopener">https://blog.csdn.net/u012325865/article/details/99692108</a></li>
+</ul>
+
     </div>
 
     
 
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/python/">python</a>
+  
+  <a class="badge badge-light" href="/tag/docker/">docker</a>
+  
 </div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://chenfei-ye.github.io/post/202206_jupyter_docker/&amp;text=Jupyter%e8%bf%9c%e7%a8%8b%e8%b0%83%e8%af%95docker%e5%ae%b9%e5%99%a8" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://chenfei-ye.github.io/post/202206_jupyter_docker/&amp;t=Jupyter%e8%bf%9c%e7%a8%8b%e8%b0%83%e8%af%95docker%e5%ae%b9%e5%99%a8" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Jupyter%e8%bf%9c%e7%a8%8b%e8%b0%83%e8%af%95docker%e5%ae%b9%e5%99%a8&amp;body=https://chenfei-ye.github.io/post/202206_jupyter_docker/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://chenfei-ye.github.io/post/202206_jupyter_docker/&amp;title=Jupyter%e8%bf%9c%e7%a8%8b%e8%b0%83%e8%af%95docker%e5%ae%b9%e5%99%a8" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Jupyter%e8%bf%9c%e7%a8%8b%e8%b0%83%e8%af%95docker%e5%ae%b9%e5%99%a8%20https://chenfei-ye.github.io/post/202206_jupyter_docker/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://chenfei-ye.github.io/post/202206_jupyter_docker/&amp;title=Jupyter%e8%bf%9c%e7%a8%8b%e8%b0%83%e8%af%95docker%e5%ae%b9%e5%99%a8" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://chenfei-ye.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu481cbc52c4bdf90e4d0e73570c05fb69_455100_270x270_fill_q75_lanczos_center.jpg" alt="Chenfei Ye"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://chenfei-ye.github.io/">Chenfei Ye</a></h5>
+      <h6 class="card-subtitle">A connectome weaver</h6>
+      <p class="card-text">The brain&rsquo;s billions of neurons resemble trees of many species and come in many fantastic shapes. Only the most determined explorers can hope to capture a glimpse of this forest&rsquo;s interior, and even they see little, and see it poorly.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:chenfei.ye@foxmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/chenfei-ye" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.researchgate.net/profile/Chenfei-Ye" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=kLDaQM4AAAAJ" target="_blank" rel="noopener">
+        <i class="fab fa-google"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
 
   
 
-  
 
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
   </div>
 
   <div class="page-footer">

@@ -5,12 +5,73 @@
     <link>https://chenfei-ye.github.io/zh/tag/python/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/tag/python/index.xml" rel="self" type="application/rss+xml" />
     <description>python</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Wed, 15 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sat, 18 Jun 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>python</title>
       <link>https://chenfei-ye.github.io/zh/tag/python/</link>
     </image>
+    
+    <item>
+      <title>Jupyter远程调试docker容器</title>
+      <link>https://chenfei-ye.github.io/zh/post/202206_jupyter_docker/</link>
+      <pubDate>Sat, 18 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202206_jupyter_docker/</guid>
+      <description>&lt;h2 id=&#34;场景&#34;&gt;场景&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://chenfei-ye.github.io/zh/post/202206_vscode_docker/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;上一篇&lt;/a&gt;写了如何使用vscode远程连接服务器的docker容器进行debug，这篇简单记录一下如何使用jupyter远程连接服务器的docker容器。&lt;/p&gt;
+&lt;p&gt;场景： 本地win10笔记本，远程连接远程ubuntu服务器的docker容器&lt;/p&gt;
+&lt;p&gt;使用jupyter相对于vscode的优势：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;动态笔记脚本，Markdown与code的完美结合&lt;/li&gt;
+&lt;li&gt;画图，模型训练&lt;/li&gt;
+&lt;li&gt;快速运行下载的开源&lt;code&gt;ipynb&lt;/code&gt;文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;当然对于神经影像pipeline项目，个人更偏爱vscode去debug&lt;/p&gt;
+&lt;p&gt;言归正传：&lt;/p&gt;
+&lt;h3 id=&#34;一服务器端容器设置&#34;&gt;&lt;strong&gt;一、服务器端容器设置&lt;/strong&gt;&lt;/h3&gt;
+&lt;h4 id=&#34;1容器启动设置端口&#34;&gt;&lt;strong&gt;1、容器启动，设置端口&lt;/strong&gt;&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 建议提前启动一个tmux窗口，防止远端服务断电断网
+docker run -it --rm --gpus all -p 9999:9999 mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:v1.1
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;2生成notebook-配置文件&#34;&gt;&lt;strong&gt;2、生成notebook 配置文件&lt;/strong&gt;&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apt-get install jupyter
+apt-get install ipython
+jupyter notebook --generate-config
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;3生成密码&#34;&gt;&lt;strong&gt;3、生成密码&lt;/strong&gt;&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;jupyter notebook password
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此时会在&lt;code&gt;/root/.jupyter/jupyter_notebook_config.json&lt;/code&gt;中生成密文。复制该密文，如&lt;code&gt;sha1:56a8dc892ab2:239cb1f1bda7f8614e546853e8298efc566489d9&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;4修改配置文件&#34;&gt;&lt;strong&gt;4、修改配置文件&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;在&lt;code&gt;/root/.jupyter/jupyter_notebook_config.py&lt;/code&gt;中添加这几行&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;c.NotebookApp.ip=&amp;#39;*&amp;#39;
+c.NotebookApp.password = u&amp;#39;刚才复制的那个密文&amp;#39;
+c.NotebookApp.open_browser = False
+c.NotebookApp.port =9999 
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;5安装python3-dev&#34;&gt;&lt;strong&gt;5、安装python3-dev&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;提前解决jupyter无法连接python3服务器内核 一直显示正在连接服务器的问题&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apt-get install python3-dev
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;6安装ipykernel&#34;&gt;&lt;strong&gt;6、安装ipykernel&lt;/strong&gt;&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 将当前python环境添加进jupyter kernel
+pip install ipykernel
+python -m ipykernel install --name cye（你的环境名）`
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;7启动jupyter&#34;&gt;&lt;strong&gt;7、启动jupyter&lt;/strong&gt;&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --port 9999
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;二win10本地相关配置&#34;&gt;&lt;strong&gt;二、win10本地相关配置&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;假设windows环境已成功安装anaconda和jupyter&lt;/p&gt;
+&lt;h4 id=&#34;1连接远程服务器&#34;&gt;&lt;strong&gt;1、连接远程服务器：&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;打开&lt;code&gt;Anaconda prompt&lt;/code&gt;终端，连接远端：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ssh -L 9999:localhost:9999 [用户名]@[主机IP]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此时需输入远端服务器密码（不是docker容器中刚才新设的密码）&lt;/p&gt;
+&lt;h4 id=&#34;2浏览器打开jupyter&#34;&gt;&lt;strong&gt;2、浏览器打开jupyter：&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;本地浏览器输入&lt;a href=&#34;http://localhost:9999/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://localhost:9999&lt;/a&gt;
+然后输入登录Jupyter Notebook的密码（即docker容器中刚才新设的密码），选择刚才新建的kernel环境 (e.g., &lt;code&gt;cye&lt;/code&gt;)。&lt;/p&gt;
+&lt;p&gt;BINGO！&lt;/p&gt;
+&lt;h3 id=&#34;三参考资料&#34;&gt;&lt;strong&gt;三，参考资料&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/qq_42001765/article/details/96144442&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://blog.csdn.net/qq_42001765/article/details/96144442&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://towardsdatascience.com/using-jupyter-notebook-running-on-a-remote-docker-container-via-ssh-ea2c3ebb9055&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://towardsdatascience.com/using-jupyter-notebook-running-on-a-remote-docker-container-via-ssh-ea2c3ebb9055&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/u012325865/article/details/99692108&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://blog.csdn.net/u012325865/article/details/99692108&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>python进程传参踩坑：为何单变量参数被识别为多变量</title>

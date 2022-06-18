@@ -34,7 +34,7 @@
       href="https://chenfei-ye.github.io/zh/"
     /></url>
   <url>
-    <loc></loc><lastmod>2022-06-15T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
+    <loc></loc><lastmod>2022-06-18T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
       rel="alternate"
       hreflang="en"
       href=""
@@ -44,7 +44,7 @@
       href=""
     /></url>
   <url>
-    <loc>https://chenfei-ye.github.io/zh/categories/</loc><lastmod>2022-06-15T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
+    <loc>https://chenfei-ye.github.io/zh/categories/</loc><lastmod>2022-06-18T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
       rel="alternate"
       hreflang="en"
       href="https://chenfei-ye.github.io/categories/"
@@ -52,6 +52,76 @@
       rel="alternate"
       hreflang="zh"
       href="https://chenfei-ye.github.io/zh/categories/"
+    /></url>
+  <url>
+    <loc>https://chenfei-ye.github.io/zh/tag/docker/</loc><lastmod>2022-06-18T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://chenfei-ye.github.io/tag/docker/"
+    /><xhtml:link
+      rel="alternate"
+      hreflang="zh"
+      href="https://chenfei-ye.github.io/zh/tag/docker/"
+    /></url>
+  <url>
+    <loc>https://chenfei-ye.github.io/zh/post/202206_jupyter_docker/</loc><lastmod>2022-06-18T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://chenfei-ye.github.io/post/202206_jupyter_docker/"
+    /><xhtml:link
+      rel="alternate"
+      hreflang="zh"
+      href="https://chenfei-ye.github.io/zh/post/202206_jupyter_docker/"
+    /></url>
+  <url>
+    <loc>https://chenfei-ye.github.io/zh/post/</loc><lastmod>2022-06-18T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://chenfei-ye.github.io/post/"
+    /><xhtml:link
+      rel="alternate"
+      hreflang="zh"
+      href="https://chenfei-ye.github.io/zh/post/"
+    /></url>
+  <url>
+    <loc>https://chenfei-ye.github.io/zh/tag/python/</loc><lastmod>2022-06-18T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://chenfei-ye.github.io/tag/python/"
+    /><xhtml:link
+      rel="alternate"
+      hreflang="zh"
+      href="https://chenfei-ye.github.io/zh/tag/python/"
+    /></url>
+  <url>
+    <loc>https://chenfei-ye.github.io/zh/tags/</loc><lastmod>2022-06-18T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://chenfei-ye.github.io/tags/"
+    /><xhtml:link
+      rel="alternate"
+      hreflang="zh"
+      href="https://chenfei-ye.github.io/zh/tags/"
+    /></url>
+  <url>
+    <loc></loc><lastmod>2022-06-18T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href=""
+    /><xhtml:link
+      rel="alternate"
+      hreflang="zh"
+      href=""
+    /></url>
+  <url>
+    <loc>https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/</loc><lastmod>2022-06-18T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
+      rel="alternate"
+      hreflang="en"
+      href="https://chenfei-ye.github.io/category/%E6%8A%80%E5%B7%A7/"
+    /><xhtml:link
+      rel="alternate"
+      hreflang="zh"
+      href="https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/"
     /></url>
   <url>
     <loc>https://chenfei-ye.github.io/zh/tag/pipeline/</loc><lastmod>2022-06-15T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
@@ -64,26 +134,6 @@
       href="https://chenfei-ye.github.io/zh/tag/pipeline/"
     /></url>
   <url>
-    <loc>https://chenfei-ye.github.io/zh/post/</loc><lastmod>2022-06-15T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
-      rel="alternate"
-      hreflang="en"
-      href="https://chenfei-ye.github.io/post/"
-    /><xhtml:link
-      rel="alternate"
-      hreflang="zh"
-      href="https://chenfei-ye.github.io/zh/post/"
-    /></url>
-  <url>
-    <loc>https://chenfei-ye.github.io/zh/tag/python/</loc><lastmod>2022-06-15T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
-      rel="alternate"
-      hreflang="en"
-      href="https://chenfei-ye.github.io/tag/python/"
-    /><xhtml:link
-      rel="alternate"
-      hreflang="zh"
-      href="https://chenfei-ye.github.io/zh/tag/python/"
-    /></url>
-  <url>
     <loc>https://chenfei-ye.github.io/zh/post/202206_python_tuple/</loc><lastmod>2022-06-15T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
       rel="alternate"
       hreflang="en"
@@ -92,26 +142,6 @@
       rel="alternate"
       hreflang="zh"
       href="https://chenfei-ye.github.io/zh/post/202206_python_tuple/"
-    /></url>
-  <url>
-    <loc>https://chenfei-ye.github.io/zh/tags/</loc><lastmod>2022-06-15T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
-      rel="alternate"
-      hreflang="en"
-      href="https://chenfei-ye.github.io/tags/"
-    /><xhtml:link
-      rel="alternate"
-      hreflang="zh"
-      href="https://chenfei-ye.github.io/zh/tags/"
-    /></url>
-  <url>
-    <loc></loc><lastmod>2022-06-15T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
-      rel="alternate"
-      hreflang="en"
-      href=""
-    /><xhtml:link
-      rel="alternate"
-      hreflang="zh"
-      href=""
     /></url>
   <url>
     <loc>https://chenfei-ye.github.io/zh/category/%E8%B8%A9%E5%9D%91/</loc><lastmod>2022-06-15T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
@@ -134,16 +164,6 @@
       href="https://chenfei-ye.github.io/zh/tag/dmri/"
     /></url>
   <url>
-    <loc>https://chenfei-ye.github.io/zh/tag/docker/</loc><lastmod>2022-06-12T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
-      rel="alternate"
-      hreflang="en"
-      href="https://chenfei-ye.github.io/tag/docker/"
-    /><xhtml:link
-      rel="alternate"
-      hreflang="zh"
-      href="https://chenfei-ye.github.io/zh/tag/docker/"
-    /></url>
-  <url>
     <loc>https://chenfei-ye.github.io/zh/post/202206_dockerfile_fsl/</loc><lastmod>2022-06-12T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
       rel="alternate"
       hreflang="en"
@@ -162,16 +182,6 @@
       rel="alternate"
       hreflang="zh"
       href="https://chenfei-ye.github.io/zh/post/202206_vscode_docker/"
-    /></url>
-  <url>
-    <loc>https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/</loc><lastmod>2022-06-12T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
-      rel="alternate"
-      hreflang="en"
-      href="https://chenfei-ye.github.io/category/%E6%8A%80%E5%B7%A7/"
-    /><xhtml:link
-      rel="alternate"
-      hreflang="zh"
-      href="https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/"
     /></url>
   <url>
     <loc>https://chenfei-ye.github.io/zh/post/202206_dockerfile_all/</loc><lastmod>2022-06-12T00:00:00+00:00</lastmod><changefreq>weekly</changefreq><xhtml:link
