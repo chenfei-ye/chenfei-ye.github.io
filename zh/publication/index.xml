@@ -5,12 +5,28 @@
     <link>https://chenfei-ye.github.io/zh/publication/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/publication/index.xml" rel="self" type="application/rss+xml" />
     <description>Publications</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Wed, 23 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Thu, 15 Sep 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>Publications</title>
       <link>https://chenfei-ye.github.io/zh/publication/</link>
     </image>
+    
+    <item>
+      <title>Ensemble learning  via supervision augmentation for white matter hyperintensity segmentation</title>
+      <link>https://chenfei-ye.github.io/zh/publication/j_2022_j_wmh_ensemble/</link>
+      <pubDate>Thu, 15 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/publication/j_2022_j_wmh_ensemble/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Brain age vector: A measure of brain aging with enhanced neurodegenerative disorder specificity</title>
+      <link>https://chenfei-ye.github.io/zh/publication/j_2022_j_hbm_brainage/</link>
+      <pubDate>Mon, 12 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/publication/j_2022_j_hbm_brainage/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Regularizing Brain Age Prediction via Gated Knowledge Distillation</title>
@@ -46,7 +62,7 @@
     </item>
     
     <item>
-      <title>Alteration of brain structural connectivity in progression of Parkinsons disease: A connectome-wide network analysis</title>
+      <title>An anatomical knowledge-based MRI deep learning pipeline for white matter hyperintensity quantification associated with cognitive impairment</title>
       <link>https://chenfei-ye.github.io/zh/publication/j_2021_j_cmig/</link>
       <pubDate>Tue, 06 Apr 2021 00:00:00 +0000</pubDate>
       <guid>https://chenfei-ye.github.io/zh/publication/j_2021_j_cmig/</guid>

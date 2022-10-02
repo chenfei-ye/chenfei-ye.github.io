@@ -5,12 +5,26 @@
     <link>https://chenfei-ye.github.io/post/</link>
       <atom:link href="https://chenfei-ye.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 18 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 12 Sep 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
       <link>https://chenfei-ye.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>分享下四川美院大神XISION的作品</title>
+      <link>https://chenfei-ye.github.io/post/202209_chs_dragon/</link>
+      <pubDate>Mon, 12 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/post/202209_chs_dragon/</guid>
+      <description>&lt;h2 id=&#34;超美的画&#34;&gt;超美的画&lt;/h2&gt;
+&lt;p&gt;GGAC2020山海有灵特等奖川美大四学生吴俊达（xision）的作品系列，非常喜欢他的龙、牧童和水牛。&lt;/p&gt;
+&lt;h3 id=&#34;一定要看的链接&#34;&gt;&lt;strong&gt;一定要看的链接&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://xision.zcool.com.cn/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://xision.zcool.com.cn/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Jupyter远程调试docker容器</title>
