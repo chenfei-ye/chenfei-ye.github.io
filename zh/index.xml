@@ -33,6 +33,194 @@
     </item>
     
     <item>
+      <title>关于最近一些MRI-T1w结构像处理pipeline的测试</title>
+      <link>https://chenfei-ye.github.io/zh/post/202303_parcellate/</link>
+      <pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202303_parcellate/</guid>
+      <description>&lt;h2 id=&#34;fastsurfer---全脑分割&#34;&gt;FastSurfer -&amp;gt; 全脑分割&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://deep-mi.org/research/fastsurfer/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://deep-mi.org/research/fastsurfer/&lt;/a&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://deep-mi.org/static/img/research/fastsurfer/01_teaser_white.png&#34; alt=&#34;!&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+FastSurfer is a fast and &lt;a href=&#34;https://deep-mi.org/research/fastsurfer/#proof-of-concept&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;extensively validated&lt;/a&gt; deep-learning pipeline for the fully automated processing of structural human brain MRIs. As such, it provides FreeSurfer conform outputs, enables scalable big-data analysis and time-critical clinical applications such as structure localization during image acquisition or extraction of quantitative measures.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 完整分割（GPU） 
+docker run --gpus all -v /data/mg_data/mnt/bl_test/input:/data -v /data/mg_data/mnt/bl_test/fastsf_output:/output -v /data/freesurfer:/fs_license --rm deepmi/fastsurfer:gpu-v1.1.1 --fs_license /fs_license/freesurfer_license.txt --t1 /data/t1.nii --sid subject2 --sd /output --parallel 
+
+# DKT Lookup table 
+31和63作为脉络丛会被分割出来，应该当做LV，对应4和43 
+77作为WMH，没有区分左右，不便合并
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;synthseg---全脑分割计算icv&#34;&gt;SynthSeg -&amp;gt; 全脑分割，计算ICV&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/BBillot/SynthSeg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/BBillot/SynthSeg&lt;/a&gt;
+&lt;a href=&#34;https://surfer.nmr.mgh.harvard.edu/fswiki/SynthSeg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://surfer.nmr.mgh.harvard.edu/fswiki/SynthSeg&lt;/a&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://surfer.nmr.mgh.harvard.edu/fswiki/SynthSeg?action=AttachFile&amp;amp;do=get&amp;amp;target=robust2.png&#34; alt=&#34;!&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;SynthSeg&lt;/code&gt; 可不依赖GPU，实测CPU多线程计算约2分钟内完成&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 分割 （完整） 
+mri_synthseg --i /dataio/t1.nii --parc --robust --vol /dataio/vol.csv --qc /dataio/qc.csv --threads 172 --o /dataio/t1_seg.nii.gz 
+# 注意 --resample如果输入本身是1mm iso，则不会生成resample图像
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;synthstrip---剥头皮&#34;&gt;SynthStrip -&amp;gt; 剥头皮&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/&lt;/a&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/resources/SynthStripExamples.png&#34; alt=&#34;!&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+SynthStrip is a skull-stripping tool that extracts brain signal from a landscape of image types, ranging across imaging modality, contrast, resolution, and subject population. It leverages a deep learning strategy that synthesizes arbitrary training images from segmentation maps to optimize a robust model agnostic to acquisition specifics.
+&lt;a href=&#34;https://doi.org/10.1016/j.neuroimage.2022.119474&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1016/j.neuroimage.2022.119474&lt;/a&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 自动去头皮（多模态泛化性优秀），1分钟以内 
+mri_synthstrip -i /dataio/t1.nii -o /dataio/t1_bet.nii -m /dataio/t1_mask.nii
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;sbtiv--计算icv&#34;&gt;sbTIV-&amp;gt; 计算ICV&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://freesurfer.net/fswiki/Samseg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://freesurfer.net/fswiki/Samseg&lt;/a&gt;
+&lt;a href=&#34;https://freesurfer.net/fswiki/sbTIV&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://freesurfer.net/fswiki/sbTIV&lt;/a&gt;
+Total intracranial volume (TIV/ICV) is an important covariate for volumetric analyses of the brain and brain regions. It is commonly used to correct for head size variation (i.e., &amp;rsquo;normalize&amp;rsquo; hippocampal volume size). The gold-standard method is manual delineation of T2 scans. Freesurfer currently provides the eTIV measure, described &lt;a href=&#34;https://freesurfer.net/fswiki/eTIV&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;. It has been shown to be a robust covariate.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://freesurfer.net/fswiki/Samseg?action=AttachFile&amp;amp;do=get&amp;amp;target=3D_small.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;## 计算sbTIV (segmentation-based TIV)，大约5-10分钟
+run_samseg --input /home/username/data/t1.nii --output /home/username/data/samsegOutput/ --threads 8
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;关于freesurfer图谱&#34;&gt;关于FreeSurfer图谱&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;DK图谱lookuptable &lt;a href=&#34;https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT&lt;/a&gt; &lt;a href=&#34;https://www.cis.jhu.edu/~parky/MRN/Desikan%20Region%20Labels%20and%20Descriptions.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.cis.jhu.edu/~parky/MRN/Desikan%20Region%20Labels%20and%20Descriptions.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DKT 图谱： &lt;a href=&#34;https://mindboggle.readthedocs.io/en/latest/labels.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://mindboggle.readthedocs.io/en/latest/labels.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HCPMMP图谱 ： &lt;a href=&#34;https://neuroimaging-core-docs.readthedocs.io/en/latest/pages/atlases.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://neuroimaging-core-docs.readthedocs.io/en/latest/pages/atlases.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>中国人脑MRI常模公开数据库</title>
+      <link>https://chenfei-ye.github.io/zh/post/202302_hc_cohort/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202302_hc_cohort/</guid>
+      <description>&lt;h2 id=&#34;chcp-中国人脑图谱&#34;&gt;CHCP-中国人脑图谱&lt;/h2&gt;
+&lt;p&gt;北大高家红课题组公开，1.85 TB，365个人，西门子prisma扫描，包含基于中国人群的脑部MRI高分辨率结构影像（T1W 和 T2W）、静息态功能影像（rfMRI）、任务态功能影像（tfMRI）以及高角分辨率的扩散加权影像（dMRI），还包括相应的认知与行为数据。&lt;/p&gt;
+&lt;p&gt;Ge, J., Yang, G., Han, M. &lt;em&gt;et al.&lt;/em&gt; Increasing diversity in connectomics with the Chinese Human Connectome Project. &lt;em&gt;Nat Neurosci&lt;/em&gt;  &lt;strong&gt;26&lt;/strong&gt;, 163–172 (2023). &lt;a href=&#34;https://doi.org/10.1038/s41593-022-01215-1&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1038/s41593-022-01215-1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;下载地址：https://www.chinese-hcp.cn/&lt;/p&gt;
+&lt;h2 id=&#34;slim-西南大学纵向多模态大学生脑影像&#34;&gt;SLIM-西南大学纵向多模态大学生脑影像&lt;/h2&gt;
+&lt;p&gt;数据介绍：&lt;a href=&#34;http://fcon_1000.projects.nitrc.org/indi/retro/southwestuni_qiu_index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://fcon_1000.projects.nitrc.org/indi/retro/southwestuni_qiu_index.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Liu W, Wei D, Chen Q, Yang W, Meng J, Wu G, Bi T, Zhang Q, Zuo XN, Qiu J. Longitudinal test-retest neuroimaging data from healthy young adults in southwest China. Sci Data. 2017 Feb 14;4:170017. doi: 10.1038/sdata.2017.17. PMID: 28195583; PMCID: PMC5308199.&lt;/p&gt;
+&lt;p&gt;The data collection was initiated in November 2011 and was terminated in January 2015. using 3T Siemens Trio
+包含3D-T1w/DTI/rs-fMRI&lt;/p&gt;
+&lt;p&gt;下载方式：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 下载duck CLI工具，可在Linux环境安装 
+echo -e &amp;#34;deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main&amp;#34; | sudo tee /etc/apt/sources.list.d/cyberduck.list &amp;gt; /dev/null 
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FE7097963FEFBE72 
+sudo apt-get update 
+sudo apt-get install duck 
+
+# 读取亚马逊云S3的目录 
+duck --verbose -u anonymous --list s3:/fcp-indi/data/Projects/INDI/SLIM/RawDataTars/ 
+
+# 下载tar数据到本地 
+duck --verbose -u anonymous --download s3:/fcp-indi/data/Projects/INDI/SLIM/RawDataTars/ ./
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;sald-西南大学全生命周期横向队列脑影像&#34;&gt;SALD-西南大学全生命周期横向队列脑影像&lt;/h2&gt;
+&lt;p&gt;数据介绍：&lt;a href=&#34;http://fcon_1000.projects.nitrc.org/indi/retro/southwestuni_qiu_index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://fcon_1000.projects.nitrc.org/indi/retro/sald.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Wei D, Zhuang K, Ai L, Chen Q, Yang W, Liu W, Wang K, Sun J, Qiu J. Structural and functional brain scans from the cross-sectional Southwest University adult lifespan dataset. Sci Data. 2018 Jul 17;5:180134. doi: 10.1038/sdata.2018.134. PMID: 30015807; PMCID: PMC6049036.&lt;/p&gt;
+&lt;p&gt;497 healthy adults (age range: 19-80 years; 308 Females, 187 Males) were recruited and completed 3D-T1w and rs-fmri (bids format) using 3T Siemens Trio&lt;/p&gt;
+&lt;p&gt;下载方式：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 下载duck CLI工具，可在Linux环境安装 
+echo -e &amp;#34;deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main&amp;#34; | sudo tee /etc/apt/sources.list.d/cyberduck.list &amp;gt; /dev/null 
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FE7097963FEFBE72 
+sudo apt-get update 
+sudo apt-get install duck 
+
+# 读取亚马逊云S3的目录 
+duck --verbose -u anonymous --list s3:/fcp-indi/data/Projects/INDI/SALD/ 
+
+# 下载tar数据到本地 
+duck --verbose -u anonymous --download s3:/fcp-indi/data/Projects/INDI/SALD/ ./
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;北师大国重180例大学生多模态脑影像数据库&#34;&gt;北师大国重180例大学生多模态脑影像数据库&lt;/h2&gt;
+&lt;p&gt;数据描述: &lt;a href=&#34;http://fcon_1000.projects.nitrc.org/indi/retro/BeijingEnhanced.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;http://fcon_1000.projects.nitrc.org/indi/retro/BeijingEnhanced.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;These data include 180 healthy controls from a community (student) sample at Beijing Normal University in China. Compared to the Beijing_Zang dataset in the 1000 Functional Connectomes Classic collection these data include IQ scores for a subset of participants (n=55) and a 64 directions DTI scan for all participants.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MRF-Net: A multi-branch residual fusion network for fast and accurate whole-brain MRI segmentation</title>
+      <link>https://chenfei-ye.github.io/zh/publication/j_2022_j_mrfnet/</link>
+      <pubDate>Fri, 16 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/publication/j_2022_j_mrfnet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Ensemble learning  via supervision augmentation for white matter hyperintensity segmentation</title>
       <link>https://chenfei-ye.github.io/zh/publication/j_2022_j_wmh_ensemble/</link>
       <pubDate>Thu, 15 Sep 2022 00:00:00 +0000</pubDate>
@@ -46,20 +234,6 @@
       <pubDate>Mon, 12 Sep 2022 00:00:00 +0000</pubDate>
       <guid>https://chenfei-ye.github.io/zh/publication/j_2022_j_hbm_brainage/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>分享下四川美院大神XISION的作品</title>
-      <link>https://chenfei-ye.github.io/zh/post/202209_chs_dragon/</link>
-      <pubDate>Mon, 12 Sep 2022 00:00:00 +0000</pubDate>
-      <guid>https://chenfei-ye.github.io/zh/post/202209_chs_dragon/</guid>
-      <description>&lt;h2 id=&#34;超美的画&#34;&gt;超美的画&lt;/h2&gt;
-&lt;p&gt;GGAC2020山海有灵特等奖川美大四学生吴俊达（xision）的作品系列，非常喜欢他的龙、牧童和水牛。&lt;/p&gt;
-&lt;h3 id=&#34;一定要看的链接&#34;&gt;&lt;strong&gt;一定要看的链接&lt;/strong&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://xision.zcool.com.cn/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://xision.zcool.com.cn/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
     </item>
     
     <item>

@@ -5,12 +5,144 @@
     <link>https://chenfei-ye.github.io/zh/tag/docker/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/tag/docker/index.xml" rel="self" type="application/rss+xml" />
     <description>docker</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sat, 18 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sun, 12 Mar 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>docker</title>
       <link>https://chenfei-ye.github.io/zh/tag/docker/</link>
     </image>
+    
+    <item>
+      <title>关于最近一些MRI-T1w结构像处理pipeline的测试</title>
+      <link>https://chenfei-ye.github.io/zh/post/202303_parcellate/</link>
+      <pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202303_parcellate/</guid>
+      <description>&lt;h2 id=&#34;fastsurfer---全脑分割&#34;&gt;FastSurfer -&amp;gt; 全脑分割&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://deep-mi.org/research/fastsurfer/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://deep-mi.org/research/fastsurfer/&lt;/a&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://deep-mi.org/static/img/research/fastsurfer/01_teaser_white.png&#34; alt=&#34;!&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+FastSurfer is a fast and &lt;a href=&#34;https://deep-mi.org/research/fastsurfer/#proof-of-concept&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;extensively validated&lt;/a&gt; deep-learning pipeline for the fully automated processing of structural human brain MRIs. As such, it provides FreeSurfer conform outputs, enables scalable big-data analysis and time-critical clinical applications such as structure localization during image acquisition or extraction of quantitative measures.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 完整分割（GPU） 
+docker run --gpus all -v /data/mg_data/mnt/bl_test/input:/data -v /data/mg_data/mnt/bl_test/fastsf_output:/output -v /data/freesurfer:/fs_license --rm deepmi/fastsurfer:gpu-v1.1.1 --fs_license /fs_license/freesurfer_license.txt --t1 /data/t1.nii --sid subject2 --sd /output --parallel 
+
+# DKT Lookup table 
+31和63作为脉络丛会被分割出来，应该当做LV，对应4和43 
+77作为WMH，没有区分左右，不便合并
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;synthseg---全脑分割计算icv&#34;&gt;SynthSeg -&amp;gt; 全脑分割，计算ICV&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/BBillot/SynthSeg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://github.com/BBillot/SynthSeg&lt;/a&gt;
+&lt;a href=&#34;https://surfer.nmr.mgh.harvard.edu/fswiki/SynthSeg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://surfer.nmr.mgh.harvard.edu/fswiki/SynthSeg&lt;/a&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://surfer.nmr.mgh.harvard.edu/fswiki/SynthSeg?action=AttachFile&amp;amp;do=get&amp;amp;target=robust2.png&#34; alt=&#34;!&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;SynthSeg&lt;/code&gt; 可不依赖GPU，实测CPU多线程计算约2分钟内完成&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 分割 （完整） 
+mri_synthseg --i /dataio/t1.nii --parc --robust --vol /dataio/vol.csv --qc /dataio/qc.csv --threads 172 --o /dataio/t1_seg.nii.gz 
+# 注意 --resample如果输入本身是1mm iso，则不会生成resample图像
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;synthstrip---剥头皮&#34;&gt;SynthStrip -&amp;gt; 剥头皮&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/&lt;/a&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/resources/SynthStripExamples.png&#34; alt=&#34;!&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+SynthStrip is a skull-stripping tool that extracts brain signal from a landscape of image types, ranging across imaging modality, contrast, resolution, and subject population. It leverages a deep learning strategy that synthesizes arbitrary training images from segmentation maps to optimize a robust model agnostic to acquisition specifics.
+&lt;a href=&#34;https://doi.org/10.1016/j.neuroimage.2022.119474&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1016/j.neuroimage.2022.119474&lt;/a&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 自动去头皮（多模态泛化性优秀），1分钟以内 
+mri_synthstrip -i /dataio/t1.nii -o /dataio/t1_bet.nii -m /dataio/t1_mask.nii
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;sbtiv--计算icv&#34;&gt;sbTIV-&amp;gt; 计算ICV&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://freesurfer.net/fswiki/Samseg&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://freesurfer.net/fswiki/Samseg&lt;/a&gt;
+&lt;a href=&#34;https://freesurfer.net/fswiki/sbTIV&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://freesurfer.net/fswiki/sbTIV&lt;/a&gt;
+Total intracranial volume (TIV/ICV) is an important covariate for volumetric analyses of the brain and brain regions. It is commonly used to correct for head size variation (i.e., &amp;rsquo;normalize&amp;rsquo; hippocampal volume size). The gold-standard method is manual delineation of T2 scans. Freesurfer currently provides the eTIV measure, described &lt;a href=&#34;https://freesurfer.net/fswiki/eTIV&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;. It has been shown to be a robust covariate.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://freesurfer.net/fswiki/Samseg?action=AttachFile&amp;amp;do=get&amp;amp;target=3D_small.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;## 计算sbTIV (segmentation-based TIV)，大约5-10分钟
+run_samseg --input /home/username/data/t1.nii --output /home/username/data/samsegOutput/ --threads 8
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;关于freesurfer图谱&#34;&gt;关于FreeSurfer图谱&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;DK图谱lookuptable &lt;a href=&#34;https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/AnatomicalROI/FreeSurferColorLUT&lt;/a&gt; &lt;a href=&#34;https://www.cis.jhu.edu/~parky/MRN/Desikan%20Region%20Labels%20and%20Descriptions.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.cis.jhu.edu/~parky/MRN/Desikan%20Region%20Labels%20and%20Descriptions.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DKT 图谱： &lt;a href=&#34;https://mindboggle.readthedocs.io/en/latest/labels.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://mindboggle.readthedocs.io/en/latest/labels.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HCPMMP图谱 ： &lt;a href=&#34;https://neuroimaging-core-docs.readthedocs.io/en/latest/pages/atlases.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://neuroimaging-core-docs.readthedocs.io/en/latest/pages/atlases.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Jupyter远程调试docker容器</title>

@@ -5,12 +5,20 @@
     <link>https://chenfei-ye.github.io/publication-type/2/</link>
       <atom:link href="https://chenfei-ye.github.io/publication-type/2/index.xml" rel="self" type="application/rss+xml" />
     <description>2</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 15 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 16 Sep 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>2</title>
       <link>https://chenfei-ye.github.io/publication-type/2/</link>
     </image>
+    
+    <item>
+      <title>MRF-Net: A multi-branch residual fusion network for fast and accurate whole-brain MRI segmentation</title>
+      <link>https://chenfei-ye.github.io/publication/j_2022_j_mrfnet/</link>
+      <pubDate>Fri, 16 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/publication/j_2022_j_mrfnet/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Ensemble learning  via supervision augmentation for white matter hyperintensity segmentation</title>
