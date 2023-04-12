@@ -64,7 +64,7 @@
   
     
   
-  <meta name="description" content="This paper proposes a supervision augmentation method (SA) and combines it with ensemble learning (SA-EN) to improve the generalization ability of the white matter hyperintensity segmentation model." />
+  <meta name="description" content="本研究提出了一种监督增广的方法，对现有的脑磁共振FLAIR影像中白质高信号病灶的分割标注使用深度贝叶斯网络进行不确定性估计，能够预测病灶边缘等模糊区域的不确定性。" />
 
   
     <link rel="alternate" hreflang="en" href="https://chenfei-ye.github.io/publication/j_2022_j_wmh_ensemble/" />
@@ -311,7 +311,7 @@
   <meta property="og:site_name" content="主页" />
   <meta property="og:url" content="https://chenfei-ye.github.io/zh/publication/j_2022_j_wmh_ensemble/" />
   <meta property="og:title" content="Ensemble learning  via supervision augmentation for white matter hyperintensity segmentation | 主页" />
-  <meta property="og:description" content="This paper proposes a supervision augmentation method (SA) and combines it with ensemble learning (SA-EN) to improve the generalization ability of the white matter hyperintensity segmentation model." /><meta property="og:image" content="https://chenfei-ye.github.io/zh/publication/j_2022_j_wmh_ensemble/featured.png" />
+  <meta property="og:description" content="本研究提出了一种监督增广的方法，对现有的脑磁共振FLAIR影像中白质高信号病灶的分割标注使用深度贝叶斯网络进行不确定性估计，能够预测病灶边缘等模糊区域的不确定性。" /><meta property="og:image" content="https://chenfei-ye.github.io/zh/publication/j_2022_j_wmh_ensemble/featured.png" />
     <meta property="twitter:image" content="https://chenfei-ye.github.io/zh/publication/j_2022_j_wmh_ensemble/featured.png" /><meta property="og:locale" content="zh-Hans" />
   
     
@@ -366,7 +366,7 @@
       "url": "https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "This paper proposes a supervision augmentation method (SA) and combines it with ensemble learning (SA-EN) to improve the generalization ability of the white matter hyperintensity segmentation model."
+  "description": "本研究提出了一种监督增广的方法，对现有的脑磁共振FLAIR影像中白质高信号病灶的分割标注使用深度贝叶斯网络进行不确定性估计，能够预测病灶边缘等模糊区域的不确定性。"
 }
 </script>
 
@@ -948,7 +948,7 @@
 
     
     <h3>摘要</h3>
-    <p class="pub-abstract">Since the ambiguous boundary of the lesion and inter-observer variability, white matter hyperintensity segmentation annotations are inherently noisy and uncertain. On the other hand, the high capacity of deep neural networks (DNN) enables them to overfit labels with noise and uncertainty, which may lead to biased models with weak generalization ability. This challenge has been addressed by leveraging multiple annotations per image. However, multiple annotations are often not available in a real-world scenario. To mitigate the issue, this paper proposes a supervision augmentation method (SA) and combines it with ensemble learning (SA-EN) to improve the generalization ability of the model. SA can obtain diverse supervision information by estimating the uncertainty of annotation in a real-world scenario that per image have only one ambiguous annotation. Then different base learners in EN are trained with diverse supervision information. The experimental results on two white matter hyperintensity segmentation datasets demonstrate that SA-EN gets the optimal accuracy compared with other state-of-the-art ensemble methods. SA-EN is more effective on small datasets, which is more suitable for medical image segmentation with few annotations. A quantitative study is presented to show the effect of ensemble size and the effectiveness of the ensemble model. Furthermore, SA-EN can capture two types of uncertainty, aleatoric uncertainty modeled in SA and epistemic uncertainty modeled in EN.</p>
+    <p class="pub-abstract">现有的分割数据集都是每个影像只有一个对应的标注结果，然而这类标注结果在病灶边缘等模糊区域具有不确定性，从而可能导致病灶定位的精准度降低，影响患者的临床诊疗效果。本研究提出了一种监督增广的方法，对现有的单个标注使用深度贝叶斯网络进行不确定性估计，获得标注对应的不确定性图（像素级的）。然后基于不确定性图来获得多样性的监督信息，通过多样性的监督信息和经典的集成学习相结合（不同的监督信息训练集成学习中不同的基线模型），从而有效的提升模型的分割性能。实验发现，本研究提出的监督增广结合集成学习的方法在数据集较小的时候，性能提升更加显著。同时根据集成学习中不同基线模型的预测结果的差异性，可以获得最终预测结果对应的不确定性图。</p>
     
 
     

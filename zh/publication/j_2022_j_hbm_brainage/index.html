@@ -64,7 +64,7 @@
   
     
   
-  <meta name="description" content="In this study, we combined brain age modeling with Shapley Additive Explanations to measure brain aging as a feature contribution vector underlying spatial pathological aging mechanism." />
+  <meta name="description" content="为了增强脑龄模型的可解释性和疾病表达的特异性，本研究基于磁共振脑龄预测模型引入了Shapley 分析计算模块，将脑龄预测模型的可解释性迁移到疾病风险预测中，验证了脑龄指标对于脑健康风险的重要提示作用。本论文发表后收到同行高度关注，首三个月进入Wiley杂志社中国区同类论文下载量前五名，获得了“Wiley中国开放科学高贡献作者”荣誉。" />
 
   
     <link rel="alternate" hreflang="en" href="https://chenfei-ye.github.io/publication/j_2022_j_hbm_brainage/" />
@@ -311,7 +311,7 @@
   <meta property="og:site_name" content="主页" />
   <meta property="og:url" content="https://chenfei-ye.github.io/zh/publication/j_2022_j_hbm_brainage/" />
   <meta property="og:title" content="Brain age vector: A measure of brain aging with enhanced neurodegenerative disorder specificity | 主页" />
-  <meta property="og:description" content="In this study, we combined brain age modeling with Shapley Additive Explanations to measure brain aging as a feature contribution vector underlying spatial pathological aging mechanism." /><meta property="og:image" content="https://chenfei-ye.github.io/zh/publication/j_2022_j_hbm_brainage/featured.png" />
+  <meta property="og:description" content="为了增强脑龄模型的可解释性和疾病表达的特异性，本研究基于磁共振脑龄预测模型引入了Shapley 分析计算模块，将脑龄预测模型的可解释性迁移到疾病风险预测中，验证了脑龄指标对于脑健康风险的重要提示作用。本论文发表后收到同行高度关注，首三个月进入Wiley杂志社中国区同类论文下载量前五名，获得了“Wiley中国开放科学高贡献作者”荣誉。" /><meta property="og:image" content="https://chenfei-ye.github.io/zh/publication/j_2022_j_hbm_brainage/featured.png" />
     <meta property="twitter:image" content="https://chenfei-ye.github.io/zh/publication/j_2022_j_hbm_brainage/featured.png" /><meta property="og:locale" content="zh-Hans" />
   
     
@@ -366,7 +366,7 @@
       "url": "https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "In this study, we combined brain age modeling with Shapley Additive Explanations to measure brain aging as a feature contribution vector underlying spatial pathological aging mechanism."
+  "description": "为了增强脑龄模型的可解释性和疾病表达的特异性，本研究基于磁共振脑龄预测模型引入了Shapley 分析计算模块，将脑龄预测模型的可解释性迁移到疾病风险预测中，验证了脑龄指标对于脑健康风险的重要提示作用。本论文发表后收到同行高度关注，首三个月进入Wiley杂志社中国区同类论文下载量前五名，获得了“Wiley中国开放科学高贡献作者”荣誉。"
 }
 </script>
 
@@ -944,7 +944,7 @@
 
     
     <h3>摘要</h3>
-    <p class="pub-abstract">Neuroimaging-driven brain age estimation has become popular in measuring brain aging and identifying neurodegenerations. However, the single estimated brain age (gap) compromises regional variations of brain aging, losing spatial specificity across diseases which is valuable for early screening. In this study, we combined brain age modeling with Shapley Additive Explanations to measure brain aging as a feature contribution vector underlying spatial pathological aging mechanism. Specifically, we regressed age with volumetric brain features using machine learning to construct the brain age model, and model-agnostic Shapley values were calculated to attribute regional brain aging for each subject&rsquo;s age estimation, forming the brain age vector. Spatial specificity of the brain age vector was evaluated among groups of normal aging, prodromal Parkinson disease (PD), stable mild cognitive impairment (sMCI), and progressive mild cognitive impairment (pMCI). Machine learning methods were adopted to examine the discriminability of the brain age vector in early disease screening, compared with the other two brain aging metrics (single brain age gap, regional brain age gaps) and brain volumes. Results showed that the proposed brain age vector accurately reflected disorder-specific abnormal aging patterns related to the medial temporal and the striatum for prodromal AD (sMCI vs. pMCI) and PD (healthy controls [HC] vs. prodromal PD), respectively, and demonstrated outstanding performance in early disease screening, with area under the curves of 83.39% and 72.28% in detecting pMCI and prodromal PD, respectively. In conclusion, the proposed brain age vector effectively improves spatial specificity of brain aging measurement and enables individual screening of neurodegenerative diseases.</p>
+    <p class="pub-abstract">随着人脑的衰老变化，脑结构会出现明显的形态变化，其潜在的变化模式在健康人与疾病人群是很明显的，并与认知能力的普遍下降和神经退行性疾病的风险增加是一致的，研究表明，磁共振成像可以用来预测年龄，并表明可以从神经成像数据推理得到的脑年龄，并且可以用来实现早期神经退行性变的检测，发现与年龄相关的认知衰退。同时，预测年龄差（预测脑年龄和实际年龄之间的差异，Predicted Age Difference，PAD），与心理健康和身体变化具有较强的相关性。因此，实现准确的脑年龄估计也将PAD作为生物标志物进行量化分析脑健康的重要前提。基于该假设基础，我们首先分析了人脑结构的变化模式，并根据其变化模式对其脑龄进行预测，实现基于脑龄的早期神经退行性变的筛查，构建具有疾病特异性的衰老与形态结构分析模型。为了增强脑龄模型的可解释性和疾病表达的特异性，本研究基于磁共振脑龄预测模型引入了沙普利值计算模块，将脑龄预测模型的可解释性迁移到疾病风险预测中。由于大多数使用模型解释方法的脑年龄研究都侧重于驱动基于健康人模型训练的年龄估计的重要特征，因此他们未能建立脑衰老与神经退行性机制之间的关系。本研究创新的大脑年龄建模与 Shapley 分析方法相结合，以测量大脑老化作为空间病理老化机制的特征贡献向量，由此准确定位了疾病靶点并有效识别了AD转化风险（ACC=92.84%，AUC=96.09%），其预测性能相比已有研究有显著提升，突破了目前研究中pMCI与sMCI分类准确率低的难点，对于AD早期临床诊断具有重要应用价值。本论文发表后收到同行高度关注，首三个月进入Wiley杂志社中国区同类论文下载量前五名，获得了“Wiley中国开放科学高贡献作者”荣誉。</p>
     
 
     
