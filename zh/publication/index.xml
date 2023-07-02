@@ -5,12 +5,28 @@
     <link>https://chenfei-ye.github.io/zh/publication/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/publication/index.xml" rel="self" type="application/rss+xml" />
     <description>Publications</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Fri, 16 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Thu, 25 May 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>Publications</title>
       <link>https://chenfei-ye.github.io/zh/publication/</link>
     </image>
+    
+    <item>
+      <title>Spatial-temporal patterns of brain disconnectome in Alzheimers disease</title>
+      <link>https://chenfei-ye.github.io/zh/publication/j_2023_j_disconnectome/</link>
+      <pubDate>Thu, 25 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/publication/j_2023_j_disconnectome/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A deep connectome learning network using graph convolution for connectome-disease association study</title>
+      <link>https://chenfei-ye.github.io/zh/publication/j_2023_j_nn/</link>
+      <pubDate>Sat, 22 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/publication/j_2023_j_nn/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>MRF-Net: A multi-branch residual fusion network for fast and accurate whole-brain MRI segmentation</title>
