@@ -5,12 +5,53 @@
     <link>https://chenfei-ye.github.io/zh/tag/pipeline/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/tag/pipeline/index.xml" rel="self" type="application/rss+xml" />
     <description>pipeline</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sun, 12 Mar 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Thu, 31 Aug 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>pipeline</title>
       <link>https://chenfei-ye.github.io/zh/tag/pipeline/</link>
     </image>
+    
+    <item>
+      <title>rs-fMRI预处理完整流程</title>
+      <link>https://chenfei-ye.github.io/zh/post/202308_fmripost/</link>
+      <pubDate>Thu, 31 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202308_fmripost/</guid>
+      <description>&lt;h1 id=&#34;bids-fmripost&#34;&gt;BIDS-fMRIpost&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;BIDS-fmripost&lt;/code&gt;是基于&lt;a href=&#34;https://fmriprep.org/en/stable/installation.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;fMRIPrep&lt;/a&gt;  的后处理分析流程，基于&lt;a href=&#34;https://nilearn.github.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;nilearn&lt;/a&gt;开发。分析功能包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;协变量回归（confound regression）&lt;/li&gt;
+&lt;li&gt;空间平滑（spatial smoothing）&lt;/li&gt;
+&lt;li&gt;基于脑区的BOLD信号提取 (BOLD signal extraction)&lt;/li&gt;
+&lt;li&gt;功能连接网络计算 （FC network）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;目前主要用于静息态功能磁共振影像数据的脑网络分析。该脚本的输入数据需符合&lt;a href=&#34;https://bids.neuroimaging.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BIDS格式&lt;/a&gt;，输入模态需包括3D-T1w和fMRI。目前支持的图谱包括：  &lt;code&gt;AAL1_MNI&lt;/code&gt;,  &lt;code&gt;AAL2_MNI&lt;/code&gt;,  &lt;code&gt;AAL3_MNI&lt;/code&gt;,  &lt;code&gt;desikan_T1w&lt;/code&gt;,  &lt;code&gt;destrieux_T1w&lt;/code&gt;,  &lt;code&gt;hcpmmp_T1w&lt;/code&gt;  ,  &lt;code&gt;schaefer100_MNI&lt;/code&gt;,  &lt;code&gt;schaefer200_MNI&lt;/code&gt;  ,  &lt;code&gt;schaefer400_MNI&lt;/code&gt;,  &lt;code&gt;schaefer1000_MNI&lt;/code&gt;,  &lt;code&gt;PD25_MNI&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;具体使用说明&lt;a href=&#34;https://github.com/chenfei-ye/BIDS-fMRIpost/blob/main/resources/README_Chs.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;点此&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>vtk文件转mesh格式</title>
+      <link>https://chenfei-ye.github.io/zh/post/202308_vtk2mesh/</link>
+      <pubDate>Thu, 31 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202308_vtk2mesh/</guid>
+      <description>&lt;h1 id=&#34;vtk文件转mesh格式&#34;&gt;vtk文件转mesh格式&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;安装gmsh的binary文件 &lt;a href=&#34;https://gmsh.info/bin/Linux/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://gmsh.info/bin/Linux/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;转档&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 方式1 
+gmsh -3 -o .msh 
+# 方式2 
+gmsh -3 -save
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;本地安装gmsh GUI软件打开验证&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;其实也可以用&lt;code&gt;gmsh GUI&lt;/code&gt;直接转档&lt;/p&gt;
+&lt;h3 id=&#34;注意容器系统环境可能需要安装libxcursor1才能支持gmsh&#34;&gt;注意：容器系统环境可能需要安装libxcursor1才能支持gmsh&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apt install libxcursor1
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
     
     <item>
       <title>关于最近一些MRI-T1w结构像处理pipeline的测试</title>

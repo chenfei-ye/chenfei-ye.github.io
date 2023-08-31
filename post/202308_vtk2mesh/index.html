@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-Hans" >
+<!DOCTYPE html><html lang="en-us" >
 
 
 <head>
@@ -57,19 +57,19 @@
   
   
 
-  <meta name="author" content="叶辰飞" />
+  <meta name="author" content="Chenfei Ye" />
 
   
   
   
     
   
-  <meta name="description" content="A highly-customizable Hugo academic resume theme powered by Wowchemy website builder." />
+  <meta name="description" content="使用gmsh软件很方便" />
 
   
-    <link rel="alternate" hreflang="en" href="https://chenfei-ye.github.io/categories/" />
+    <link rel="alternate" hreflang="zh" href="https://chenfei-ye.github.io/zh/post/202308_vtk2mesh/" />
   
-  <link rel="alternate" hreflang="zh-Hans" href="https://chenfei-ye.github.io/zh/categories/" />
+  <link rel="alternate" hreflang="en-us" href="https://chenfei-ye.github.io/post/202308_vtk2mesh/" />
 
   
   
@@ -276,17 +276,15 @@
   
 
   
-    <link rel="alternate" href="/zh/categories/index.xml" type="application/rss+xml" title="主页" />
-  
 
   
-    <link rel="manifest" href="/zh/manifest.webmanifest" />
+    <link rel="manifest" href="/manifest.webmanifest" />
   
 
   <link rel="icon" type="image/png" href="/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="https://chenfei-ye.github.io/zh/categories/" />
+  <link rel="canonical" href="https://chenfei-ye.github.io/post/202308_vtk2mesh/" />
 
   
   
@@ -297,7 +295,6 @@
   
   
     
-    
   
   
 
@@ -306,39 +303,92 @@
     
     
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
     <meta property="twitter:site" content="@wowchemy" />
     <meta property="twitter:creator" content="@wowchemy" />
   
-  <meta property="og:site_name" content="主页" />
-  <meta property="og:url" content="https://chenfei-ye.github.io/zh/categories/" />
-  <meta property="og:title" content="Categories | 主页" />
-  <meta property="og:description" content="A highly-customizable Hugo academic resume theme powered by Wowchemy website builder." /><meta property="og:image" content="https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png" />
-    <meta property="twitter:image" content="https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="zh-Hans" />
+  <meta property="og:site_name" content="Chenfei Ye" />
+  <meta property="og:url" content="https://chenfei-ye.github.io/post/202308_vtk2mesh/" />
+  <meta property="og:title" content="vtk文件转mesh格式 | Chenfei Ye" />
+  <meta property="og:description" content="使用gmsh软件很方便" /><meta property="og:image" content="https://chenfei-ye.github.io/post/202308_vtk2mesh/featured.jpg" />
+    <meta property="twitter:image" content="https://chenfei-ye.github.io/post/202308_vtk2mesh/featured.jpg" /><meta property="og:locale" content="en-us" />
   
     
-      <meta property="og:updated_time" content="2023-08-31T00:00:00&#43;00:00" />
+      <meta
+        property="article:published_time"
+        content="2023-08-31T00:00:00&#43;00:00"
+      />
     
+    <meta property="article:modified_time" content="2023-08-31T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://chenfei-ye.github.io/post/202308_vtk2mesh/"
+  },
+  "headline": "vtk文件转mesh格式",
+  
+  "image": [
+    "https://chenfei-ye.github.io/post/202308_vtk2mesh/featured.jpg"
+  ],
+  
+  "datePublished": "2023-08-31T00:00:00Z",
+  "dateModified": "2023-08-31T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Chenfei Ye"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Chenfei Ye",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "使用gmsh软件很方便"
+}
+</script>
+
+  
+
+  
+
   
 
   
 
 
 
-  
-
-  
 
 
-
-
-
-  <title>Categories | 主页</title>
+  <title>vtk文件转mesh格式 | Chenfei Ye</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   "  >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="29ec3b5c0d65b929a5945fc950dc6336" >
 
   
   
@@ -360,7 +410,7 @@
 
       <div class="row no-gutters justify-content-between mb-3">
         <div class="col-6">
-          <h1>搜索</h1>
+          <h1>Search</h1>
         </div>
         <div class="col-6 col-search-close">
           <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
@@ -369,9 +419,9 @@
 
       <div id="search-box">
         
-        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
         autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
-        aria-label="搜索...">
+        aria-label="Search...">
         
       </div>
 
@@ -413,20 +463,20 @@
 
       
       <div class="d-none d-lg-inline-flex">
-        <a class="navbar-brand" href="/zh/">主页</a>
+        <a class="navbar-brand" href="/">Chenfei Ye</a>
       </div>
       
 
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
-              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="切换导航">
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
       <span><i class="fas fa-bars"></i></span>
       </button>
       
 
       
       <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-        <a class="navbar-brand" href="/zh/">主页</a>
+        <a class="navbar-brand" href="/">Chenfei Ye</a>
       </div>
       
 
@@ -469,7 +519,7 @@
           
 
           <li class="nav-item">
-            <a class="nav-link " href="/zh/#about"><span>简介</span></a>
+            <a class="nav-link " href="/#about"><span>About</span></a>
           </li>
 
           
@@ -506,7 +556,7 @@
           
 
           <li class="nav-item">
-            <a class="nav-link " href="/zh/#posts"><span>博客</span></a>
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
           </li>
 
           
@@ -543,7 +593,7 @@
           
 
           <li class="nav-item">
-            <a class="nav-link " href="/zh/#featured"><span>论文精选</span></a>
+            <a class="nav-link " href="/#featured"><span>Featured</span></a>
           </li>
 
           
@@ -580,7 +630,7 @@
           
 
           <li class="nav-item">
-            <a class="nav-link " href="/zh/#publications"><span>学术发表</span></a>
+            <a class="nav-link " href="/#publications"><span>Publications</span></a>
           </li>
 
           
@@ -617,7 +667,7 @@
           
 
           <li class="nav-item">
-            <a class="nav-link " href="/zh/#experience"><span>工作经历</span></a>
+            <a class="nav-link " href="/#experience"><span>Experience</span></a>
           </li>
 
           
@@ -654,7 +704,7 @@
           
 
           <li class="nav-item">
-            <a class="nav-link " href="/zh/#skills"><span>欢迎合作</span></a>
+            <a class="nav-link " href="/#skills"><span>Skills</span></a>
           </li>
 
           
@@ -676,7 +726,7 @@
         
         
         <li class="nav-item">
-          <a class="nav-link js-search" href="#" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></a>
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
         </li>
         
 
@@ -689,13 +739,13 @@
           </a>
           <div class="dropdown-menu">
             <a href="#" class="dropdown-item js-set-theme-light">
-              <span>浅色</span>
+              <span>Light</span>
             </a>
             <a href="#" class="dropdown-item js-set-theme-dark">
-              <span>深色</span>
+              <span>Dark</span>
             </a>
             <a href="#" class="dropdown-item js-set-theme-auto">
-              <span>自动</span>
+              <span>Automatic</span>
             </a>
           </div>
         </li>
@@ -705,15 +755,15 @@
         
         <li class="nav-item dropdown i18n-dropdown">
           <a href="#" class="nav-link " data-toggle="dropdown"
-             aria-haspopup="true" aria-label="语言">
+             aria-haspopup="true" aria-label="Languages">
             <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
           <div class="dropdown-menu">
             <div class="dropdown-item dropdown-item-active">
-              <span>中文 (简体)</span>
+              <span>English</span>
             </div>
             
-            <a class="dropdown-item" href="https://chenfei-ye.github.io/categories/">
-              <span>English</span>
+            <a class="dropdown-item" href="https://chenfei-ye.github.io/zh/post/202308_vtk2mesh/">
+              <span>中文 (简体)</span>
             </a>
             
           </div>
@@ -734,7 +784,18 @@
     
     
 
-    
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
 
 
 
@@ -748,61 +809,29 @@
 
 
   
+  
 
-  
-  
-  
-    
-  
-<div class="universal-wrapper pt-3">
-  <h1>Categories</h1>
+
+<div class="article-container pt-3">
+  <h1>vtk文件转mesh格式</h1>
 
   
 
   
-</div>
-
-
-
-<div class="universal-wrapper">
-  
-
-  
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item view-compact">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/zh/category/%E6%8A%80%E5%B7%A7/" >技巧</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
 
 
 <div class="article-metadata">
 
+  
+  
+  
+  
+  <div>
+    
+
+  <span class="author-highlighted">
+      Chenfei Ye</span>
+  </div>
   
   
 
@@ -812,13 +841,18 @@
     
       
     
-    8月 31, 2023
+    Aug 31, 2023
   </span>
   
 
   
 
   
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
 
   
   
@@ -826,175 +860,278 @@
   
 
   
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/%E6%8A%80%E5%B7%A7/">技巧</a></span>
   
 
 </div>
 
-      
-    </div>
+  
 
-    
 
-  </div>
-  <div class="ml-3">
-    
+
+
+
+</div>
+
+
+<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 1200px; max-height: 675px;">
+  <div style="position: relative">
+    <img src="/post/202308_vtk2mesh/featured_hu15b2aa2d4abd8b5803dc792eefc1330d_149104_1200x2500_fit_q75_h2_lanczos.webp" width="1200" height="675" alt="" class="featured-image">
     
   </div>
 </div>
 
-  
-    
 
 
+  <div class="article-container">
 
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item view-compact">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/zh/category/%E6%95%B0%E6%8D%AE/" >数据</a>
+    <div class="article-style">
+      <h1 id="vtk文件转mesh格式">vtk文件转mesh格式</h1>
+<ol>
+<li>安装gmsh的binary文件 <a href="https://gmsh.info/bin/Linux/" target="_blank" rel="noopener">https://gmsh.info/bin/Linux/</a></li>
+<li>转档</li>
+</ol>
+<pre tabindex="0"><code># 方式1 
+gmsh -3 -o .msh 
+# 方式2 
+gmsh -3 -save
+</code></pre><ol start="3">
+<li>本地安装gmsh GUI软件打开验证</li>
+</ol>
+<p>其实也可以用<code>gmsh GUI</code>直接转档</p>
+<h3 id="注意容器系统环境可能需要安装libxcursor1才能支持gmsh">注意：容器系统环境可能需要安装libxcursor1才能支持gmsh</h3>
+<pre tabindex="0"><code>apt install libxcursor1
+</code></pre>
     </div>
 
     
 
-    <div class="stream-meta article-metadata">
 
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/pipeline/">pipeline</a>
+  
+  <a class="badge badge-light" href="/tag/docker/">docker</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
       
-
+      
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://chenfei-ye.github.io/post/202308_vtk2mesh/&amp;text=vtk%e6%96%87%e4%bb%b6%e8%bd%acmesh%e6%a0%bc%e5%bc%8f" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
     
       
-    
-    2月 12, 2023
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-
-  
-  
-
-</div>
-
       
-    </div>
-
-    
-
-  </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
-
-  
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="media stream-item view-compact">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/zh/category/%E8%B8%A9%E5%9D%91/" >踩坑</a>
-    </div>
-
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://chenfei-ye.github.io/post/202308_vtk2mesh/&amp;t=vtk%e6%96%87%e4%bb%b6%e8%bd%acmesh%e6%a0%bc%e5%bc%8f" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
     
       
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=vtk%e6%96%87%e4%bb%b6%e8%bd%acmesh%e6%a0%bc%e5%bc%8f&amp;body=https://chenfei-ye.github.io/post/202308_vtk2mesh/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
     
-    6月 15, 2022
-  </span>
-  
-
-  
-
-  
-
-  
-  
-  
-  
-
-  
-  
-
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://chenfei-ye.github.io/post/202308_vtk2mesh/&amp;title=vtk%e6%96%87%e4%bb%b6%e8%bd%acmesh%e6%a0%bc%e5%bc%8f" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=vtk%e6%96%87%e4%bb%b6%e8%bd%acmesh%e6%a0%bc%e5%bc%8f%20https://chenfei-ye.github.io/post/202308_vtk2mesh/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://chenfei-ye.github.io/post/202308_vtk2mesh/&amp;title=vtk%e6%96%87%e4%bb%b6%e8%bd%acmesh%e6%a0%bc%e5%bc%8f" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
       
+      <a href="https://chenfei-ye.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu2a24504d4a777adf14e048ea392ffaad_817893_270x270_fill_q75_lanczos_center.jpg" alt="Chenfei Ye"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://chenfei-ye.github.io/">Chenfei Ye</a></h5>
+      <h6 class="card-subtitle">A connectome weaver</h6>
+      <p class="card-text">The brain&rsquo;s billions of neurons resemble trees of many species and come in many fantastic shapes. Only the most determined explorers can hope to capture a glimpse of this forest&rsquo;s interior, and even they see little, and see it poorly.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:chenfei.ye@foxmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/chenfei-ye" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.researchgate.net/profile/Chenfei-Ye" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=kLDaQM4AAAAJ" target="_blank" rel="noopener">
+        <i class="fab fa-google"></i>
+      </a>
+    </li>
+  
+</ul>
+
     </div>
-
-    
-
   </div>
-  <div class="ml-3">
-    
-    
-  </div>
-</div>
+
 
   
 
-  
 
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
   </div>
 
   <div class="page-footer">
@@ -1067,7 +1204,7 @@
       
       
       
-      由<a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>支持发布——免费<a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">开源</a>网站，为创作者赋能。
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
     
   </p>
 </footer>
@@ -1172,7 +1309,7 @@
       
     
     
-    <script src="/zh/js/wowchemy.min.5ec57f6d6123f4d1435d200a755cc871.js"></script>
+    <script src="/en/js/wowchemy.min.ab2f2890dbe3e2e83579366d3d6e8fd9.js"></script>
 
     
     
@@ -1185,7 +1322,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">引用</h5>
+        <h5 class="modal-title">Cite</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1195,10 +1332,10 @@
       </div>
       <div class="modal-footer">
         <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
-          <i class="fas fa-copy"></i> 复制
+          <i class="fas fa-copy"></i> Copy
         </a>
         <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
-          <i class="fas fa-download"></i> 下载
+          <i class="fas fa-download"></i> Download
         </a>
         <div id="modal-error"></div>
       </div>
