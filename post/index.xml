@@ -5,12 +5,57 @@
     <link>https://chenfei-ye.github.io/post/</link>
       <atom:link href="https://chenfei-ye.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 31 Aug 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 22 Sep 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
       <link>https://chenfei-ye.github.io/post/</link>
     </image>
+    
+    <item>
+      <title>BrainNet实验室服务器使用说明</title>
+      <link>https://chenfei-ye.github.io/post/202309_cyelab/</link>
+      <pubDate>Fri, 22 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/post/202309_cyelab/</guid>
+      <description>&lt;h3 id=&#34;目前有两台服务器资源&#34;&gt;目前有两台服务器资源：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;spider&lt;/code&gt;: 计算服务器(10.2xx.xx.140)：AMD EPYC 7642 48-Core Processor (96 threads), RTX4070 ×2, 128GB RAM, 8TB HDD；Ubuntu 18.04 OS&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;zebra&lt;/code&gt;:  存储服务器(10.2xx.xx.127)：Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz (28 threads), 64GB RAM, 250GB SSD + 87TB HDD；Ubuntu 22.04 OS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;使用说明&#34;&gt;使用说明&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;服务器均是校园网IP，校外使用请登录学校VPN。&lt;/li&gt;
+&lt;li&gt;跑分析计算目前只能用&lt;code&gt;spider&lt;/code&gt;，&lt;code&gt;zebra&lt;/code&gt;只用于存放公用数据。&lt;code&gt;zebra&lt;/code&gt;的存储空间已映射到&lt;code&gt;spider&lt;/code&gt;的本地路径&lt;code&gt;/zebra&lt;/code&gt;，可基于该路径实现两台服务器之间的数据同步。&lt;/li&gt;
+&lt;li&gt;对于计算服务器，私有数据存放在&lt;code&gt;/data/&lt;/code&gt;目录。例如对于用户&lt;code&gt;cyc&lt;/code&gt;，私有目录为&lt;code&gt;/data/cyc&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;大体量数据切勿存放在&lt;code&gt;/home&lt;/code&gt;路径，因为根目录空间有限（对应SSD系统盘）。&lt;/li&gt;
+&lt;li&gt;超过10GB的大体量软件安装，勿私自操作，请联系为师帮助。&lt;/li&gt;
+&lt;li&gt;请使用ssh方式连接服务器，本地客户端推荐使用&lt;a href=&#34;https://tabby.sh/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tabby&lt;/a&gt;和&lt;a href=&#34;https://winscp.net/eng/index.php&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;winscp&lt;/a&gt;工具。有使用GUI需求时可联系为师。&lt;/li&gt;
+&lt;li&gt;查看系统CPU运行状态用命令&lt;code&gt;htop&lt;/code&gt;。并行计算时，线程数不要超过逻辑CPU核数（96 threads for &lt;code&gt;spider&lt;/code&gt;），同时警惕内存溢出。查看显卡运行状态用命令&lt;code&gt;nvidia-smi -l 2&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;跑任务，或者基于vscode/jupyter debug，请使用&lt;code&gt;tmux&lt;/code&gt;管理会话。具体&lt;a href=&#34;https://zhuanlan.zhihu.com/p/98384704&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;参考这里&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;python编程请用户使用各自的conda虚拟环境进行管理，装包切勿都装在&lt;code&gt;base&lt;/code&gt;环境。具体&lt;a href=&#34;https://zhuanlan.zhihu.com/p/339662352&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;参考这里&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;对于pipeline编写和调试（尤其深度学习），建议在服务器docker容器内操作。参考&lt;a href=&#34;https://chenfei-ye.github.io/post/202206_jupyter_docker/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter远程调试docker容器具体&lt;/a&gt; 及&lt;a href=&#34;https://chenfei-ye.github.io/post/202206_vscode_docker/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;VScode远程调试docker容器&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;spider&lt;/code&gt;目前只安装了显卡驱动，没有装cuda和cudnn。基于GPU的深度学习算法研究推荐用docker容器，可以根据需求拉取&lt;a href=&#34;https://hub.docker.com/r/pytorch/pytorch/tags&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pytorch官方镜像&lt;/a&gt;，或者使用为师倾力打造的神经影像分析基础镜像&lt;code&gt;mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:deepFS&lt;/code&gt;，内置&lt;code&gt;python3.8 + cuda11.0.221 + cudnn8.0.3 + pytorch1.7.0 + nibabel + scikit-learn + nilearn&lt;/code&gt;，同时集成了&lt;code&gt;ANTS&lt;/code&gt;，&lt;code&gt;FSL6.0.4&lt;/code&gt;，&lt;code&gt;MRtrix3.0.2&lt;/code&gt;，&lt;code&gt;c3d&lt;/code&gt;，&lt;code&gt;freesurfer7.3.2&lt;/code&gt;等常用软件。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 调用命令示例：
+docker run -it --rm --gpus all --name deepFS \
+-v &amp;lt;localpath&amp;gt;:/dataio \
+mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:deepFS
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;spider已开通用户&#34;&gt;spider已开通用户：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;zyx&lt;/li&gt;
+&lt;li&gt;cyc&lt;/li&gt;
+&lt;li&gt;dzy&lt;/li&gt;
+&lt;li&gt;csy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;spider已安装软件&#34;&gt;spider已安装软件：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;tmux&lt;/li&gt;
+&lt;li&gt;MRtrix3&lt;/li&gt;
+&lt;li&gt;docker&lt;/li&gt;
+&lt;li&gt;conda&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>rs-fMRI预处理完整流程</title>
