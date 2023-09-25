@@ -5,12 +5,99 @@
     <link>https://chenfei-ye.github.io/zh/post/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Fri, 22 Sep 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Mon, 25 Sep 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
       <link>https://chenfei-ye.github.io/zh/post/</link>
     </image>
+    
+    <item>
+      <title>电信本科毕设方向</title>
+      <link>https://chenfei-ye.github.io/zh/post/202309_gradproj/</link>
+      <pubDate>Mon, 25 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202309_gradproj/</guid>
+      <description>&lt;h3 id=&#34;1-人脑影像功能动态分析计算方法&#34;&gt;1. 人脑影像功能动态分析计算方法&lt;/h3&gt;
+&lt;p&gt;近二十年来，静息态(resting-state, RS)功能磁共振成像(fMRI)为自发大脑活动的时空组织带来了新的曙光。RS波动的丰富和复杂结构可以用不同的脑网络(resting-state networks, RSNs)来描述，这是由一组分布脑区的相干波动引起的。通常，在6分钟或更长时间的整个RS扫描中计算空间位置之间的统计相互依赖关系；Pearson相关系数是最常用的功能连接(functional connectivity, FC)指标。&lt;/p&gt;
+&lt;p&gt;最近，FC被证明随着时间的推移而波动，这意味着在整个RS扫描上假设平稳性的测量可能过于简单，无法捕获RS活动的全部程度。自这些初步发现以来，随后的研究迅速蓬勃发展，以研究所谓的动态功能连接(dynamic FC, dFC)，试图以有意义的方式解析RS的dFC已经在一系列方法学变体中展开。除了作为各种脑部疾病生物标志物的潜力，dFC对神经疾病的直接治疗应用也可以预见。在此背景下，通过dFC方法追踪大脑功能动力学作为一种有吸引力的工具脱颖而出。此外，调节活动或连接的动态特征也可能被证明是治疗大脑动力学受到特别阻碍的疾病的有效策略。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本研究方向偏磁共振影像计算，将聚焦于人脑静息态功能磁共振影像的动态分析算法研究。目前组内已有1名博士生在研。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;参考文献：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Preti MG, Bolton TA, Van De Ville D. The dynamic functional connectome: State-of-the-art and perspectives. Neuroimage. 2017 Oct 15;160:41-54. doi: 10.1016/j.neuroimage.2016.12.061. Epub 2016 Dec 26. PMID: 28034766.&lt;/li&gt;
+&lt;li&gt;Long Y, Cao H, Yan C, et al. Altered resting-state dynamic functional brain networks in major depressive disorder: Findings from the REST-meta-MDD consortium. Neuroimage Clin. 2020;26:102163. doi: 10.1016/j.nicl.2020.102163. Epub 2020 Jan 7. PMID: 31953148; PMCID: PMC7229351.&lt;/li&gt;
+&lt;li&gt;Spencer APC, Goodfellow M. Using deep clustering to improve fMRI dynamic functional connectivity analysis. Neuroimage. 2022 Aug 15;257:119288. doi: 10.1016/j.neuroimage.2022.119288. Epub 2022 May 10. PMID: 35551991.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-脑影像神经集群建模及脑疾病应用&#34;&gt;2. 脑影像神经集群建模及脑疾病应用&lt;/h3&gt;
+&lt;p&gt;使用非线性动态系统理论模型对大尺度大脑活动进行建模，可以将来自多种模式的实验数据整合到一个通用框架中，从而促进对神经认知功能和病变的预测。有证据表明，神经元集群的非线性动态是适应性皮层活动的核心。同样，异常的动态过程似乎是许多大脑疾病的基础。&lt;/p&gt;
+&lt;p&gt;神经集群建模（Neural Mass Model, NMM） 描述了一个局部群体的相互作用的神经元，如锥体和抑制细胞。但局域群体和支持大脑功能的大尺度系统之间仍然存在几个数量级。通过将一系列NMM耦合到介观和宏观环路，可以搭建起大尺度的脑动力学模型。 每个神经元群体节点(即每个 NMM)内的动态因此反映了局部群体活动加上来自远端区域(其他节点)和随机波动的影响。这种大尺度的脑网络模型是一个多尺度的系综的系综，在不同的尺度上有不同的组织规则。&lt;/p&gt;
+&lt;p&gt;将NMM耦合成更大的系统需要依靠解剖连接，即连接组。对于人脑，磁共振DTI成像可以提供解剖连接，磁共振fMRI成像可以表征脑功能活动。由此得到的全脑动力学模型在网络节点间的传导时延、混沌或随机动力学的模式仍有待厘清。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本研究方向偏动力学分析计算（模拟仿真），将聚焦于基于人脑复杂网络NMM的神经动力学特征及其在神经系统疾病上的机制探索和临床应用。目前组内已有1名硕士生在研。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;参考文献：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Breakspear M. Dynamic models of large-scale brain activity. Nat Neurosci. 2017 Feb 23;20(3):340-352. doi: 10.1038/nn.4497. PMID: 28230845.&lt;/li&gt;
+&lt;li&gt;El Houssaini K, Bernard C, Jirsa VK. The Epileptor Model: A Systematic Mathematical Analysis Linked to the Dynamics of Seizures, Refractory Status Epilepticus, and Depolarization Block. eNeuro. 2020 Mar 24;7(2):ENEURO.0485-18.2019. doi: 10.1523/ENEURO.0485-18.2019. PMID: 32066612; PMCID: PMC7096539.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-人脑多模态影像的低维嵌入表征方法&#34;&gt;3. 人脑多模态影像的低维嵌入表征方法&lt;/h3&gt;
+&lt;p&gt;如何利用多模态神经影像数据解析人脑极其复杂的功能机制、形成明确疾病早期标志物成为了推动脑医学前沿的重大难题。造成这种困局的主要原因包括： (1)脑磁共振影像数据具有高维异构的特点，计算复杂性高，影像特征提取困难；(2)脑磁共振影像模态融合难。已有的绝大部分研究往往只使用了单模态脑影像（对应MRI单序列扫描数据），难以将散乱在影像中的人脑信息集成一个能描述神经异常病变的全景图，而近年来出现模态融合方法大多仍停留在特征融合层面，无法有效捕捉模态间完整的互补信息；(3)疾病分类模型普遍泛化性低。已有的影像分析算法未能有效地将众多的多中心小样本脑影像数据整合成一个有效的大数据集进行分析，未能突破脑影像小样本造成的学习算法低泛化能力的问题，仍然需要新的计算方法才能逐步推向临床应用。&lt;/p&gt;
+&lt;p&gt;简单汇聚单模态特征应用整个多模态特征集构建是低效的，所以如何捕捉各模态之间进行深度交互以丰富疾病表征尤为重要。近年来，结合深度学习技术和多模态磁共振影像技术研究构建脑疾病自动分类模型也逐渐兴起。深度学习区别于机器学习，更擅长于编码高度非线性特征，并且基于数据驱动的特点，使得模型的特征不仅仅局限于手动提取或者非线性分析方法提取的特征，更是可以通过多层非线性表达编码更为抽象的表征。其中的代表性工作是BrainGNN：提出了基于ROI启发的图卷积层和池化层，通过任务对于ROI的启发和敏感性来实现对脑区特征的特异性编码，并且基于该方法可以有效找到与疾病相关的生物标志物，具有群体分析和个体分析的重要特性。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本研究方向偏人工智能算法，将聚焦于基于人脑网络的图神经网络（GNN）学习，实现脑影像低维嵌入表征。目前组内已有2名博士生在研。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;参考文献：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Schneider S, Lee JH, Mathis MW. Learnable latent embeddings for joint behavioural and neural analysis. Nature. 2023 May;617(7960):360-368. doi: 10.1038/s41586-023-06031-6. Epub 2023 May 3. PMID: 37138088; PMCID: PMC10172131.&lt;/li&gt;
+&lt;li&gt;Kim JH, Zhang Y, Han K, Wen Z, Choi M, Liu Z. Representation learning of resting state fMRI with variational autoencoder. Neuroimage. 2021 Nov 1;241:118423. doi: 10.1016/j.neuroimage.2021.118423. Epub 2021 Jul 23. PMID: 34303794; PMCID: PMC8485214.&lt;/li&gt;
+&lt;li&gt;Yang Y, Ye C, Guo X, Wu T, Xiang Y, Ma T. Mapping Multi-modal Brain Connectome for Brain Disorder Diagnosis via Cross-modal Mutual Learning. IEEE Trans Med Imaging. 2023 Jul 13;PP. doi: 10.1109/TMI.2023.3294967. Epub ahead of print. PMID: 37440391.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-神经调控下的脑影像标志物挖掘&#34;&gt;4. 神经调控下的脑影像标志物挖掘&lt;/h3&gt;
+&lt;p&gt;深脑电刺激（deep brain stimulation, DBS）是帕金森病等多种神经退行疾病的主要干预手段，自上世纪80 年代开始应用于临床，2002年获得美国FDA批准，30多年来全球有超过30万人接受了该疗法。然而其临床疗效的普适性不强、刺激参数优化方式低效、长期慢性刺激容易产生不良作用。临床困境的背后是DBS作用机制不清。目前的主流观点认为DBS 不仅在局部刺激靶区发挥作用，而且在全脑范围内通过涉及运动控制的功能连接脑区产生广泛分布的脑网络效应。然而其具体机制仍未阐明，严重限制了DBS手术方案的精准优化。因此，如何研究模拟帕金森病（PD）患者人脑连接组的功能损伤和刺激响应，是DBS干预方案个体调控精准化的重要发展趋势，也成为了功能神经外科的迫切临床需求。DBS在功能失调的神经回路中放置一个电极来提供电刺激，以抑制异常的活动和驱动一个不活跃的网络。尽管DBS优势明显，但它的治疗作用机制仍不完全清楚。&lt;/p&gt;
+&lt;p&gt;神经影像学研究，旨在将行为的变异与大脑的变化联系起来。磁共振成像（MRI）自上世纪90年代初被发现以来，已成为实现这一目标最有效的方法之一。作为一种探测全脑活动的非侵入性工具，功能磁共振成像fMRI能够研究复杂的人脑活动过程及其在不同时空域的功能整合和分离，因此基于fMRI影像的人脑连接组自动重建、分析与功能信息解码研究十分关键。如何在DBS外部刺激过程中对人脑fMRI信号进行有效处理并挖掘疾病标志物，对患者大脑的功能障碍解码与症状康复预测具有重要意义。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本研究方向偏磁共振影像计算，将聚焦于DBS作用机制相关的多模态MRI影像标志物挖掘方法研究。目前组内已有1名博士生在研。本项目与上海交通大学瑞金医院团队合作开展&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;参考文献：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chu C, He N, Zeljic K, Zhang Z, Wang J, Li J, Liu Y, Zhang Y, Sun B, Li D, Yan F, Zhang C, Liu C. Subthalamic and pallidal stimulation in Parkinson&amp;rsquo;s disease induce distinct brain topological reconstruction. Neuroimage. 2022 Jul 15;255:119196. doi: 10.1016/j.neuroimage.2022.119196. Epub 2022 Apr 9. PMID: 35413446.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cn-healthcare.com/articlewm/20221210/content-1481552.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.cn-healthcare.com/articlewm/20221210/content-1481552.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Zhao S, Li G, Tong C, Chen W, Wang P, Dai J, Fu X, Xu Z, Liu X, Lu L, Liang Z, Duan X. Full activation pattern mapping by simultaneous deep brain stimulation and fMRI with graphene fiber electrodes. Nat Commun. 2020 Apr 14;11(1):1788. doi: 10.1038/s41467-020-15570-9. PMID: 32286290; PMCID: PMC7156737.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-神经调控下的脑影像状态切换机制&#34;&gt;5. 神经调控下的脑影像状态切换机制&lt;/h3&gt;
+&lt;p&gt;（接研究方向4）DBS下的PD患者脑活动解码仍存在诸多问题亟待解决：首先，由于人脑复杂活动本身具有的高度动态特性，传统静息态fMRI测量无法捕获PD病理神经环路的全局功能活动，其解释价值十分有限，忽略了许多重要的脑状态变化信息；其次，临床PD患者往往具有多种症状且随时间波动，优化 DBS 参数配置的复杂性高，需要花费较长时间，即使患者频繁往返医院，以试错的方式不断调整，也可能无法达到最佳治疗效果。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本研究方向偏脑网络计算，将聚焦于DBS作用下人脑的功能状态估计方法研究，阐明脑状态切换与临床症状改善的关系。目前组内已有1名博士生在研。本项目与上海交通大学瑞金医院团队合作开展&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;参考文献：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chu C, Liu S, He N, Zeng Z, Wang J, Zhang Z, Zeljic K, van der Stelt O, Sun B, Yan F, Liu C, Li D, Zhang C. Subthalamic stimulation modulates motor network in Parkinson&amp;rsquo;s disease: recover, relieve and remodel. Brain. 2023 Jul 3;146(7):2780-2791. doi: 10.1093/brain/awad004. PMID: 36623929.&lt;/li&gt;
+&lt;li&gt;McCormick DA, Nestvogel DB, He BJ. Neuromodulation of Brain State and Behavior. Annu Rev Neurosci. 2020 Jul 8;43:391-415. doi: 10.1146/annurev-neuro-100219-105424. Epub 2020 Apr 6. PMID: 32250724.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;6-神经外科手术导航系统智能模组设计&#34;&gt;6. 神经外科手术导航系统智能模组设计&lt;/h3&gt;
+&lt;p&gt;传统的开颅手术方式是先根据核磁共振、CT等影像学资料，判断病灶的确切部位，以此制定手术方案。其局限性和盲目性显而易见，尤其是涉及大脑深部、病变组织体积小、与正常脑组织外观结构相似时，究竟切多大切多深，大多依赖于医生的个人经验。&lt;/p&gt;
+&lt;p&gt;大脑是中枢神经系统的最高级部分，也是脑的主要部分，被誉为人体的“司令部”。但就是如此精密的器官仅比豆腐脑略硬一点，作为传导信号的脑神经元也是极为脆弱，缺血缺氧5分钟就会致使残疾甚至死亡。所以神经外科手术被人称作“在万丈深渊上走钢丝”，而手术导航系统的出世，实时显示患者脑部结构显示图，成为病人生命路上的的“灯塔”。如果有一幅“实时显现”的脑部结构显示图，这一问题就迎刃而解了。&lt;/p&gt;
+&lt;p&gt;神经外科手术导航流程主要为手术计划、患者注册和导航定位三个步骤。
+● 手术计划是医生通过手术计划软件，对患者的医学影像进行融合分析，制定出最佳的手术方案；
+● 患者注册是医生在软件系统中，建立患者颅脑轮廓模型，踩击脚踏装置，就能开启全自动扫描注册过程；
+● 导航定位是指医生根据不同手术的需求，为机器人替换合适的定位工具，通过配合使用专用的手术配件和软件模块，医生可以完成多种神经外科微创手术。&lt;/p&gt;
+&lt;p&gt;在神经外科手术导航系统的基础上，神经外科手术机器人有效地把计算机辅助的空间定位算法技术、医学影像的融合技术、机器人的技术以及临床一线医生的实际临床经验有效地结合在一起，结合我们一些新的技术，可以使先前只能通过开颅来做手术的患者，变成微创手术。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本研究方向偏系统设计，将聚焦于神经外科手术导航关键技术研发与手术机器人系统集成，初步实现神外微创手术的自动化与智能化。本项目与哈工大深圳CPS中心王勃然老师团队合作开展&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;参考文献：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mezger U, Jendrewski C, Bartels M. Navigation in surgery. Langenbecks Arch Surg. 2013 Apr;398(4):501-14. doi: 10.1007/s00423-013-1059-4. Epub 2013 Feb 22. PMID: 23430289; PMCID: PMC3627858.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cn-healthcare.com/articlewm/20200731/content-1134463.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.cn-healthcare.com/articlewm/20200731/content-1134463.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;7-人脑认知加工功能的影像梯度模式识别&#34;&gt;7. 人脑认知加工功能的影像梯度模式识别&lt;/h3&gt;
+&lt;p&gt;皮层在结构上特定的空间排列模式锚定了人脑功能的分化表达。利用非线性流行学习等方法进行网络嵌入（network embedding），能够刻画个体脑网络梯度，从而在低维空间对脑网络的空间组织进行表达。最近研究发现，人脑中存在一个感觉运动脑区到跨模态脑区之间的核心梯度，一个脑区在这个核心梯度组织形式中的位置可以直接反映这个脑区的微观结构、遗传特征、连接和功能作用。对于神经变性病，有研究发现健康老年人群中，淀粉样蛋白更多的沉积在人脑连接梯度的跨模态部分，并且在梯度视角下该代谢标志物能够预测衰老过程中的短时记忆功能水平。因此探索脑网络梯度分布在神经变性作用下的趋同和变异，将有助于揭开衰老相关的神经变性过程中运动和认知功能损伤和重塑的原则。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本研究方向偏脑网络计算，将聚焦于人脑功能网络的梯度模式识别及疾病临床应用。目前组内已有1名博士生在研。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;参考文献：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Vos de Wael R, Benkarim O, Paquola C, Lariviere S, Royer J, Tavakol S, Xu T, Hong SJ, Langs G, Valk S, Misic B, Milham M, Margulies D, Smallwood J, Bernhardt BC. BrainSpace: a toolbox for the analysis of macroscale gradients in neuroimaging and connectomics datasets. Commun Biol. 2020 Mar 5;3(1):103. doi: 10.1038/s42003-020-0794-7. PMID: 32139786; PMCID: PMC7058611.&lt;/li&gt;
+&lt;li&gt;Ruan X, Huang X, Li Y, Kuang Z, Li M, Wei X. Dysfunction of human brain network hierarchy in Parkinson&amp;rsquo;s disease patients with freezing of gait. Parkinsonism Relat Disord. 2023 Jul;112:105446. doi: 10.1016/j.parkreldis.2023.105446. Epub 2023 May 24. PMID: 37245278.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;8-基于影像的脑连接组通信路由协议&#34;&gt;8. 基于影像的脑连接组通信路由协议&lt;/h3&gt;
+&lt;p&gt;理解神经系统中的通信和信息处理是神经科学的核心目标。神经元素之间的信号传递和信息传输渗透到大脑功能的每一个方面和空间尺度：从神经元到神经元的突触传输，到神经元群体之间的交互，到整个大脑的区域共激活模式。理解控制神经信号灵活调节的机制是现代神经科学的持久挑战之一。为了解决这个问题，研究方向多种多样，包括但不限于神经编码，神经振荡的同步性和相干性，区域间通信子空间，以及神经动力学的计算模型。因此，通信这个主题既广泛又是神经科学探究的核心。在过去的二十年中，连通组学和网络神经科学的进步为研究复杂脑网络中的多突触通信开辟了新的途径。最近的工作对主流假设提出了质疑，即连通组信号仅通过最短路径进行，这导致了一系列替代网络通信模型的涌现。&lt;/p&gt;
+&lt;p&gt;结构性大脑网络（连接组图） 根据一系列复杂的拓扑属性进行组织，包括一个由密集连接的中心节点，模块化和分层结构，以及小世界架构。这些大脑组织的原则在各种物种和空间尺度上都普遍存在，被推测是由于神经通信效率的进化压力产生的。区域间信号传递被认为能使远离的区域协调他们的活动，以应对不断变化的认知和行为需求，而神经通信的损伤可能涉及到多种神经精神疾病的病因和症状表现。因此，阐明控制连接组图通信的机制对于基础、认知和临床大脑科学的进步至关重要。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本研究方向偏脑网络计算（模拟仿真），属于图信号处理与通信路由的交叉方向，将聚焦于脑连接组通信路由协议的方法研究。本项目与哈工大深圳电信学院李伊川老师团队合作开展&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;参考文献：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Seguin C, Sporns O, Zalesky A. Brain network communication: concepts, models and applications. Nat Rev Neurosci. 2023 Sep;24(9):557-574. doi: 10.1038/s41583-023-00718-5. Epub 2023 Jul 12. PMID: 37438433.&lt;/li&gt;
+&lt;li&gt;Graham D, Avena-Koenigsberger A, Mišić B. Editorial: Network Communication in the Brain. Netw Neurosci. 2020 Nov 1;4(4):976-979. doi: 10.1162/netn_e_00167. PMID: 33195944; PMCID: PMC7655038.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>BrainNet实验室服务器使用说明</title>
