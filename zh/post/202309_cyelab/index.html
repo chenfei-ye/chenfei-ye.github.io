@@ -67,8 +67,6 @@
   <meta name="description" content="请务必按照规范，合理使用服务器资源" />
 
   
-    <link rel="alternate" hreflang="en" href="https://chenfei-ye.github.io/post/202309_cyelab/" />
-  
   <link rel="alternate" hreflang="zh-Hans" href="https://chenfei-ye.github.io/zh/post/202309_cyelab/" />
 
   
@@ -753,22 +751,6 @@
 
         
         
-        <li class="nav-item dropdown i18n-dropdown">
-          <a href="#" class="nav-link " data-toggle="dropdown"
-             aria-haspopup="true" aria-label="语言">
-            <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
-          <div class="dropdown-menu">
-            <div class="dropdown-item dropdown-item-active">
-              <span>中文 (简体)</span>
-            </div>
-            
-            <a class="dropdown-item" href="https://chenfei-ye.github.io/post/202309_cyelab/">
-              <span>English</span>
-            </a>
-            
-          </div>
-        </li>
-        
 
       </ul>
 
@@ -926,6 +908,66 @@ mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:d
 <li>docker</li>
 <li>conda</li>
 </ul>
+<h3 id="spider如何启用jupyter编程">spider如何启用jupyter编程：</h3>
+<ol>
+<li>创建自己的conda环境</li>
+</ol>
+<pre tabindex="0"><code># 以zyx为例
+conda create -n zyx python=3.8
+</code></pre><ol start="2">
+<li>激活zyx环境</li>
+</ol>
+<pre tabindex="0"><code>conda activate zyx
+</code></pre><ol start="3">
+<li>将当前conda环境添加进jupyter kernel</li>
+</ol>
+<pre tabindex="0"><code>pip install ipykernel
+python -m ipykernel install  --name zyx
+</code></pre><ol start="4">
+<li>以上实现了jupyter kernel的环境添加，只需要操作一次即可。后续每次编程只需要启动jupyter会话即可。为保证会话进程在后台始终活跃，建议新建tmux进程便于会话管理：</li>
+</ol>
+<pre tabindex="0"><code>tmux new -s jupyter_zyx
+</code></pre><ol start="5">
+<li>进入编程目录（自行指定）</li>
+</ol>
+<pre tabindex="0"><code>cd /data/zyx
+</code></pre><ol start="6">
+<li>启动jupyter会话</li>
+</ol>
+<pre tabindex="0"><code>jupyter notebook --config /root/.jupyter/jupyter_notebook_config.py --allow-root
+</code></pre><p>此时会生成IP，如：http://spider:8890/
+把其中<code>spider</code>替换成实际IP即可（10.2xx.xx.140），本地浏览器键入IP实现访问（密码是<code>spider123</code>）</p>
+<ol start="7">
+<li>新建conda环境（如zyx）对应的ipykernel，即可使用。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="zyx.png" srcset="
+               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_a7d8029b26f89cb03e92fd7654c1d2bd.webp 400w,
+               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_c30ca99c08873dd847b7261d7b6f4aa7.webp 760w,
+               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_a7d8029b26f89cb03e92fd7654c1d2bd.webp"
+               width="760"
+               height="229"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</li>
+</ol>
 
     </div>
 

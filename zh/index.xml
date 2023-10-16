@@ -161,6 +161,66 @@ mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:d
 &lt;li&gt;docker&lt;/li&gt;
 &lt;li&gt;conda&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;spider如何启用jupyter编程&#34;&gt;spider如何启用jupyter编程：&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;创建自己的conda环境&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 以zyx为例
+conda create -n zyx python=3.8
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;激活zyx环境&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;conda activate zyx
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;将当前conda环境添加进jupyter kernel&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pip install ipykernel
+python -m ipykernel install  --name zyx
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;以上实现了jupyter kernel的环境添加，只需要操作一次即可。后续每次编程只需要启动jupyter会话即可。为保证会话进程在后台始终活跃，建议新建tmux进程便于会话管理：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;tmux new -s jupyter_zyx
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;进入编程目录（自行指定）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd /data/zyx
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;启动jupyter会话&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;jupyter notebook --config /root/.jupyter/jupyter_notebook_config.py --allow-root
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此时会生成IP，如：http://spider:8890/
+把其中&lt;code&gt;spider&lt;/code&gt;替换成实际IP即可（10.2xx.xx.140），本地浏览器键入IP实现访问（密码是&lt;code&gt;spider123&lt;/code&gt;）&lt;/p&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;新建conda环境（如zyx）对应的ipykernel，即可使用。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;zyx.png&#34; srcset=&#34;
+               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_a7d8029b26f89cb03e92fd7654c1d2bd.webp 400w,
+               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_c30ca99c08873dd847b7261d7b6f4aa7.webp 760w,
+               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://chenfei-ye.github.io/zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_a7d8029b26f89cb03e92fd7654c1d2bd.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;229&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     
