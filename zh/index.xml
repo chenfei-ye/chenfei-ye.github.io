@@ -67,6 +67,7 @@ mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:d
 &lt;li&gt;lhh&lt;/li&gt;
 &lt;li&gt;dy&lt;/li&gt;
 &lt;li&gt;hyt&lt;/li&gt;
+&lt;li&gt;rc&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;penguin已安装软件&#34;&gt;penguin已安装软件：&lt;/h3&gt;
 &lt;ul&gt;
@@ -80,29 +81,34 @@ mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:d
 &lt;li&gt;创建自己的conda环境&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 以zyx为例
-conda create -n zyx python=3.8
+/opt/miniconda3/bin/conda init bash
+### 根据提示，可能需要reopen一个新的终端生效配置，再执行后续命令
+conda create -n zyx python=3.8 
 &lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;激活zyx环境&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;conda activate zyx
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;conda activate zyx #若提示权限问题，可使用chmod命令来更改权限
 &lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;将当前conda环境添加进jupyter kernel&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pip install ipykernel
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pip install ipykernel -i https://pypi.tuna.tsinghua.edu.cn/simple 
 python -m ipykernel install  --name zyx
 &lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
 &lt;li&gt;以上实现了jupyter kernel的环境添加，只需要操作一次即可。后续每次编程只需要启动jupyter会话即可。&lt;/li&gt;
-&lt;li&gt;因为服务器是公网IP，需要使用端口转发。建议打开windows自带的powershell，新建端口转发的ssh通道。为保证会话进程在后台始终活跃，建议新建tmux进程便于会话管理：&lt;/li&gt;
+&lt;li&gt;验证获取服务器的jupyter可用端口：&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 以下在powershell中执行
-# 8000是本地端口，8888是远程jupyter端口（可根据实际修改）,remote_server_ip改成服务器真实IP
-ssh -L  8000:localhost:8888 ubuntu@remote_server_ip
-# 切换到用户环境
-su - zyx
-# 新建tmux会话
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;jupyter notebook --config /root/.jupyter/jupyter_notebook_config.py --allow-root
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;根据提示获知可用端口，如8888，然后ctrl+C退出。鉴于服务器是公网IP，需要使用端口转发，建议打开windows自带的powershell，新建端口转发的ssh通道。为保证会话进程在后台始终活跃，建议使用tmux进程管理jupyter后台：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 以下在windows powershell中执行，以zyx用户为例
+# 8000是本地端口，8888是远程jupyter端口（根据上一步获取的实际可用端口做修改）
+# remote_server_ip改成服务器真实IP
+
+ssh -L  8000:localhost:8888 zyx@remote_server_ip
+
+# 新建tmux会话，以zyx用户为例
 tmux new -s jupyter_zyx
 &lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;6&#34;&gt;
-&lt;li&gt;进入编程目录（自行指定）&lt;/li&gt;
+&lt;li&gt;进入编程根目录（自行指定）&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd /data/zyx
 &lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;7&#34;&gt;
@@ -110,8 +116,13 @@ tmux new -s jupyter_zyx
 &lt;/ol&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;jupyter notebook --config /root/.jupyter/jupyter_notebook_config.py --allow-root
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此时会生成IP，如：http://127.0.0.1:8888/tree?token=5d3dfa55f08fa4e4c2f4a7f217fe0f64c135c73f7bd4e6ea
-把其中端口8888替换成本地端口即可（8000），本地浏览器键入IP实现访问&lt;/p&gt;
+把其中端口8888替换成本地端口即可（8000），本地浏览器键入IP实现访问。&lt;/p&gt;
 &lt;ol start=&#34;8&#34;&gt;
+&lt;li&gt;如果访问不了，需要换新的本地端口重新尝试，如8001。如果可以正常访问，后续可以通过tmux会话管理jupyter后台，如重新切入到已有tmux 会话：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;tmux a -t jupyter_zyx
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;只要jupyter后台持续活跃，理论上就可以网页访问jupyter。&lt;/p&gt;
+&lt;ol start=&#34;9&#34;&gt;
 &lt;li&gt;新建conda环境（如zyx）对应的ipykernel，即可使用。
 
 
