@@ -5,12 +5,32 @@
     <link>https://chenfei-ye.github.io/zh/category/%E5%85%AC%E5%91%8A/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/category/%E5%85%AC%E5%91%8A/index.xml" rel="self" type="application/rss+xml" />
     <description>公告</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sun, 03 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Tue, 06 Feb 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>公告</title>
       <link>https://chenfei-ye.github.io/zh/category/%E5%85%AC%E5%91%8A/</link>
     </image>
+    
+    <item>
+      <title>VSCode连接服务器失败的问题</title>
+      <link>https://chenfei-ye.github.io/zh/post/202402_vscode/</link>
+      <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202402_vscode/</guid>
+      <description>&lt;h3 id=&#34;问题&#34;&gt;问题：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;前几天连接服务器时一切正常&lt;/li&gt;
+&lt;li&gt;今天连接服务器时突然显示The remote host may not meet VS Code Server&amp;rsquo;s prerequisites for glibc and libstdc++&lt;/li&gt;
+&lt;li&gt;最后发现是VSCode更新版本后提高了对服务器版本的要求（新版的VSCode要求glibc&amp;gt;=2.28），而服务器端Ubuntu 18.04版本的glibc=2.27。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;解决&#34;&gt;解决&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;卸载本机VSCode，下载并安装1.85版的VSCode，并关闭VSCode自动更新，&lt;a href=&#34;https://zhuanlan.zhihu.com/p/553996841&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;参考&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;在VSCode插件商城中重装remote-ssh插件。&lt;/li&gt;
+&lt;li&gt;大功告成。&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>Penguin服务器使用说明</title>
