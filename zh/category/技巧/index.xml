@@ -5,12 +5,24 @@
     <link>https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/index.xml" rel="self" type="application/rss+xml" />
     <description>技巧</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Thu, 31 Aug 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Thu, 15 Feb 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>技巧</title>
       <link>https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/</link>
     </image>
+    
+    <item>
+      <title>VSCode在debug时无法设置第三方包函数断点的问题</title>
+      <link>https://chenfei-ye.github.io/zh/post/202402_vscode_debug/</link>
+      <pubDate>Thu, 15 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202402_vscode_debug/</guid>
+      <description>&lt;h3 id=&#34;解决&#34;&gt;解决&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# add a launch configuration 
+&amp;#34;justMyCode&amp;#34;:false` 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;See &lt;a href=&#34;https://code.visualstudio.com/docs/python/debugging#_justmycode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code.visualstudio.com/docs/python/debugging#_justmycode&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>rs-fMRI预处理完整流程</title>
