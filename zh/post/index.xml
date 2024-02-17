@@ -5,12 +5,27 @@
     <link>https://chenfei-ye.github.io/zh/post/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Thu, 15 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sat, 17 Feb 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>Posts</title>
       <link>https://chenfei-ye.github.io/zh/post/</link>
     </image>
+    
+    <item>
+      <title>如何提取脑图谱/脑区label文件的中心坐标</title>
+      <link>https://chenfei-ye.github.io/zh/post/202402_label_coord/</link>
+      <pubDate>Sat, 17 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202402_label_coord/</guid>
+      <description>&lt;h3 id=&#34;解决&#34;&gt;解决&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import  nilearn.plotting  as  pl
+import  nibabel  as  nib
+
+labels_img  =  nib.load(&amp;#39;/data/cye_code/BIDS-fmripost/atlases/AAL1PD25_MNI.nii.gz&amp;#39;)
+coords  =  pl.find_parcellation_cut_coords(labels_img)
+np.savetxt(&amp;#34;/data/cye_code/BIDS-fmripost/atlases/coords.csv&amp;#34;, coords.astype(int), delimiter=&amp;#34;,&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
     
     <item>
       <title>VSCode在debug时无法设置第三方包函数断点的问题</title>
@@ -26,9 +41,9 @@
     
     <item>
       <title>VSCode连接服务器失败的问题</title>
-      <link>https://chenfei-ye.github.io/zh/post/202402_vscode/</link>
+      <link>https://chenfei-ye.github.io/zh/post/202402_vscode_upgrade/</link>
       <pubDate>Tue, 06 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>https://chenfei-ye.github.io/zh/post/202402_vscode/</guid>
+      <guid>https://chenfei-ye.github.io/zh/post/202402_vscode_upgrade/</guid>
       <description>&lt;h3 id=&#34;问题&#34;&gt;问题：&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;前几天连接服务器时一切正常&lt;/li&gt;
