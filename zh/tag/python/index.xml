@@ -5,12 +5,85 @@
     <link>https://chenfei-ye.github.io/zh/tag/python/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/tag/python/index.xml" rel="self" type="application/rss+xml" />
     <description>python</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sat, 17 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sun, 18 Feb 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>python</title>
       <link>https://chenfei-ye.github.io/zh/tag/python/</link>
     </image>
+    
+    <item>
+      <title>利用Surfplot和Brainspace进行脑图可视化</title>
+      <link>https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/</link>
+      <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/</guid>
+      <description>&lt;h3 id=&#34;可视化&#34;&gt;可视化：&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/danjgale/surfplot&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;surfplot&lt;/a&gt;提供了脑图可视化方法，基于&lt;a href=&#34;https://brainspace.readthedocs.io/en/latest/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;brainspace&lt;/a&gt;开发实现。&lt;/p&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;from neuromaps.datasets import fetch_fslr
+from surfplot import Plot
+from brainspace.datasets import load_parcellation
+
+surfaces = fetch_fslr() # 32k vertices, 16k for each hemisphere
+lh, rh = surfaces[&amp;#39;inflated&amp;#39;]
+p = Plot(lh, rh)
+
+# add schaefer parcellation (no color bar needed)
+lh_parc, rh_parc = load_parcellation(&amp;#39;schaefer&amp;#39;)
+p.add_layer({&amp;#39;left&amp;#39;: lh_parc, &amp;#39;right&amp;#39;: rh_parc}, cbar=False)
+
+fig = p.build()
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;依赖提示：建议运行环境预装&lt;a href=&#34;https://humanconnectome.org/software/workbench-command&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;wb_command&lt;/a&gt;并写入环境变量。&lt;/li&gt;
+&lt;li&gt;如何可视化NIFTI：&lt;a href=&#34;https://github.com/danjgale/surfplot&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;surfplot&lt;/a&gt;默认仅支持GIFTI或CIFTI的皮层染色。对于NIFTI文件，需要&lt;a href=&#34;https://netneurolab.github.io/neuromaps/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;neuromap&lt;/a&gt;实现空间转换，参考：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;from nilearn.datasets import fetch_neurovault_ids
+from nilearn.plotting.cm import _cmap_d as nilearn_cmaps
+from neuromaps.transforms import mni152_to_fslr
+from neuromaps.datasets import fetch_fslr
+from surfplot import Plot
+from surfplot.utils import threshold
+
+data = fetch_neurovault_ids(image_ids=[47307], verbose=0)
+img = data[&amp;#39;images&amp;#39;][0]
+
+# project from MNI to fslr; GIFTI surfaces are returned
+gii_lh, gii_rh = mni152_to_fslr(img)
+
+# threshold after projection to avoid interpolation artefacts
+data_lh = threshold(gii_lh.agg_data(), 3)
+data_rh = threshold(gii_rh.agg_data(), 3)
+
+# get surfaces + sulc maps
+surfaces = fetch_fslr()
+lh, rh = surfaces[&amp;#39;inflated&amp;#39;]
+sulc_lh, sulc_rh = surfaces[&amp;#39;sulc&amp;#39;]
+
+p = Plot(lh, rh)
+p.add_layer({&amp;#39;left&amp;#39;: sulc_lh, &amp;#39;right&amp;#39;: sulc_rh}, cmap=&amp;#39;binary_r&amp;#39;, cbar=False)
+
+# cold_hot is a common diverging colormap for neuroimaging
+cmap = nilearn_cmaps[&amp;#39;cold_hot&amp;#39;]
+p.add_layer({&amp;#39;left&amp;#39;: data_lh, &amp;#39;right&amp;#39;: data_rh}, cmap=cmap,
+            color_range=(-11, 11))
+
+# make a nice vertical colorbar on the right side of the figure
+kws = dict(location=&amp;#39;right&amp;#39;, draw_border=False, aspect=10, shrink=.2,
+           decimals=0, pad=0)
+fig = p.build(cbar_kws=kws)
+fig.axes[0].set_title(&amp;#39;MSC05 Left &amp;gt; Right Hand&amp;#39;, pad=-3)
+fig.show()
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;已知坑1：远程服务器安装&lt;code&gt;surfplot&lt;/code&gt;后，如果&lt;code&gt;jupyter&lt;/code&gt;可视化出现内核挂掉的错误，大概率来源于&lt;code&gt;brainspace&lt;/code&gt;中&lt;code&gt;vtk&lt;/code&gt;的问题，须参考&lt;a href=&#34;https://github.com/MICA-MNI/BrainSpace/issues/66&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;官方解决方案&lt;/a&gt;重装&lt;code&gt;vtk&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;梯度分析&#34;&gt;梯度分析&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://brainspace.readthedocs.io/en/latest/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;brainspace&lt;/a&gt;，一个Python/Matlab工具箱，用于(i)识别梯度，(ii)梯度对齐，(iii)梯度可视化。BrainSpace还可以对梯度与其他大脑特征之间的关联进行控制研究，生成空模型，以解释空间自相关性。验证实验证明了该工具在分析不同空间尺度上的功能和微观结构梯度时的实用性和一致性。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;已知坑1：&lt;code&gt;brainspace&lt;/code&gt;对于大矩阵计算（如10K节点）的运算时间会很慢，建议按&lt;a href=&#34;https://github.com/MICA-MNI/BrainSpace/issues/85&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;此方案&lt;/a&gt;手动修正源代码从而提速。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>如何提取脑图谱/脑区label文件的中心坐标</title>

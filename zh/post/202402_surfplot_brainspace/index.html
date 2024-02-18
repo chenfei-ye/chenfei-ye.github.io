@@ -64,12 +64,10 @@
   
     
   
-  <meta name="description" content="A highly-customizable Hugo academic resume theme powered by Wowchemy website builder." />
+  <meta name="description" content="谨防踩坑" />
 
   
-    <link rel="alternate" hreflang="en" href="https://chenfei-ye.github.io/category/%E6%8A%80%E5%B7%A7/" />
-  
-  <link rel="alternate" hreflang="zh-Hans" href="https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/" />
 
   
   
@@ -276,8 +274,6 @@
   
 
   
-    <link rel="alternate" href="/zh/category/%E6%8A%80%E5%B7%A7/index.xml" type="application/rss+xml" title="主页" />
-  
 
   
     <link rel="manifest" href="/zh/manifest.webmanifest" />
@@ -286,7 +282,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_32x32_fill_lanczos_center_3.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_180x180_fill_lanczos_center_3.png" />
 
-  <link rel="canonical" href="https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/" />
+  <link rel="canonical" href="https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/" />
 
   
   
@@ -297,7 +293,6 @@
   
   
     
-    
   
   
 
@@ -306,39 +301,92 @@
     
     
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
     <meta property="twitter:site" content="@wowchemy" />
     <meta property="twitter:creator" content="@wowchemy" />
   
   <meta property="og:site_name" content="主页" />
-  <meta property="og:url" content="https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/" />
-  <meta property="og:title" content="技巧 | 主页" />
-  <meta property="og:description" content="A highly-customizable Hugo academic resume theme powered by Wowchemy website builder." /><meta property="og:image" content="https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png" />
-    <meta property="twitter:image" content="https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="zh-Hans" />
+  <meta property="og:url" content="https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/" />
+  <meta property="og:title" content="利用Surfplot和Brainspace进行脑图可视化 | 主页" />
+  <meta property="og:description" content="谨防踩坑" /><meta property="og:image" content="https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/featured.png" />
+    <meta property="twitter:image" content="https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/featured.png" /><meta property="og:locale" content="zh-Hans" />
   
     
-      <meta property="og:updated_time" content="2024-02-18T00:00:00&#43;00:00" />
+      <meta
+        property="article:published_time"
+        content="2024-02-18T00:00:00&#43;00:00"
+      />
     
+    <meta property="article:modified_time" content="2024-02-18T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/"
+  },
+  "headline": "利用Surfplot和Brainspace进行脑图可视化",
+  
+  "image": [
+    "https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/featured.png"
+  ],
+  
+  "datePublished": "2024-02-18T00:00:00Z",
+  "dateModified": "2024-02-18T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "叶辰飞"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "主页",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "谨防踩坑"
+}
+</script>
+
+  
+
+  
+
   
 
   
 
 
 
-  
-
-  
 
 
-
-
-
-  <title>技巧 | 主页</title>
+  <title>利用Surfplot和Brainspace进行脑图可视化 | 主页</title>
 </head>
 
 
-<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   "  >
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="4a1b13c289ca48b67d235695b8ec3866" >
 
   
   
@@ -703,22 +751,6 @@
 
         
         
-        <li class="nav-item dropdown i18n-dropdown">
-          <a href="#" class="nav-link " data-toggle="dropdown"
-             aria-haspopup="true" aria-label="语言">
-            <i class="fas fa-globe mr-1" aria-hidden="true"></i></a>
-          <div class="dropdown-menu">
-            <div class="dropdown-item dropdown-item-active">
-              <span>中文 (简体)</span>
-            </div>
-            
-            <a class="dropdown-item" href="https://chenfei-ye.github.io/category/%E6%8A%80%E5%B7%A7/">
-              <span>English</span>
-            </a>
-            
-          </div>
-        </li>
-        
 
       </ul>
 
@@ -734,42 +766,17 @@
     
     
 
-    
-
-
-
-
-
-
-
-
-
-
-
+    <article class="article">
 
   
 
-  
-  
-  
-    
-  
-<div class="universal-wrapper pt-3">
-  <h1>技巧</h1>
-
-  
-
-  
-</div>
 
 
 
-<div class="universal-wrapper">
-  
 
-  
-  
-    
+
+
+
 
 
 
@@ -784,29 +791,15 @@
 
 
   
+  
 
 
-<div class="media stream-item view-compact">
-  <div class="media-body">
+<div class="article-container pt-3">
+  <h1>利用Surfplot和Brainspace进行脑图可视化</h1>
 
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/zh/post/202206_tck2trk/" >神经纤维格式转换：tck转trk</a>
-    </div>
+  
 
-    
-    <a href="/zh/post/202206_tck2trk/"  class="summary-link">
-      <div class="article-style">
-        如何实现人脑神经纤维数据的格式转换
-      </div>
-    </a>
-    
-
-    <div class="stream-meta article-metadata">
-
-      
-
-      
-        
+  
 
 
 <div class="article-metadata">
@@ -830,7 +823,7 @@
     
       
     
-    6月 11, 2022
+    2月 18, 2024
   </span>
   
 
@@ -857,139 +850,318 @@
 
 </div>
 
-      
-    </div>
+  
 
-    
 
-  </div>
-  <div class="ml-3">
-    
-    
-    
-    <a href="/zh/post/202206_tck2trk/" >
-      <img src="/zh/post/202206_tck2trk/featured_hue5d9e1f52e8c813951eb334fb1301178_109122_150x0_resize_q75_h2_lanczos.webp" height="100" width="150"
-           alt="神经纤维格式转换：tck转trk" loading="lazy">
-    </a>
+
+
+
+</div>
+
+
+<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 600px; max-height: 500px;">
+  <div style="position: relative">
+    <img src="/zh/post/202402_surfplot_brainspace/featured_hu7a6e478d2ddc73a9e9cdf5f344cb9190_126878_1200x2500_fit_q75_h2_lanczos_3.webp" width="600" height="500" alt="" class="featured-image">
     
   </div>
 </div>
 
-  
-    
 
 
+  <div class="article-container">
 
+    <div class="article-style">
+      <h3 id="可视化">可视化：</h3>
+<p><a href="https://github.com/danjgale/surfplot" target="_blank" rel="noopener">surfplot</a>提供了脑图可视化方法，基于<a href="https://brainspace.readthedocs.io/en/latest/" target="_blank" rel="noopener">brainspace</a>开发实现。</p>
+<p>示例：</p>
+<pre tabindex="0"><code>from neuromaps.datasets import fetch_fslr
+from surfplot import Plot
+from brainspace.datasets import load_parcellation
 
+surfaces = fetch_fslr() # 32k vertices, 16k for each hemisphere
+lh, rh = surfaces[&#39;inflated&#39;]
+p = Plot(lh, rh)
 
+# add schaefer parcellation (no color bar needed)
+lh_parc, rh_parc = load_parcellation(&#39;schaefer&#39;)
+p.add_layer({&#39;left&#39;: lh_parc, &#39;right&#39;: rh_parc}, cbar=False)
 
+fig = p.build()
+fig.show()
+</code></pre><ul>
+<li>依赖提示：建议运行环境预装<a href="https://humanconnectome.org/software/workbench-command" target="_blank" rel="noopener">wb_command</a>并写入环境变量。</li>
+<li>如何可视化NIFTI：<a href="https://github.com/danjgale/surfplot" target="_blank" rel="noopener">surfplot</a>默认仅支持GIFTI或CIFTI的皮层染色。对于NIFTI文件，需要<a href="https://netneurolab.github.io/neuromaps/" target="_blank" rel="noopener">neuromap</a>实现空间转换，参考：</li>
+</ul>
+<pre tabindex="0"><code>from nilearn.datasets import fetch_neurovault_ids
+from nilearn.plotting.cm import _cmap_d as nilearn_cmaps
+from neuromaps.transforms import mni152_to_fslr
+from neuromaps.datasets import fetch_fslr
+from surfplot import Plot
+from surfplot.utils import threshold
 
+data = fetch_neurovault_ids(image_ids=[47307], verbose=0)
+img = data[&#39;images&#39;][0]
 
+# project from MNI to fslr; GIFTI surfaces are returned
+gii_lh, gii_rh = mni152_to_fslr(img)
 
+# threshold after projection to avoid interpolation artefacts
+data_lh = threshold(gii_lh.agg_data(), 3)
+data_rh = threshold(gii_rh.agg_data(), 3)
 
+# get surfaces + sulc maps
+surfaces = fetch_fslr()
+lh, rh = surfaces[&#39;inflated&#39;]
+sulc_lh, sulc_rh = surfaces[&#39;sulc&#39;]
 
+p = Plot(lh, rh)
+p.add_layer({&#39;left&#39;: sulc_lh, &#39;right&#39;: sulc_rh}, cmap=&#39;binary_r&#39;, cbar=False)
 
+# cold_hot is a common diverging colormap for neuroimaging
+cmap = nilearn_cmaps[&#39;cold_hot&#39;]
+p.add_layer({&#39;left&#39;: data_lh, &#39;right&#39;: data_rh}, cmap=cmap,
+            color_range=(-11, 11))
 
-  
+# make a nice vertical colorbar on the right side of the figure
+kws = dict(location=&#39;right&#39;, draw_border=False, aspect=10, shrink=.2,
+           decimals=0, pad=0)
+fig = p.build(cbar_kws=kws)
+fig.axes[0].set_title(&#39;MSC05 Left &gt; Right Hand&#39;, pad=-3)
+fig.show()
+</code></pre><ul>
+<li>已知坑1：远程服务器安装<code>surfplot</code>后，如果<code>jupyter</code>可视化出现内核挂掉的错误，大概率来源于<code>brainspace</code>中<code>vtk</code>的问题，须参考<a href="https://github.com/MICA-MNI/BrainSpace/issues/66" target="_blank" rel="noopener">官方解决方案</a>重装<code>vtk</code>。</li>
+</ul>
+<h3 id="梯度分析">梯度分析</h3>
+<p><a href="https://brainspace.readthedocs.io/en/latest/" target="_blank" rel="noopener">brainspace</a>，一个Python/Matlab工具箱，用于(i)识别梯度，(ii)梯度对齐，(iii)梯度可视化。BrainSpace还可以对梯度与其他大脑特征之间的关联进行控制研究，生成空模型，以解释空间自相关性。验证实验证明了该工具在分析不同空间尺度上的功能和微观结构梯度时的实用性和一致性。</p>
+<ul>
+<li>已知坑1：<code>brainspace</code>对于大矩阵计算（如10K节点）的运算时间会很慢，建议按<a href="https://github.com/MICA-MNI/BrainSpace/issues/85" target="_blank" rel="noopener">此方案</a>手动修正源代码从而提速。</li>
+</ul>
 
-
-<div class="media stream-item view-compact">
-  <div class="media-body">
-
-    <div class="section-subheading article-title mb-0 mt-0">
-      <a href="/zh/post/202205_r_statistics/" >R常见统计模型使用</a>
     </div>
 
     
-    <a href="/zh/post/202205_r_statistics/"  class="summary-link">
-      <div class="article-style">
-        搞统计，试了这么多还是觉得R最方便。。
-      </div>
-    </a>
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/zh/tag/python/">python</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
     
-
-    <div class="stream-meta article-metadata">
-
       
-
+      
       
         
-
-
-<div class="article-metadata">
-
-  
-  
-  
-  
-  <div>
-    
-
-  <span class="author-highlighted">
-      叶辰飞</span>
-  </div>
-  
-  
-
-  
-  <span class="article-date">
-    
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/&amp;text=%e5%88%a9%e7%94%a8Surfplot%e5%92%8cBrainspace%e8%bf%9b%e8%a1%8c%e8%84%91%e5%9b%be%e5%8f%af%e8%a7%86%e5%8c%96" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
     
       
-    
-    五月 31, 2022
-  </span>
-  
-
-  
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    1 分钟阅读时长
-  </span>
-  
-
-  
-  
-  
-  
-
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/zh/category/%E6%8A%80%E5%B7%A7/">技巧</a></span>
-  
-
-</div>
-
       
-    </div>
-
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/&amp;t=%e5%88%a9%e7%94%a8Surfplot%e5%92%8cBrainspace%e8%bf%9b%e8%a1%8c%e8%84%91%e5%9b%be%e5%8f%af%e8%a7%86%e5%8c%96" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
     
-
-  </div>
-  <div class="ml-3">
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e5%88%a9%e7%94%a8Surfplot%e5%92%8cBrainspace%e8%bf%9b%e8%a1%8c%e8%84%91%e5%9b%be%e5%8f%af%e8%a7%86%e5%8c%96&amp;body=https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
     
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/&amp;title=%e5%88%a9%e7%94%a8Surfplot%e5%92%8cBrainspace%e8%bf%9b%e8%a1%8c%e8%84%91%e5%9b%be%e5%8f%af%e8%a7%86%e5%8c%96" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
     
-  </div>
-</div>
-
-  
-
-  
-<nav class="mt-1">
-  <ul class="pagination justify-content-center">
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=%e5%88%a9%e7%94%a8Surfplot%e5%92%8cBrainspace%e8%bf%9b%e8%a1%8c%e8%84%91%e5%9b%be%e5%8f%af%e8%a7%86%e5%8c%96%20https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
     
-    <li class="page-item"><a class="page-link" href="/zh/category/%E6%8A%80%E5%B7%A7/">&laquo;</a></li>
-    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/&amp;title=%e5%88%a9%e7%94%a8Surfplot%e5%92%8cBrainspace%e8%bf%9b%e8%a1%8c%e8%84%91%e5%9b%be%e5%8f%af%e8%a7%86%e5%8c%96" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
     
   </ul>
-</nav>
-
-
 </div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://chenfei-ye.github.io/"><img class="avatar mr-3 avatar-circle" src="/zh/authors/admin/avatar_hu2a24504d4a777adf14e048ea392ffaad_817893_270x270_fill_q75_lanczos_center.jpg" alt="叶辰飞"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://chenfei-ye.github.io/">叶辰飞</a></h5>
+      <h6 class="card-subtitle">脑网络编织者</h6>
+      <p class="card-text">用影像解析人脑的秘密</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:chenfei.ye@foxmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/chenfei-ye" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.researchgate.net/profile/Chenfei-Ye" target="_blank" rel="noopener">
+        <i class="fab fa-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=kLDaQM4AAAAJ" target="_blank" rel="noopener">
+        <i class="fab fa-google"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
   </div>
 
   <div class="page-footer">
