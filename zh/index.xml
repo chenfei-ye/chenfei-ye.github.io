@@ -39,7 +39,7 @@
       <guid>https://chenfei-ye.github.io/zh/post/202402_surfplot_brainspace/</guid>
       <description>&lt;h3 id=&#34;可视化&#34;&gt;可视化：&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/danjgale/surfplot&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;surfplot&lt;/a&gt;提供了脑图可视化方法，基于&lt;a href=&#34;https://brainspace.readthedocs.io/en/latest/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;brainspace&lt;/a&gt;开发实现。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;Brain_Atlas_Plot.ipynb&#34;&gt;针对Yeo脑网络的可视化参考示例&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/chenfei-ye/chenfei-ye.github.io/tree/main/zh/post/202402_surfplot_brainspace/Brain_Atlas_Plot.ipynb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;针对Yeo脑网络的可视化参考示例&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;依赖提示：建议运行环境预装&lt;a href=&#34;https://humanconnectome.org/software/workbench-command&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;wb_command&lt;/a&gt;并写入环境变量。&lt;/p&gt;
