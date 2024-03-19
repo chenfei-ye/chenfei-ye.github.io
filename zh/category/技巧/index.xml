@@ -399,26 +399,28 @@ python -m ipykernel install --name cye（你的环境名）`
 &lt;/blockquote&gt;
 &lt;h4 id=&#34;2检查容器内部是否安装-openssh-server与openssh-client若没安装执行如下命令&#34;&gt;&lt;strong&gt;2、检查容器内部是否安装 openssh-server与openssh-client，若没安装，执行如下命令：&lt;/strong&gt;&lt;/h4&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;apt-get install openssh-serverapt-get install openssh-client&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;apt update
+apt-get install openssh-server
+apt-get install openssh-client
+apt-get install vim&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&#34;3修改ssh配置文件以下选项&#34;&gt;&lt;strong&gt;3、修改ssh配置文件以下选项:&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;若&lt;code&gt;apt update&lt;/code&gt;更新失败，可以换以下清华源，替换文件&lt;code&gt;/etc/apt/sources.list&lt;/code&gt;：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;3修改ssh配置文件以下选项&#34;&gt;&lt;strong&gt;3、修改ssh配置文件以下选项:&lt;/strong&gt;&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;vim /etc/ssh/sshd_config&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;在末尾增加如下内容(直接复制即可)：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;#PermitRootLogin prohibit-password # 默认打开 禁止root用户使用密码登陆，需要将其注释&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;RSAAuthentication yes #启用 RSA 认证PubkeyAuthentication yes #启用公钥私钥配对认证方式PermitRootLogin yes #允许root用户使用ssh登录&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;PermitRootLogin yes #允许root用户使用ssh登录&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4 id=&#34;4启动sshd服务&#34;&gt;&lt;strong&gt;4、启动sshd服务&lt;/strong&gt;&lt;/h4&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;/etc/init.d/ssh restart&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&#34;5退出容器连接测试&#34;&gt;&lt;strong&gt;5、退出容器，连接测试&lt;/strong&gt;&lt;/h4&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;ssh &lt;a href=&#34;mailto:root@127.0.0.1&#34;&gt;root@127.0.0.1&lt;/a&gt; -p 8010&lt;/strong&gt; 注意，此处应该是测试8010端口。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;输入密码成功进入容器内部即配置成功。&lt;/p&gt;
 &lt;h3 id=&#34;三在vscode上的相关配置&#34;&gt;&lt;strong&gt;三、在vscode上的相关配置&lt;/strong&gt;&lt;/h3&gt;
 &lt;h4 id=&#34;1安装remote-ssh插件&#34;&gt;&lt;strong&gt;1、安装remote-ssh插件&lt;/strong&gt;&lt;/h4&gt;
 &lt;blockquote&gt;

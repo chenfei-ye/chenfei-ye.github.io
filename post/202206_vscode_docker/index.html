@@ -907,26 +907,28 @@
 </blockquote>
 <h4 id="2检查容器内部是否安装-openssh-server与openssh-client若没安装执行如下命令"><strong>2、检查容器内部是否安装 openssh-server与openssh-client，若没安装，执行如下命令：</strong></h4>
 <blockquote>
-<p><strong>apt-get install openssh-serverapt-get install openssh-client</strong></p>
+<p>apt update
+apt-get install openssh-server
+apt-get install openssh-client
+apt-get install vim</p>
 </blockquote>
-<h4 id="3修改ssh配置文件以下选项"><strong>3、修改ssh配置文件以下选项:</strong></h4>
+<p>若<code>apt update</code>更新失败，可以换以下清华源，替换文件<code>/etc/apt/sources.list</code>：</p>
+<pre tabindex="0"><code>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+</code></pre><h4 id="3修改ssh配置文件以下选项"><strong>3、修改ssh配置文件以下选项:</strong></h4>
 <blockquote>
 <p><strong>vim /etc/ssh/sshd_config</strong></p>
 </blockquote>
 <p>在末尾增加如下内容(直接复制即可)：</p>
 <blockquote>
-<p><em>#PermitRootLogin prohibit-password # 默认打开 禁止root用户使用密码登陆，需要将其注释</em></p>
-<p><em>RSAAuthentication yes #启用 RSA 认证PubkeyAuthentication yes #启用公钥私钥配对认证方式PermitRootLogin yes #允许root用户使用ssh登录</em></p>
+<p>PermitRootLogin yes #允许root用户使用ssh登录</p>
 </blockquote>
 <h4 id="4启动sshd服务"><strong>4、启动sshd服务</strong></h4>
 <blockquote>
 <p><strong>/etc/init.d/ssh restart</strong></p>
 </blockquote>
-<h4 id="5退出容器连接测试"><strong>5、退出容器，连接测试</strong></h4>
-<blockquote>
-<p><strong>ssh <a href="mailto:root@127.0.0.1">root@127.0.0.1</a> -p 8010</strong> 注意，此处应该是测试8010端口。</p>
-</blockquote>
-<p>输入密码成功进入容器内部即配置成功。</p>
 <h3 id="三在vscode上的相关配置"><strong>三、在vscode上的相关配置</strong></h3>
 <h4 id="1安装remote-ssh插件"><strong>1、安装remote-ssh插件</strong></h4>
 <blockquote>
