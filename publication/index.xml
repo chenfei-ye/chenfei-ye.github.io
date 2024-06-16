@@ -5,12 +5,28 @@
     <link>https://chenfei-ye.github.io/publication/</link>
       <atom:link href="https://chenfei-ye.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
     <description>Publications</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 25 May 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 22 Apr 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>Publications</title>
       <link>https://chenfei-ye.github.io/publication/</link>
     </image>
+    
+    <item>
+      <title>BrainMass: Advancing Brain Network Analysis for Diagnosis with Large-scale Self-Supervised Learning</title>
+      <link>https://chenfei-ye.github.io/publication/j_2024_j_brainmass/</link>
+      <pubDate>Mon, 22 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/publication/j_2024_j_brainmass/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Editorial: Advances in Connectome-Wide Association Studies (CWAS) Along the Neurodegeneration Trajectory</title>
+      <link>https://chenfei-ye.github.io/publication/j_2023_j_front/</link>
+      <pubDate>Wed, 22 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/publication/j_2023_j_front/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Spatial-temporal patterns of brain disconnectome in Alzheimers disease</title>

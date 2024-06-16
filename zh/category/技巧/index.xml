@@ -5,12 +5,83 @@
     <link>https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/index.xml" rel="self" type="application/rss+xml" />
     <description>技巧</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sun, 18 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Thu, 06 Jun 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>技巧</title>
       <link>https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/</link>
     </image>
+    
+    <item>
+      <title>rs-fMRI预处理全流程</title>
+      <link>https://chenfei-ye.github.io/zh/post/202406_rs_fmri_run/</link>
+      <pubDate>Thu, 06 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202406_rs_fmri_run/</guid>
+      <description>&lt;h3 id=&#34;rs-fmri预处理全流程&#34;&gt;rs-fMRI预处理全流程&lt;/h3&gt;
+&lt;h4 id=&#34;前提&#34;&gt;前提：&lt;/h4&gt;
+&lt;p&gt;输入数据须整理为&lt;a href=&#34;https://github.com/chenfei-ye/BIDS-fMRIpost/blob/main/resources/dcm2bids.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BIDS格式&lt;/a&gt;
+示例：BIDS根目录为&lt;code&gt;/bids_root&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;1-freesurfer批处理&#34;&gt;1. freesurfer批处理&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 镜像路径：https://github.com/chenfei-ye/BIDS-freesurfer
+docker run -it --rm -v /bids_root:/bids_dataset \
+-v /bids_root/derivatives/freesurfer:/outputs \
+-v /freesurfer_license.txt:/license.txt bids-freesurfer:latest \
+/bids_dataset /outputs participant \
+--license_file &amp;#34;/license.txt&amp;#34; --skip_bids_validator
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;freesurfer_license.txt&lt;/code&gt;可以&lt;a href=&#34;https://github.com/chenfei-ye/BIDS-freesurfer&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;点此下载&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;若运行后提示pybids报错，则需要手动指定被试&lt;code&gt;--participant_label [str]&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-fmriprep批处理&#34;&gt;2. fmriprep批处理&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -it --rm -v /bids_root:/bids_dataset \
+-v /freesurfer_license.txt:/opt/freesurfer/license.txt \
+-v /bids_root:/working_dir nipreps/fmriprep:latest \
+/bids_dataset /bids_dataset/derivatives/fmriprep participant \ 
+--skip-bids-validation --ignore fieldmaps \
+--md-only-boilerplate --output-spaces MNI152NLin2009cAsym:res-2 T1w \
+--nthreads 20 --stop-on-first-crash --mem_mb 5000 \
+--use-syn-sdc --fd-spike-threshold 0.5 -v -w /working_dir --cifti-output 
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;指定&lt;code&gt;/working_dir&lt;/code&gt;是为了将中间文件缓存到硬盘，否则内存容易爆掉；运行完毕后建议删除以节省空间；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--cifti-output &lt;/code&gt;是为了输出cifti结果，便于&lt;code&gt;xcp-d&lt;/code&gt;处理；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--nthreads&lt;/code&gt;及&lt;code&gt;--mem_mb&lt;/code&gt;根据实际服务器资源来确定计算的线程及内存；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--fs-subjects-dir&lt;/code&gt;指定已经处理完毕的&lt;code&gt;freesurfer&lt;/code&gt;分割输出结果；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--output-spaces&lt;/code&gt;输出空间增加&lt;code&gt;T1w&lt;/code&gt;是为了后续可能用到的皮层&lt;a href=&#34;https://github.com/edickie/ciftify&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ciftify&lt;/a&gt;分析；&lt;/li&gt;
+&lt;li&gt;如果提示metadata找不到&lt;code&gt;TotalReadoutTime&lt;/code&gt;，则需要在json文件中手动补充该字段；&lt;/li&gt;
+&lt;li&gt;如果提示metadata找不到&lt;code&gt;PhaseEncodingDirection&lt;/code&gt;，则需要在json文件中手动补充该字段；如果已存在该字段仍报错，则有可能BIDS根目录中存在被试缺少必要的&lt;code&gt;T1w&lt;/code&gt;或&lt;code&gt;BOLD&lt;/code&gt;数据，要仔细检查。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-xcp-d批处理&#34;&gt;3. xcp-d批处理&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run --rm -it -v /bids_root/derivatives/fmriprep:/fmriprep:ro \
+-v /bids_root/derivatives/wkdir:/work:rw \
+-v /bids_root/derivatives/xcp_d:/out:rw \
+-v /atlases/TEMPLATEFLOW_HOME:/home/xcp_d/.cache/templateflow \
+-v /atlases:/fs_license pennlinc/xcp_d:latest \
+/fmriprep /out participant --cifti --despike --head_radius auto \
+-w /work --nthreads 10 --mem_gb 10 --fd-thresh 0 \
+--nuisance-regressors 36P --fs-license-file /fs_license/freesurfer_license.txt \
+--min-coverage 0.2 --stop-on-first-crash \
+--atlases 4S156Parcels 4S256Parcels 4S456Parcels 4S1056Parcels HCP
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;xcp-d pipeline优势：数据可以自动预处理并使用NiPrep风格的容器化代码，在BIDS格式下从原始数据一直分析到功能连接矩阵（也包括BOLD信号、ALFF、REHO等）。XCP-D 正好在 fMRIPrep 结束的地方接手，直接使用 fMRIPrep 的输出。XCP-D 利用 BIDS 和 NiPreps 框架自动生成去噪的 BOLD 图像、分割的时间序列、功能连接矩阵和质量评估报告。XCP-D 还可以处理来自以下来源的输出：NiBabies、ABCD-BIDS、最小预处理的 HCP 数据以及英国生物银行数据。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;4S&lt;/code&gt;图谱：The 4S atlas combines the Schaefer 2018 cortical atlas at 10 different resolutions (100, 200, 300, 400, 500, 600, 700, 800, 900, and 1000 parcels) with the CIT168 subcortical atlas, the Diedrichson cerebellar atlas, the HCP thalamic atlas, and the amygdala and hippocampus parcels from the HCP CIFTI subcortical parcellation.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;4S&lt;/code&gt;图谱里的非皮层结构过于复杂，可以无视；如果需要皮层下结构，直接用HCP CIFTI subcortical parcellation就可以，和&lt;code&gt;FreeSurfer&lt;/code&gt;定义的皮层下图谱的结构是一致的。适用于&lt;code&gt;Enigma-toolbox&lt;/code&gt;的可视化。Enigma-toolbox的皮层下可视化结构：Subcortical input values are ordered as follows: left-accumbens, left-amygdala, left-caudate, left-hippocampus, left-pallidum, left-putamen, left-thalamus, left-ventricles, right-accumbens, right-amygdala, right-caudate, right-hippocampus, right-pallidum, right-putamen, right-thalamus, right-ventricles! You can re-order your subcortical dataset using our reorder_sctx() function. *Ventricles are optional.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--fd-thresh 0&lt;/code&gt;：不执行censoring,否则会丢失帧；&lt;/li&gt;
+&lt;li&gt;对于&lt;code&gt;--cifti&lt;/code&gt;，需要&lt;code&gt;fmriprep&lt;/code&gt;里预存fsLR的图谱才可以跑。&lt;code&gt;fmriprep&lt;/code&gt;参数加&lt;code&gt;--cifti-output&lt;/code&gt;，默认是91k皮层。对于nifti输出结果，很可能有脑区的值是NaN，可以保留NaN进行后续的计算。&lt;a href=&#34;https://neurostars.org/t/n-a-timeseries-for-some-roi-when-using-xcp-d-for-postprocessing/27108/3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;讨论参考&lt;/a&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/TEMPLATEFLOW_HOME&lt;/code&gt;是&lt;a href=&#34;https://github.com/templateflow&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;templateflow&lt;/a&gt;的本地路径，是为了预加载已下载的&lt;code&gt;templateflow&lt;/code&gt;图谱，否则每次容器运行时会从s3.amazon新下载&lt;code&gt;templateflow&lt;/code&gt;图谱，速度很慢。&lt;code&gt;templateflow&lt;/code&gt;图谱也可在网盘下载：链接：https://pan.baidu.com/s/13bPkN3Vzcyy6LoSwB7UQKg?pwd=9h4i ；提取码：9h4i&lt;/li&gt;
+&lt;li&gt;对于脑区水平的BOLD信号和FC计算，xcp-d不推荐做平滑，原因是：Smoothing improves SNR in a given voxel by blurring the signal across voxels, but when you are averaging the signal in an ROI, there’s no reason to do that, since you’re not interested in individual voxels. Smoothing before parcellating could, at worst, blur signals from voxels outside the region into the region.&lt;/li&gt;
+&lt;li&gt;yeo-7和yeo-17的脑区空间定义是一样的，只是同一个脑区不一定对应到一个子网络上。具体对应关系&lt;a href=&#34;https://github.com/PennLINC/AtlasPack/blob/main/Schaefer/atlas-Schaefer2018v0143_desc-100ParcelsAllNetworks_dseg.tsv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;见此&lt;/a&gt;；&lt;/li&gt;
+&lt;li&gt;对于Minimally preprocessed HCP数据的预处理（输入数据需要同时用到subid_3T_rfMRI_REST1_preproc.zip 和subid_3T_Structural_preproc.zip）：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run --rm -it -v /data3/HCP/input:/fmriprep:ro \
+-v /data3/HCP/wkdir:/work:rw -v /data3/HCP/xcp_d:/out:rw \
+-v /data/freesurfer/:/fs_license pennlinc/xcp_d:latest \
+/fmriprep /out participant --cifti --despike --head_radius auto -w /work \
+--input-type hcp --nthreads 20 --mem_gb 10 --fd-thresh 0 \
+--nuisance-regressors 36P --fs-license-file /fs_license/freesurfer_license.txt \
+--min-coverage 0.2 --stop-on-first-crash \
+--atlases 4S156Parcels 4S256Parcels 4S456Parcels HCP
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
     
     <item>
       <title>利用Surfplot和Brainspace进行脑图可视化</title>
