@@ -886,7 +886,9 @@ docker run -it --rm -v /bids_root:/bids_dataset \
 <li><code>freesurfer_license.txt</code>可以<a href="https://github.com/chenfei-ye/BIDS-freesurfer" target="_blank" rel="noopener">点此下载</a>。</li>
 <li>若运行后提示pybids报错，则需要手动指定被试<code>--participant_label [str]</code></li>
 </ul>
-<h4 id="2-fmriprep批处理">2. fmriprep批处理</h4>
+<p>检查输出结果是否完整：</p>
+<pre tabindex="0"><code>docker run -it --rm --entrypoint python -v /bids_root:/bids_dataset bids-freesurfer:latest /output_qc.py /bids_dataset -mode freesurfer
+</code></pre><h4 id="2-fmriprep批处理">2. fmriprep批处理</h4>
 <pre tabindex="0"><code>docker run -it --rm -v /bids_root:/bids_dataset \
 -v /freesurfer_license.txt:/opt/freesurfer/license.txt \
 -v /bids_root:/working_dir nipreps/fmriprep:latest \
@@ -904,7 +906,9 @@ docker run -it --rm -v /bids_root:/bids_dataset \
 <li>如果提示metadata找不到<code>TotalReadoutTime</code>，则需要在json文件中手动补充该字段；</li>
 <li>如果提示metadata找不到<code>PhaseEncodingDirection</code>，则需要在json文件中手动补充该字段；如果已存在该字段仍报错，则有可能BIDS根目录中存在被试缺少必要的<code>T1w</code>或<code>BOLD</code>数据，要仔细检查。</li>
 </ul>
-<h4 id="3-xcp-d批处理">3. xcp-d批处理</h4>
+<p>检查输出结果是否完整：</p>
+<pre tabindex="0"><code>docker run -it --rm --entrypoint python -v /bids_root:/bids_dataset bids-freesurfer:latest /output_qc.py /bids_dataset -mode fmriprep
+</code></pre><h4 id="3-xcp-d批处理">3. xcp-d批处理</h4>
 <pre tabindex="0"><code>docker run --rm -it -v /bids_root/derivatives/fmriprep:/fmriprep:ro \
 -v /bids_root/derivatives/wkdir:/work:rw \
 -v /bids_root/derivatives/xcp_d:/out:rw \
@@ -917,6 +921,7 @@ docker run -it --rm -v /bids_root:/bids_dataset \
 --atlases 4S156Parcels 4S256Parcels 4S456Parcels 4S1056Parcels HCP
 </code></pre><ul>
 <li>xcp-d pipeline优势：数据可以自动预处理并使用NiPrep风格的容器化代码，在BIDS格式下从原始数据一直分析到功能连接矩阵（也包括BOLD信号、ALFF、REHO等）。XCP-D 正好在 fMRIPrep 结束的地方接手，直接使用 fMRIPrep 的输出。XCP-D 利用 BIDS 和 NiPreps 框架自动生成去噪的 BOLD 图像、分割的时间序列、功能连接矩阵和质量评估报告。XCP-D 还可以处理来自以下来源的输出：NiBabies、ABCD-BIDS、最小预处理的 HCP 数据以及英国生物银行数据。</li>
+<li>目前组里的服务器装的是<code>pennlinc/xcp_d:7.3.0</code>版本，可以用这一版跑。</li>
 <li><code>4S</code>图谱：The 4S atlas combines the Schaefer 2018 cortical atlas at 10 different resolutions (100, 200, 300, 400, 500, 600, 700, 800, 900, and 1000 parcels) with the CIT168 subcortical atlas, the Diedrichson cerebellar atlas, the HCP thalamic atlas, and the amygdala and hippocampus parcels from the HCP CIFTI subcortical parcellation.</li>
 <li><code>4S</code>图谱里的非皮层结构过于复杂，可以无视；如果需要皮层下结构，直接用HCP CIFTI subcortical parcellation就可以，和<code>FreeSurfer</code>定义的皮层下图谱的结构是一致的。适用于<code>Enigma-toolbox</code>的可视化。Enigma-toolbox的皮层下可视化结构：Subcortical input values are ordered as follows: left-accumbens, left-amygdala, left-caudate, left-hippocampus, left-pallidum, left-putamen, left-thalamus, left-ventricles, right-accumbens, right-amygdala, right-caudate, right-hippocampus, right-pallidum, right-putamen, right-thalamus, right-ventricles! You can re-order your subcortical dataset using our reorder_sctx() function. *Ventricles are optional.</li>
 <li><code>--fd-thresh 0</code>：不执行censoring,否则会丢失帧；</li>
@@ -926,14 +931,8 @@ docker run -it --rm -v /bids_root:/bids_dataset \
 <li>yeo-7和yeo-17的脑区空间定义是一样的，只是同一个脑区不一定对应到一个子网络上。具体对应关系<a href="https://github.com/PennLINC/AtlasPack/blob/main/Schaefer/atlas-Schaefer2018v0143_desc-100ParcelsAllNetworks_dseg.tsv" target="_blank" rel="noopener">见此</a>；</li>
 <li>对于Minimally preprocessed HCP数据的预处理（输入数据需要同时用到subid_3T_rfMRI_REST1_preproc.zip 和subid_3T_Structural_preproc.zip）：</li>
 </ul>
-<pre tabindex="0"><code>docker run --rm -it -v /data3/HCP/input:/fmriprep:ro \
--v /data3/HCP/wkdir:/work:rw -v /data3/HCP/xcp_d:/out:rw \
--v /data/freesurfer/:/fs_license pennlinc/xcp_d:latest \
-/fmriprep /out participant --cifti --despike --head_radius auto -w /work \
---input-type hcp --nthreads 20 --mem_gb 10 --fd-thresh 0 \
---nuisance-regressors 36P --fs-license-file /fs_license/freesurfer_license.txt \
---min-coverage 0.2 --stop-on-first-crash \
---atlases 4S156Parcels 4S256Parcels 4S456Parcels HCP
+<p>检查输出结果是否完整：</p>
+<pre tabindex="0"><code>docker run -it --rm --entrypoint python -v /bids_root:/bids_dataset bids-freesurfer:latest /output_qc.py /bids_dataset -mode xcp-d
 </code></pre>
     </div>
 
@@ -1244,7 +1243,7 @@ docker run -it --rm -v /bids_root:/bids_dataset \
       
 
     
-    <script src="/js/vendor-bundle.min.53d67dc2cb1ebceb89d5e2aba2f86112.js"></script>
+    <script src="/js/vendor-bundle.min.32ee83730ed883becad04bc5170512cc.js"></script>
 
     
     
@@ -1337,7 +1336,7 @@ docker run -it --rm -v /bids_root:/bids_dataset \
       
     
     
-    <script src="/zh/js/wowchemy.min.5ec57f6d6123f4d1435d200a755cc871.js"></script>
+    <script src="/zh/js/wowchemy.min.b648f9dc35d49ef6719fbd6dc04d0743.js"></script>
 
     
     
