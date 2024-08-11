@@ -308,7 +308,7 @@
   
   <meta property="og:site_name" content="主页" />
   <meta property="og:url" content="https://chenfei-ye.github.io/zh/post/202401_penguin/" />
-  <meta property="og:title" content="Penguin服务器使用说明 | 主页" />
+  <meta property="og:title" content="公有云服务器使用说明（Penguin） | 主页" />
   <meta property="og:description" content="请务必按照规范，合理使用Penguin服务器资源" /><meta property="og:image" content="https://chenfei-ye.github.io/zh/post/202401_penguin/featured.jpg" />
     <meta property="twitter:image" content="https://chenfei-ye.github.io/zh/post/202401_penguin/featured.jpg" /><meta property="og:locale" content="zh-Hans" />
   
@@ -344,7 +344,7 @@
     "@type": "WebPage",
     "@id": "https://chenfei-ye.github.io/zh/post/202401_penguin/"
   },
-  "headline": "Penguin服务器使用说明",
+  "headline": "公有云服务器使用说明（Penguin）",
   
   "image": [
     "https://chenfei-ye.github.io/zh/post/202401_penguin/featured.jpg"
@@ -382,7 +382,7 @@
 
 
 
-  <title>Penguin服务器使用说明 | 主页</title>
+  <title>公有云服务器使用说明（Penguin） | 主页</title>
 </head>
 
 
@@ -795,7 +795,7 @@
 
 
 <div class="article-container pt-3">
-  <h1>Penguin服务器使用说明</h1>
+  <h1>公有云服务器使用说明（Penguin）</h1>
 
   
 
@@ -883,7 +883,6 @@
 <li>此台服务器没有显卡，没有显卡，没有显卡。</li>
 <li>用户私有数据存放在<code>/workspace</code>目录。例如对于用户<code>zyx</code>，私有目录为<code>/workspace/zyx</code>。</li>
 <li>大体量数据可存储在对象存储COS，路径在<code>/data/</code>。</li>
-<li>超过10GB的大体量软件安装，勿私自操作，请联系为师帮助。</li>
 <li>请使用ssh方式连接服务器，本地客户端推荐使用<a href="https://tabby.sh/" target="_blank" rel="noopener">tabby</a>和<a href="https://winscp.net/eng/index.php" target="_blank" rel="noopener">winscp</a>工具。有使用GUI需求时可联系为师。</li>
 <li>查看系统CPU运行状态用命令<code>htop</code>。并行计算时，线程数不要超过逻辑CPU核数（64 threads），同时警惕内存溢出。</li>
 <li>跑任务，或者基于vscode/jupyter debug，请使用<code>tmux</code>管理会话。具体<a href="https://zhuanlan.zhihu.com/p/98384704" target="_blank" rel="noopener">参考这里</a>。</li>
@@ -895,17 +894,7 @@
 docker run -it --rm --name deepFS \
 -v &lt;localpath&gt;:/dataio \
 mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:deepFS
-</code></pre><h3 id="penguin已开通用户">penguin已开通用户：</h3>
-<ul>
-<li>lyx</li>
-<li>zx</li>
-<li>rby</li>
-<li>lhh</li>
-<li>dy</li>
-<li>hyt</li>
-<li>rc</li>
-</ul>
-<h3 id="penguin已安装软件">penguin已安装软件：</h3>
+</code></pre><h3 id="penguin已安装软件">penguin已安装软件：</h3>
 <ul>
 <li>tmux</li>
 <li>MRtrix3</li>
@@ -1016,7 +1005,7 @@ tmux new -s jupyter_zyx
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://chenfei-ye.github.io/zh/post/202401_penguin/&amp;text=Penguin%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://chenfei-ye.github.io/zh/post/202401_penguin/&amp;text=%e5%85%ac%e6%9c%89%e4%ba%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e%ef%bc%88Penguin%ef%bc%89" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1029,7 +1018,7 @@ tmux new -s jupyter_zyx
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://chenfei-ye.github.io/zh/post/202401_penguin/&amp;t=Penguin%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://chenfei-ye.github.io/zh/post/202401_penguin/&amp;t=%e5%85%ac%e6%9c%89%e4%ba%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e%ef%bc%88Penguin%ef%bc%89" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1042,7 +1031,7 @@ tmux new -s jupyter_zyx
       
       
       <li>
-        <a href="mailto:?subject=Penguin%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e&amp;body=https://chenfei-ye.github.io/zh/post/202401_penguin/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+        <a href="mailto:?subject=%e5%85%ac%e6%9c%89%e4%ba%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e%ef%bc%88Penguin%ef%bc%89&amp;body=https://chenfei-ye.github.io/zh/post/202401_penguin/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1055,7 +1044,7 @@ tmux new -s jupyter_zyx
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://chenfei-ye.github.io/zh/post/202401_penguin/&amp;title=Penguin%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+        <a href="https://www.linkedin.com/shareArticle?url=https://chenfei-ye.github.io/zh/post/202401_penguin/&amp;title=%e5%85%ac%e6%9c%89%e4%ba%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e%ef%bc%88Penguin%ef%bc%89" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1068,7 +1057,7 @@ tmux new -s jupyter_zyx
       
       
       <li>
-        <a href="whatsapp://send?text=Penguin%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e%20https://chenfei-ye.github.io/zh/post/202401_penguin/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+        <a href="whatsapp://send?text=%e5%85%ac%e6%9c%89%e4%ba%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e%ef%bc%88Penguin%ef%bc%89%20https://chenfei-ye.github.io/zh/post/202401_penguin/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1081,7 +1070,7 @@ tmux new -s jupyter_zyx
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://chenfei-ye.github.io/zh/post/202401_penguin/&amp;title=Penguin%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://chenfei-ye.github.io/zh/post/202401_penguin/&amp;title=%e5%85%ac%e6%9c%89%e4%ba%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e%ef%bc%88Penguin%ef%bc%89" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>

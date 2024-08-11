@@ -33,6 +33,196 @@
     </item>
     
     <item>
+      <title>BrainNet实验室内网服务器使用说明</title>
+      <link>https://chenfei-ye.github.io/zh/post/202309_cyelab/</link>
+      <pubDate>Sun, 11 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202309_cyelab/</guid>
+      <description>&lt;h3 id=&#34;服务器资源&#34;&gt;服务器资源：&lt;/h3&gt;
+&lt;h4 id=&#34;linux计算服务器ssh访问&#34;&gt;Linux计算服务器（ssh访问）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;spider&lt;/code&gt;: 计算服务器(10.2xx.xx.140)：AMD EPYC 7642 48-Core Processor (96 threads), RTX4070 ×2, 128GB RAM, 8TB HDD；Ubuntu 22.04 OS&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;leopard&lt;/code&gt;: 计算服务器(10.2xx.xx.25)：AMD EPYC 7642 48-Core Processor (96 threads), RTX4070 ×2, 128GB RAM, 8TB HDD；Ubuntu 22.04 OS&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;wolf&lt;/code&gt;: 计算服务器(10.2xx.xx.25)：AMD EPYC 7642 48-Core Processor (192 threads), RTX3080Ti ×1, 128GB RAM, 8TB HDD；Ubuntu 18.04 OS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;linux存储服务器ssh访问&#34;&gt;Linux存储服务器（ssh访问）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;zebra&lt;/code&gt;:  存储服务器(10.2xx.xx.127)：Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz (28 threads), 64GB RAM, 250GB SSD + 87TB HDD；Ubuntu 22.04 OS&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hippo&lt;/code&gt;:  存储服务器(10.2xx.xx.70)：Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz (28 threads), 64GB RAM, 250GB SSD + 102TB HDD；Ubuntu 22.04 OS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;windows服务器remote-desktop访问&#34;&gt;Windows服务器（remote desktop访问）&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;I7-14700/64GB DDR5/2T SSD/8T HDD/ RTX4060&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;使用说明&#34;&gt;使用说明&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;服务器均是校园网IP，校外使用请登录学校VPN。&lt;/li&gt;
+&lt;li&gt;存储服务器只用于存放公用数据（不能跑计算），其数据存储的唯一可用空间为&lt;code&gt;/data&lt;/code&gt;。存储服务器的存储空间已映射到计算服务器的本地路径，如&lt;code&gt;/zebra&lt;/code&gt;，&lt;code&gt;/hippo&lt;/code&gt;，因此可以直接从计算服务器访问存储数据。&lt;/li&gt;
+&lt;li&gt;对于计算服务器，私有数据存放在&lt;code&gt;/data/&lt;/code&gt;目录。例如对于用户&lt;code&gt;cyc&lt;/code&gt;，私有目录为&lt;code&gt;/data/cyc&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;大体量数据切勿存放在&lt;code&gt;/home&lt;/code&gt;路径，因为根目录空间有限（对应SSD系统盘）。&lt;/li&gt;
+&lt;li&gt;请使用ssh方式连接服务器，本地客户端推荐使用&lt;a href=&#34;https://tabby.sh/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tabby&lt;/a&gt;和&lt;a href=&#34;https://winscp.net/eng/index.php&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;winscp&lt;/a&gt;工具。&lt;/li&gt;
+&lt;li&gt;并行计算时，线程数不要超过逻辑CPU核数，同时警惕内存溢出。&lt;/li&gt;
+&lt;li&gt;跑计算任务，或者基于&lt;code&gt;vscode&lt;/code&gt;/&lt;code&gt;jupyter&lt;/code&gt;调试，务必使用&lt;code&gt;tmux&lt;/code&gt;管理会话，以防ssh连接意外断开。具体&lt;a href=&#34;https://zhuanlan.zhihu.com/p/98384704&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;参考这里&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;python编程请用户使用各自的conda虚拟环境进行管理，装包切勿都装在&lt;code&gt;base&lt;/code&gt;环境。具体&lt;a href=&#34;https://zhuanlan.zhihu.com/p/339662352&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;参考这里&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;对于pipeline编写和调试（尤其深度学习），建议在服务器docker容器内操作。参考&lt;a href=&#34;https://chenfei-ye.github.io/post/202206_jupyter_docker/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter远程调试docker容器具体&lt;/a&gt; 及&lt;a href=&#34;https://chenfei-ye.github.io/post/202206_vscode_docker/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;VScode远程调试docker容器&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;spider&lt;/code&gt;目前只安装了显卡驱动，没有装cuda和cudnn。基于GPU的深度学习算法研究推荐用docker容器，可以根据需求拉取&lt;a href=&#34;https://hub.docker.com/r/pytorch/pytorch/tags&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pytorch官方镜像&lt;/a&gt;，或者使用为师倾力打造的神经影像分析基础镜像&lt;code&gt;mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:deepFS&lt;/code&gt;，内置&lt;code&gt;python3.8 + cuda11.0.221 + cudnn8.0.3 + pytorch1.7.0 + nibabel + scikit-learn + nilearn&lt;/code&gt;，同时集成了&lt;code&gt;ANTS&lt;/code&gt;，&lt;code&gt;FSL6.0.4&lt;/code&gt;，&lt;code&gt;MRtrix3.0.2&lt;/code&gt;，&lt;code&gt;c3d&lt;/code&gt;，&lt;code&gt;freesurfer7.3.2&lt;/code&gt;等常用软件。&lt;/li&gt;
+&lt;li&gt;目前&lt;code&gt;zebra&lt;/code&gt;服务器空间比较紧张，数据优先在&lt;code&gt;hippo&lt;/code&gt;服务器存储。 &lt;code&gt;Updated 2024-08&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;机房停电后服务器重启，若出现docker镜像丢失、存储服务器挂载路径失效等问题，请联系管理员。&lt;/li&gt;
+&lt;li&gt;使用rm命令删文件前，&lt;strong&gt;三思&lt;/strong&gt;后再执行。原则上存储服务器的数据&lt;strong&gt;不要做任何删除操作&lt;/strong&gt;。若出现重要数据误删，后果自负。&lt;/li&gt;
+&lt;li&gt;Linux计算服务器的coding，若涉及可视化，优先用jupyter；否则优先用vscode remote。&lt;/li&gt;
+&lt;li&gt;使用matlab，优先用Windows服务器。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;一些简单的常用命令&#34;&gt;一些简单的常用命令&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;查看当前CPU和内存状态：
+&lt;code&gt;htop&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看硬盘信息：
+&lt;code&gt;df -h&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看硬盘挂载：
+&lt;code&gt;lsblk&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看当前Docker镜像:
+&lt;code&gt;docker images&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看正在运行的Docker容器：
+&lt;code&gt;docker ps&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入Docker容器进行调试：
+&lt;code&gt;docker run -it --rm --gpus all --name deepFS -v &amp;lt;localpath&amp;gt;:/dataio  mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:deepFS&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入已经运行的Docker容器：
+&lt;code&gt;docker exec -it docker_container bash&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看显卡运行状态用命令：
+&lt;code&gt;nvidia-smi -l 2&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建名为&lt;code&gt;freesurfer&lt;/code&gt;的tmux新会话：
+&lt;code&gt;tmux new -s freesurfer&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;退出当前tmux会话：
+&lt;code&gt;同时按住ctrl和b，松开再按d&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入后台中名为&lt;code&gt;freesurfer&lt;/code&gt;的tmux会话：
+&lt;code&gt;tmux a -t freesurfer&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;后台中的tmux会话：
+&lt;code&gt;tmux ls&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;停止后台中名为&lt;code&gt;freesurfer&lt;/code&gt;的tmux会话：
+&lt;code&gt;tmux kill-session -t freesurfer&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用ssh将远程的校园网登录网址映射到本地:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 本地运行下面代码将服务器的校园网映射到本地8088端口
+ssh -N -f -L localhost:8088:10.248.98.2:80 用户名@服务器IP
+# 在本地浏览器输入下面的网址来登录8088端口并登陆即可使得服务器成功访问校园网
+http://localhost:8088/srun_portal_pc?ac_id=1&amp;amp;theme=basic2
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;计算服务器已安装软件&#34;&gt;计算服务器已安装软件：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;tmux&lt;/li&gt;
+&lt;li&gt;MRtrix3&lt;/li&gt;
+&lt;li&gt;docker&lt;/li&gt;
+&lt;li&gt;conda&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;计算服务器如何启用jupyter编程&#34;&gt;计算服务器如何启用jupyter编程：&lt;/h3&gt;
+&lt;p&gt;以下命令可能需要sudo权限。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建自己的conda环境&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt install jupyter-notebook
+# 以ole为例
+sudo conda create -n ole python=3.10 
+
+# 若报错command not found，需要添加conda的绝对路径。
+# 查看绝对路径：
+which conda
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;激活zyx环境&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;conda activate ole
+
+# 如果报错conda: error: argument COMMAND: invalid choice: &amp;#39;activate&amp;#39;
+# 则重新初始化conda:
+conda init
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;将当前conda环境添加进jupyter kernel&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pip install notebook ipykernel -i https://pypi.tuna.tsinghua.edu.cn/simple
+python -m ipykernel install --user --name ole
+
+# 以上实现了jupyter kernel的环境添加，只需要操作一次即可
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;验证获取服务器的jupyter可用端口：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;jupyter notebook
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;根据提示获知可用端口，如8888，然后ctrl+C退出。&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;打开windows自带的powershell，新建端口转发的ssh通道。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 以下在windows powershell中执行
+# 8000是本地端口，8888是远程jupyter端口（根据上一步获取的实际可用端口做修改）
+# remote_server_ip改成服务器真实IP
+
+ssh -L  8000:localhost:8888 用户名@服务器IP
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;进入编程目录（自行指定），启动jupyter会话&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;tmux new -s jupyter_ole # 新建tmux会话，保持后台运行
+cd &amp;lt;编程目录&amp;gt;
+jupyter notebook
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此时会生成IP，如：http://localhost:8888/tree?token=XXXXXXXXX
+把其中&lt;code&gt;8888&lt;/code&gt;端口替换成本地端口&lt;code&gt;8000&lt;/code&gt;即可，本地浏览器键入IP实现访问。&lt;/p&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;新建conda环境对应的ipykernel，即可使用。如果访问不了，需要换新的本地端口重新尝试，如&lt;code&gt;8001&lt;/code&gt;。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;zyx.png&#34; srcset=&#34;
+               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_38bc98183a5cb60c07efdc28dffe949b.webp 400w,
+               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_c30ca99c08873dd847b7261d7b6f4aa7.webp 760w,
+               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://chenfei-ye.github.io/zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_38bc98183a5cb60c07efdc28dffe949b.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;229&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
       <title>rs-fMRI预处理全流程</title>
       <link>https://chenfei-ye.github.io/zh/post/202406_rs_fmri_run/</link>
       <pubDate>Thu, 06 Jun 2024 00:00:00 +0000</pubDate>
@@ -196,7 +386,7 @@ np.savetxt(&amp;#34;/data/cye_code/BIDS-fmripost/atlases/coords.csv&amp;#34;, co
     </item>
     
     <item>
-      <title>Penguin服务器使用说明</title>
+      <title>公有云服务器使用说明（Penguin）</title>
       <link>https://chenfei-ye.github.io/zh/post/202401_penguin/</link>
       <pubDate>Sun, 03 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://chenfei-ye.github.io/zh/post/202401_penguin/</guid>
@@ -210,7 +400,6 @@ np.savetxt(&amp;#34;/data/cye_code/BIDS-fmripost/atlases/coords.csv&amp;#34;, co
 &lt;li&gt;此台服务器没有显卡，没有显卡，没有显卡。&lt;/li&gt;
 &lt;li&gt;用户私有数据存放在&lt;code&gt;/workspace&lt;/code&gt;目录。例如对于用户&lt;code&gt;zyx&lt;/code&gt;，私有目录为&lt;code&gt;/workspace/zyx&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;大体量数据可存储在对象存储COS，路径在&lt;code&gt;/data/&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;超过10GB的大体量软件安装，勿私自操作，请联系为师帮助。&lt;/li&gt;
 &lt;li&gt;请使用ssh方式连接服务器，本地客户端推荐使用&lt;a href=&#34;https://tabby.sh/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tabby&lt;/a&gt;和&lt;a href=&#34;https://winscp.net/eng/index.php&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;winscp&lt;/a&gt;工具。有使用GUI需求时可联系为师。&lt;/li&gt;
 &lt;li&gt;查看系统CPU运行状态用命令&lt;code&gt;htop&lt;/code&gt;。并行计算时，线程数不要超过逻辑CPU核数（64 threads），同时警惕内存溢出。&lt;/li&gt;
 &lt;li&gt;跑任务，或者基于vscode/jupyter debug，请使用&lt;code&gt;tmux&lt;/code&gt;管理会话。具体&lt;a href=&#34;https://zhuanlan.zhihu.com/p/98384704&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;参考这里&lt;/a&gt;。&lt;/li&gt;
@@ -222,17 +411,7 @@ np.savetxt(&amp;#34;/data/cye_code/BIDS-fmripost/atlases/coords.csv&amp;#34;, co
 docker run -it --rm --name deepFS \
 -v &amp;lt;localpath&amp;gt;:/dataio \
 mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:deepFS
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;penguin已开通用户&#34;&gt;penguin已开通用户：&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;lyx&lt;/li&gt;
-&lt;li&gt;zx&lt;/li&gt;
-&lt;li&gt;rby&lt;/li&gt;
-&lt;li&gt;lhh&lt;/li&gt;
-&lt;li&gt;dy&lt;/li&gt;
-&lt;li&gt;hyt&lt;/li&gt;
-&lt;li&gt;rc&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;penguin已安装软件&#34;&gt;penguin已安装软件：&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;penguin已安装软件&#34;&gt;penguin已安装软件：&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;tmux&lt;/li&gt;
 &lt;li&gt;MRtrix3&lt;/li&gt;
@@ -411,129 +590,6 @@ tmux new -s jupyter_zyx
 &lt;li&gt;Seguin C, Sporns O, Zalesky A. Brain network communication: concepts, models and applications. Nat Rev Neurosci. 2023 Sep;24(9):557-574. doi: 10.1038/s41583-023-00718-5. Epub 2023 Jul 12. PMID: 37438433.&lt;/li&gt;
 &lt;li&gt;Graham D, Avena-Koenigsberger A, Mišić B. Editorial: Network Communication in the Brain. Netw Neurosci. 2020 Nov 1;4(4):976-979. doi: 10.1162/netn_e_00167. PMID: 33195944; PMCID: PMC7655038.&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>BrainNet实验室服务器使用说明</title>
-      <link>https://chenfei-ye.github.io/zh/post/202309_cyelab/</link>
-      <pubDate>Fri, 22 Sep 2023 00:00:00 +0000</pubDate>
-      <guid>https://chenfei-ye.github.io/zh/post/202309_cyelab/</guid>
-      <description>&lt;h3 id=&#34;目前有两台服务器资源&#34;&gt;目前有两台服务器资源：&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;spider&lt;/code&gt;: 计算服务器(10.2xx.xx.140)：AMD EPYC 7642 48-Core Processor (96 threads), RTX4070 ×2, 128GB RAM, 8TB HDD；Ubuntu 18.04 OS&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;zebra&lt;/code&gt;:  存储服务器(10.2xx.xx.127)：Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz (28 threads), 64GB RAM, 250GB SSD + 87TB HDD；Ubuntu 22.04 OS&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;使用说明&#34;&gt;使用说明&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;服务器均是校园网IP，校外使用请登录学校VPN。&lt;/li&gt;
-&lt;li&gt;跑分析计算目前只能用&lt;code&gt;spider&lt;/code&gt;，&lt;code&gt;zebra&lt;/code&gt;只用于存放公用数据。&lt;code&gt;zebra&lt;/code&gt;的存储空间已映射到&lt;code&gt;spider&lt;/code&gt;的本地路径&lt;code&gt;/zebra&lt;/code&gt;，可基于该路径实现两台服务器之间的数据同步。&lt;/li&gt;
-&lt;li&gt;对于计算服务器，私有数据存放在&lt;code&gt;/data/&lt;/code&gt;目录。例如对于用户&lt;code&gt;cyc&lt;/code&gt;，私有目录为&lt;code&gt;/data/cyc&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;大体量数据切勿存放在&lt;code&gt;/home&lt;/code&gt;路径，因为根目录空间有限（对应SSD系统盘）。&lt;/li&gt;
-&lt;li&gt;超过10GB的大体量软件安装，勿私自操作，请联系为师帮助。&lt;/li&gt;
-&lt;li&gt;请使用ssh方式连接服务器，本地客户端推荐使用&lt;a href=&#34;https://tabby.sh/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;tabby&lt;/a&gt;和&lt;a href=&#34;https://winscp.net/eng/index.php&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;winscp&lt;/a&gt;工具。有使用GUI需求时可联系为师。&lt;/li&gt;
-&lt;li&gt;查看系统CPU运行状态用命令&lt;code&gt;htop&lt;/code&gt;。并行计算时，线程数不要超过逻辑CPU核数（96 threads for &lt;code&gt;spider&lt;/code&gt;），同时警惕内存溢出。查看显卡运行状态用命令&lt;code&gt;nvidia-smi -l 2&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;跑任务，或者基于vscode/jupyter debug，请使用&lt;code&gt;tmux&lt;/code&gt;管理会话。具体&lt;a href=&#34;https://zhuanlan.zhihu.com/p/98384704&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;参考这里&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;python编程请用户使用各自的conda虚拟环境进行管理，装包切勿都装在&lt;code&gt;base&lt;/code&gt;环境。具体&lt;a href=&#34;https://zhuanlan.zhihu.com/p/339662352&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;参考这里&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;对于pipeline编写和调试（尤其深度学习），建议在服务器docker容器内操作。参考&lt;a href=&#34;https://chenfei-ye.github.io/post/202206_jupyter_docker/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jupyter远程调试docker容器具体&lt;/a&gt; 及&lt;a href=&#34;https://chenfei-ye.github.io/post/202206_vscode_docker/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;VScode远程调试docker容器&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;spider&lt;/code&gt;目前只安装了显卡驱动，没有装cuda和cudnn。基于GPU的深度学习算法研究推荐用docker容器，可以根据需求拉取&lt;a href=&#34;https://hub.docker.com/r/pytorch/pytorch/tags&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pytorch官方镜像&lt;/a&gt;，或者使用为师倾力打造的神经影像分析基础镜像&lt;code&gt;mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:deepFS&lt;/code&gt;，内置&lt;code&gt;python3.8 + cuda11.0.221 + cudnn8.0.3 + pytorch1.7.0 + nibabel + scikit-learn + nilearn&lt;/code&gt;，同时集成了&lt;code&gt;ANTS&lt;/code&gt;，&lt;code&gt;FSL6.0.4&lt;/code&gt;，&lt;code&gt;MRtrix3.0.2&lt;/code&gt;，&lt;code&gt;c3d&lt;/code&gt;，&lt;code&gt;freesurfer7.3.2&lt;/code&gt;等常用软件。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 调用命令示例：
-docker run -it --rm --gpus all --name deepFS \
--v &amp;lt;localpath&amp;gt;:/dataio \
-mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:deepFS
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;spider已开通用户&#34;&gt;spider已开通用户：&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;zyx&lt;/li&gt;
-&lt;li&gt;cyc&lt;/li&gt;
-&lt;li&gt;dzy&lt;/li&gt;
-&lt;li&gt;csy&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;spider已安装软件&#34;&gt;spider已安装软件：&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;tmux&lt;/li&gt;
-&lt;li&gt;MRtrix3&lt;/li&gt;
-&lt;li&gt;docker&lt;/li&gt;
-&lt;li&gt;conda&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;spider如何启用jupyter编程&#34;&gt;spider如何启用jupyter编程：&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;创建自己的conda环境&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 以zyx为例
-conda create -n zyx python=3.8
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;激活zyx环境&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;conda activate zyx
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;将当前conda环境添加进jupyter kernel&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pip install ipykernel
-python -m ipykernel install  --name zyx
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;4&#34;&gt;
-&lt;li&gt;以上实现了jupyter kernel的环境添加，只需要操作一次即可。后续每次编程只需要启动jupyter会话即可。为保证会话进程在后台始终活跃，建议新建tmux进程便于会话管理：&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;tmux new -s jupyter_zyx
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;5&#34;&gt;
-&lt;li&gt;进入编程目录（自行指定）&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd /data/zyx
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;6&#34;&gt;
-&lt;li&gt;启动jupyter会话&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;jupyter notebook --config /root/.jupyter/jupyter_notebook_config.py --allow-root
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此时会生成IP，如：http://spider:8890/
-把其中&lt;code&gt;spider&lt;/code&gt;替换成实际IP即可（10.2xx.xx.140），本地浏览器键入IP实现访问（密码是&lt;code&gt;spider123&lt;/code&gt;）&lt;/p&gt;
-&lt;ol start=&#34;7&#34;&gt;
-&lt;li&gt;新建conda环境（如zyx）对应的ipykernel，即可使用。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  &gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;zyx.png&#34; srcset=&#34;
-               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_38bc98183a5cb60c07efdc28dffe949b.webp 400w,
-               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_c30ca99c08873dd847b7261d7b6f4aa7.webp 760w,
-               /zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://chenfei-ye.github.io/zh/post/202309_cyelab/zyx_hu6b63f1b839867e7dd02aa443c6d0da2a_48918_38bc98183a5cb60c07efdc28dffe949b.webp&#34;
-               width=&#34;760&#34;
-               height=&#34;229&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>rs-fMRI预处理完整流程</title>
-      <link>https://chenfei-ye.github.io/zh/post/202308_fmripost/</link>
-      <pubDate>Thu, 31 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://chenfei-ye.github.io/zh/post/202308_fmripost/</guid>
-      <description>&lt;h1 id=&#34;bids-fmripost&#34;&gt;BIDS-fMRIpost&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;BIDS-fmripost&lt;/code&gt;是基于&lt;a href=&#34;https://fmriprep.org/en/stable/installation.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;fMRIPrep&lt;/a&gt;  的后处理分析流程，基于&lt;a href=&#34;https://nilearn.github.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;nilearn&lt;/a&gt;开发。分析功能包括：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;协变量回归（confound regression）&lt;/li&gt;
-&lt;li&gt;空间平滑（spatial smoothing）&lt;/li&gt;
-&lt;li&gt;基于脑区的BOLD信号提取 (BOLD signal extraction)&lt;/li&gt;
-&lt;li&gt;功能连接网络计算 （FC network）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;目前主要用于静息态功能磁共振影像数据的脑网络分析。该脚本的输入数据需符合&lt;a href=&#34;https://bids.neuroimaging.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BIDS格式&lt;/a&gt;，输入模态需包括3D-T1w和fMRI。目前支持的图谱包括：  &lt;code&gt;AAL1_MNI&lt;/code&gt;,  &lt;code&gt;AAL2_MNI&lt;/code&gt;,  &lt;code&gt;AAL3_MNI&lt;/code&gt;,  &lt;code&gt;desikan_T1w&lt;/code&gt;,  &lt;code&gt;destrieux_T1w&lt;/code&gt;,  &lt;code&gt;hcpmmp_T1w&lt;/code&gt;  ,  &lt;code&gt;schaefer100_MNI&lt;/code&gt;,  &lt;code&gt;schaefer200_MNI&lt;/code&gt;  ,  &lt;code&gt;schaefer400_MNI&lt;/code&gt;,  &lt;code&gt;schaefer1000_MNI&lt;/code&gt;,  &lt;code&gt;PD25_MNI&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;具体使用说明&lt;a href=&#34;https://github.com/chenfei-ye/BIDS-fMRIpost/blob/main/resources/README_Chs.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;点此&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

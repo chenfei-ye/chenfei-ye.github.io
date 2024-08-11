@@ -308,17 +308,17 @@
   
   <meta property="og:site_name" content="主页" />
   <meta property="og:url" content="https://chenfei-ye.github.io/zh/post/202309_cyelab/" />
-  <meta property="og:title" content="BrainNet实验室服务器使用说明 | 主页" />
+  <meta property="og:title" content="BrainNet实验室内网服务器使用说明 | 主页" />
   <meta property="og:description" content="请务必按照规范，合理使用服务器资源" /><meta property="og:image" content="https://chenfei-ye.github.io/zh/post/202309_cyelab/featured.jpg" />
     <meta property="twitter:image" content="https://chenfei-ye.github.io/zh/post/202309_cyelab/featured.jpg" /><meta property="og:locale" content="zh-Hans" />
   
     
       <meta
         property="article:published_time"
-        content="2023-09-22T00:00:00&#43;00:00"
+        content="2024-08-11T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2023-09-22T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2024-08-11T00:00:00&#43;00:00">
   
 
   
@@ -344,14 +344,14 @@
     "@type": "WebPage",
     "@id": "https://chenfei-ye.github.io/zh/post/202309_cyelab/"
   },
-  "headline": "BrainNet实验室服务器使用说明",
+  "headline": "BrainNet实验室内网服务器使用说明",
   
   "image": [
     "https://chenfei-ye.github.io/zh/post/202309_cyelab/featured.jpg"
   ],
   
-  "datePublished": "2023-09-22T00:00:00Z",
-  "dateModified": "2023-09-22T00:00:00Z",
+  "datePublished": "2024-08-11T00:00:00Z",
+  "dateModified": "2024-08-11T00:00:00Z",
   
   "author": {
     "@type": "Person",
@@ -382,7 +382,7 @@
 
 
 
-  <title>BrainNet实验室服务器使用说明 | 主页</title>
+  <title>BrainNet实验室内网服务器使用说明 | 主页</title>
 </head>
 
 
@@ -795,7 +795,7 @@
 
 
 <div class="article-container pt-3">
-  <h1>BrainNet实验室服务器使用说明</h1>
+  <h1>BrainNet实验室内网服务器使用说明</h1>
 
   
 
@@ -823,7 +823,7 @@
     
       
     
-    9月 22, 2023
+    8月 11, 2024
   </span>
   
 
@@ -832,7 +832,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 分钟阅读时长
+    2 分钟阅读时长
   </span>
   
 
@@ -871,74 +871,159 @@
   <div class="article-container">
 
     <div class="article-style">
-      <h3 id="目前有两台服务器资源">目前有两台服务器资源：</h3>
+      <h3 id="服务器资源">服务器资源：</h3>
+<h4 id="linux计算服务器ssh访问">Linux计算服务器（ssh访问）</h4>
 <ul>
-<li><code>spider</code>: 计算服务器(10.2xx.xx.140)：AMD EPYC 7642 48-Core Processor (96 threads), RTX4070 ×2, 128GB RAM, 8TB HDD；Ubuntu 18.04 OS</li>
+<li><code>spider</code>: 计算服务器(10.2xx.xx.140)：AMD EPYC 7642 48-Core Processor (96 threads), RTX4070 ×2, 128GB RAM, 8TB HDD；Ubuntu 22.04 OS</li>
+<li><code>leopard</code>: 计算服务器(10.2xx.xx.25)：AMD EPYC 7642 48-Core Processor (96 threads), RTX4070 ×2, 128GB RAM, 8TB HDD；Ubuntu 22.04 OS</li>
+<li><code>wolf</code>: 计算服务器(10.2xx.xx.25)：AMD EPYC 7642 48-Core Processor (192 threads), RTX3080Ti ×1, 128GB RAM, 8TB HDD；Ubuntu 18.04 OS</li>
+</ul>
+<h4 id="linux存储服务器ssh访问">Linux存储服务器（ssh访问）</h4>
+<ul>
 <li><code>zebra</code>:  存储服务器(10.2xx.xx.127)：Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz (28 threads), 64GB RAM, 250GB SSD + 87TB HDD；Ubuntu 22.04 OS</li>
+<li><code>hippo</code>:  存储服务器(10.2xx.xx.70)：Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz (28 threads), 64GB RAM, 250GB SSD + 102TB HDD；Ubuntu 22.04 OS</li>
+</ul>
+<h4 id="windows服务器remote-desktop访问">Windows服务器（remote desktop访问）</h4>
+<ul>
+<li>I7-14700/64GB DDR5/2T SSD/8T HDD/ RTX4060</li>
 </ul>
 <h3 id="使用说明">使用说明</h3>
 <ol>
 <li>服务器均是校园网IP，校外使用请登录学校VPN。</li>
-<li>跑分析计算目前只能用<code>spider</code>，<code>zebra</code>只用于存放公用数据。<code>zebra</code>的存储空间已映射到<code>spider</code>的本地路径<code>/zebra</code>，可基于该路径实现两台服务器之间的数据同步。</li>
+<li>存储服务器只用于存放公用数据（不能跑计算），其数据存储的唯一可用空间为<code>/data</code>。存储服务器的存储空间已映射到计算服务器的本地路径，如<code>/zebra</code>，<code>/hippo</code>，因此可以直接从计算服务器访问存储数据。</li>
 <li>对于计算服务器，私有数据存放在<code>/data/</code>目录。例如对于用户<code>cyc</code>，私有目录为<code>/data/cyc</code>。</li>
 <li>大体量数据切勿存放在<code>/home</code>路径，因为根目录空间有限（对应SSD系统盘）。</li>
-<li>超过10GB的大体量软件安装，勿私自操作，请联系为师帮助。</li>
-<li>请使用ssh方式连接服务器，本地客户端推荐使用<a href="https://tabby.sh/" target="_blank" rel="noopener">tabby</a>和<a href="https://winscp.net/eng/index.php" target="_blank" rel="noopener">winscp</a>工具。有使用GUI需求时可联系为师。</li>
-<li>查看系统CPU运行状态用命令<code>htop</code>。并行计算时，线程数不要超过逻辑CPU核数（96 threads for <code>spider</code>），同时警惕内存溢出。查看显卡运行状态用命令<code>nvidia-smi -l 2</code>。</li>
-<li>跑任务，或者基于vscode/jupyter debug，请使用<code>tmux</code>管理会话。具体<a href="https://zhuanlan.zhihu.com/p/98384704" target="_blank" rel="noopener">参考这里</a>。</li>
+<li>请使用ssh方式连接服务器，本地客户端推荐使用<a href="https://tabby.sh/" target="_blank" rel="noopener">tabby</a>和<a href="https://winscp.net/eng/index.php" target="_blank" rel="noopener">winscp</a>工具。</li>
+<li>并行计算时，线程数不要超过逻辑CPU核数，同时警惕内存溢出。</li>
+<li>跑计算任务，或者基于<code>vscode</code>/<code>jupyter</code>调试，务必使用<code>tmux</code>管理会话，以防ssh连接意外断开。具体<a href="https://zhuanlan.zhihu.com/p/98384704" target="_blank" rel="noopener">参考这里</a>。</li>
 <li>python编程请用户使用各自的conda虚拟环境进行管理，装包切勿都装在<code>base</code>环境。具体<a href="https://zhuanlan.zhihu.com/p/339662352" target="_blank" rel="noopener">参考这里</a>。</li>
 <li>对于pipeline编写和调试（尤其深度学习），建议在服务器docker容器内操作。参考<a href="https://chenfei-ye.github.io/post/202206_jupyter_docker/" target="_blank" rel="noopener">Jupyter远程调试docker容器具体</a> 及<a href="https://chenfei-ye.github.io/post/202206_vscode_docker/" target="_blank" rel="noopener">VScode远程调试docker容器</a>。</li>
 <li><code>spider</code>目前只安装了显卡驱动，没有装cuda和cudnn。基于GPU的深度学习算法研究推荐用docker容器，可以根据需求拉取<a href="https://hub.docker.com/r/pytorch/pytorch/tags" target="_blank" rel="noopener">pytorch官方镜像</a>，或者使用为师倾力打造的神经影像分析基础镜像<code>mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:deepFS</code>，内置<code>python3.8 + cuda11.0.221 + cudnn8.0.3 + pytorch1.7.0 + nibabel + scikit-learn + nilearn</code>，同时集成了<code>ANTS</code>，<code>FSL6.0.4</code>，<code>MRtrix3.0.2</code>，<code>c3d</code>，<code>freesurfer7.3.2</code>等常用软件。</li>
+<li>目前<code>zebra</code>服务器空间比较紧张，数据优先在<code>hippo</code>服务器存储。 <code>Updated 2024-08</code></li>
+<li>机房停电后服务器重启，若出现docker镜像丢失、存储服务器挂载路径失效等问题，请联系管理员。</li>
+<li>使用rm命令删文件前，<strong>三思</strong>后再执行。原则上存储服务器的数据<strong>不要做任何删除操作</strong>。若出现重要数据误删，后果自负。</li>
+<li>Linux计算服务器的coding，若涉及可视化，优先用jupyter；否则优先用vscode remote。</li>
+<li>使用matlab，优先用Windows服务器。</li>
 </ol>
-<pre tabindex="0"><code># 调用命令示例：
-docker run -it --rm --gpus all --name deepFS \
--v &lt;localpath&gt;:/dataio \
-mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:deepFS
-</code></pre><h3 id="spider已开通用户">spider已开通用户：</h3>
+<h3 id="一些简单的常用命令">一些简单的常用命令</h3>
 <ul>
-<li>zyx</li>
-<li>cyc</li>
-<li>dzy</li>
-<li>csy</li>
+<li>
+<p>查看当前CPU和内存状态：
+<code>htop</code></p>
+</li>
+<li>
+<p>查看硬盘信息：
+<code>df -h</code></p>
+</li>
+<li>
+<p>查看硬盘挂载：
+<code>lsblk</code></p>
+</li>
+<li>
+<p>查看当前Docker镜像:
+<code>docker images</code></p>
+</li>
+<li>
+<p>查看正在运行的Docker容器：
+<code>docker ps</code></p>
+</li>
+<li>
+<p>进入Docker容器进行调试：
+<code>docker run -it --rm --gpus all --name deepFS -v &lt;localpath&gt;:/dataio  mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/msg_baseimage_cuda11:deepFS</code></p>
+</li>
+<li>
+<p>进入已经运行的Docker容器：
+<code>docker exec -it docker_container bash</code></p>
+</li>
+<li>
+<p>查看显卡运行状态用命令：
+<code>nvidia-smi -l 2</code></p>
+</li>
+<li>
+<p>创建名为<code>freesurfer</code>的tmux新会话：
+<code>tmux new -s freesurfer</code></p>
+</li>
+<li>
+<p>退出当前tmux会话：
+<code>同时按住ctrl和b，松开再按d</code></p>
+</li>
+<li>
+<p>进入后台中名为<code>freesurfer</code>的tmux会话：
+<code>tmux a -t freesurfer</code></p>
+</li>
+<li>
+<p>后台中的tmux会话：
+<code>tmux ls</code></p>
+</li>
+<li>
+<p>停止后台中名为<code>freesurfer</code>的tmux会话：
+<code>tmux kill-session -t freesurfer</code></p>
+</li>
+<li>
+<p>使用ssh将远程的校园网登录网址映射到本地:</p>
+</li>
 </ul>
-<h3 id="spider已安装软件">spider已安装软件：</h3>
+<pre tabindex="0"><code># 本地运行下面代码将服务器的校园网映射到本地8088端口
+ssh -N -f -L localhost:8088:10.248.98.2:80 用户名@服务器IP
+# 在本地浏览器输入下面的网址来登录8088端口并登陆即可使得服务器成功访问校园网
+http://localhost:8088/srun_portal_pc?ac_id=1&amp;theme=basic2
+</code></pre><h3 id="计算服务器已安装软件">计算服务器已安装软件：</h3>
 <ul>
 <li>tmux</li>
 <li>MRtrix3</li>
 <li>docker</li>
 <li>conda</li>
 </ul>
-<h3 id="spider如何启用jupyter编程">spider如何启用jupyter编程：</h3>
+<h3 id="计算服务器如何启用jupyter编程">计算服务器如何启用jupyter编程：</h3>
+<p>以下命令可能需要sudo权限。</p>
 <ol>
 <li>创建自己的conda环境</li>
 </ol>
-<pre tabindex="0"><code># 以zyx为例
-conda create -n zyx python=3.8
+<pre tabindex="0"><code>sudo apt install jupyter-notebook
+# 以ole为例
+sudo conda create -n ole python=3.10 
+
+# 若报错command not found，需要添加conda的绝对路径。
+# 查看绝对路径：
+which conda
 </code></pre><ol start="2">
 <li>激活zyx环境</li>
 </ol>
-<pre tabindex="0"><code>conda activate zyx
+<pre tabindex="0"><code>conda activate ole
+
+# 如果报错conda: error: argument COMMAND: invalid choice: &#39;activate&#39;
+# 则重新初始化conda:
+conda init
 </code></pre><ol start="3">
 <li>将当前conda环境添加进jupyter kernel</li>
 </ol>
-<pre tabindex="0"><code>pip install ipykernel
-python -m ipykernel install  --name zyx
+<pre tabindex="0"><code>pip install notebook ipykernel -i https://pypi.tuna.tsinghua.edu.cn/simple
+python -m ipykernel install --user --name ole
+
+# 以上实现了jupyter kernel的环境添加，只需要操作一次即可
 </code></pre><ol start="4">
-<li>以上实现了jupyter kernel的环境添加，只需要操作一次即可。后续每次编程只需要启动jupyter会话即可。为保证会话进程在后台始终活跃，建议新建tmux进程便于会话管理：</li>
+<li>验证获取服务器的jupyter可用端口：</li>
 </ol>
-<pre tabindex="0"><code>tmux new -s jupyter_zyx
-</code></pre><ol start="5">
-<li>进入编程目录（自行指定）</li>
+<pre tabindex="0"><code>jupyter notebook
+</code></pre><p>根据提示获知可用端口，如8888，然后ctrl+C退出。</p>
+<ol start="5">
+<li>打开windows自带的powershell，新建端口转发的ssh通道。</li>
 </ol>
-<pre tabindex="0"><code>cd /data/zyx
+<pre tabindex="0"><code># 以下在windows powershell中执行
+# 8000是本地端口，8888是远程jupyter端口（根据上一步获取的实际可用端口做修改）
+# remote_server_ip改成服务器真实IP
+
+ssh -L  8000:localhost:8888 用户名@服务器IP
 </code></pre><ol start="6">
-<li>启动jupyter会话</li>
+<li>进入编程目录（自行指定），启动jupyter会话</li>
 </ol>
-<pre tabindex="0"><code>jupyter notebook --config /root/.jupyter/jupyter_notebook_config.py --allow-root
-</code></pre><p>此时会生成IP，如：http://spider:8890/
-把其中<code>spider</code>替换成实际IP即可（10.2xx.xx.140），本地浏览器键入IP实现访问（密码是<code>spider123</code>）</p>
+<pre tabindex="0"><code>tmux new -s jupyter_ole # 新建tmux会话，保持后台运行
+cd &lt;编程目录&gt;
+jupyter notebook
+</code></pre><p>此时会生成IP，如：http://localhost:8888/tree?token=XXXXXXXXX
+把其中<code>8888</code>端口替换成本地端口<code>8000</code>即可，本地浏览器键入IP实现访问。</p>
 <ol start="7">
-<li>新建conda环境（如zyx）对应的ipykernel，即可使用。
+<li>新建conda环境对应的ipykernel，即可使用。如果访问不了，需要换新的本地端口重新尝试，如<code>8001</code>。
 
 
 
@@ -995,7 +1080,7 @@ python -m ipykernel install  --name zyx
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://chenfei-ye.github.io/zh/post/202309_cyelab/&amp;text=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://chenfei-ye.github.io/zh/post/202309_cyelab/&amp;text=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e5%86%85%e7%bd%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -1008,7 +1093,7 @@ python -m ipykernel install  --name zyx
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://chenfei-ye.github.io/zh/post/202309_cyelab/&amp;t=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://chenfei-ye.github.io/zh/post/202309_cyelab/&amp;t=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e5%86%85%e7%bd%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -1021,7 +1106,7 @@ python -m ipykernel install  --name zyx
       
       
       <li>
-        <a href="mailto:?subject=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e&amp;body=https://chenfei-ye.github.io/zh/post/202309_cyelab/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+        <a href="mailto:?subject=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e5%86%85%e7%bd%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e&amp;body=https://chenfei-ye.github.io/zh/post/202309_cyelab/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -1034,7 +1119,7 @@ python -m ipykernel install  --name zyx
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://chenfei-ye.github.io/zh/post/202309_cyelab/&amp;title=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+        <a href="https://www.linkedin.com/shareArticle?url=https://chenfei-ye.github.io/zh/post/202309_cyelab/&amp;title=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e5%86%85%e7%bd%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -1047,7 +1132,7 @@ python -m ipykernel install  --name zyx
       
       
       <li>
-        <a href="whatsapp://send?text=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e%20https://chenfei-ye.github.io/zh/post/202309_cyelab/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+        <a href="whatsapp://send?text=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e5%86%85%e7%bd%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e%20https://chenfei-ye.github.io/zh/post/202309_cyelab/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -1060,7 +1145,7 @@ python -m ipykernel install  --name zyx
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://chenfei-ye.github.io/zh/post/202309_cyelab/&amp;title=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://chenfei-ye.github.io/zh/post/202309_cyelab/&amp;title=BrainNet%e5%ae%9e%e9%aa%8c%e5%ae%a4%e5%86%85%e7%bd%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%bd%bf%e7%94%a8%e8%af%b4%e6%98%8e" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
