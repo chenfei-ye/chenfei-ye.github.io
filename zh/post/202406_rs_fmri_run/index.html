@@ -318,7 +318,7 @@
         content="2024-06-06T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2024-06-06T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2024-10-03T00:00:00&#43;00:00">
   
 
   
@@ -351,7 +351,7 @@
   ],
   
   "datePublished": "2024-06-06T00:00:00Z",
-  "dateModified": "2024-06-06T00:00:00Z",
+  "dateModified": "2024-10-03T00:00:00Z",
   
   "author": {
     "@type": "Person",
@@ -822,8 +822,10 @@
     
     
       
+          最近更新于
+      
     
-    6月 6, 2024
+    10月 3, 2024
   </span>
   
 
@@ -902,9 +904,11 @@ docker run -it --rm -v /bids_root:/bids_dataset \
 <li><code>--cifti-output </code>是为了输出cifti结果，便于<code>xcp-d</code>处理；</li>
 <li><code>--nthreads</code>及<code>--mem_mb</code>根据实际服务器资源来确定计算的线程及内存；</li>
 <li><code>--fs-subjects-dir</code>指定已经处理完毕的<code>freesurfer</code>分割输出结果；</li>
+<li><strong>特殊情况</strong>：若bids目录包含<code>session</code>层级，由于<code>bids-freesurfer</code>容器默认会把freesurfer的output处理成类似<code>sub_01_ses_01</code>的文件名，无法被<code>nipreps/fmriprep</code>容器正确识别，因此不建议预先进行freesurfer处理。即不激活<code>--fs-subjects-dir</code>时，<code>nipreps/fmriprep</code>容器将默认融合所有<code>session</code>层级的T1w影像为一个T1w影像，保存在<code>/derivatives/fmriprep/sourcedata/freesurfer</code>路径。</li>
 <li><code>--output-spaces</code>输出空间增加<code>T1w</code>是为了后续可能用到的皮层<a href="https://github.com/edickie/ciftify" target="_blank" rel="noopener">ciftify</a>分析；</li>
 <li>如果提示metadata找不到<code>TotalReadoutTime</code>，则需要在json文件中手动补充该字段；</li>
-<li>如果提示metadata找不到<code>PhaseEncodingDirection</code>，则需要在json文件中手动补充该字段；如果已存在该字段仍报错，则有可能BIDS根目录中存在被试缺少必要的<code>T1w</code>或<code>BOLD</code>数据，要仔细检查。</li>
+<li>如果提示metadata找不到<code>PhaseEncodingDirection</code>，则需要在json文件中手动补充该字段；如果已存在该字段仍报错，则有可能BIDS根目录中存在被试缺少必要的<code>T1w</code>或<code>BOLD</code>数据，要仔细检查；</li>
+<li><code>--use-syn-sdc</code>表示使用fieldmap-less susceptibility distortion correction（SDC）来处理EPI序列的磁敏感伪影；如果数据自带fmap，建议想尝试不激活SDC。</li>
 </ul>
 <p>检查输出结果是否完整：</p>
 <pre tabindex="0"><code>docker run -it --rm --entrypoint python -v /bids_root:/bids_dataset bids-freesurfer:latest /output_qc.py /bids_dataset -mode fmriprep
@@ -924,7 +928,7 @@ docker run -it --rm -v /bids_root:/bids_dataset \
 <li>目前组里的服务器装的是<code>pennlinc/xcp_d:7.3.0</code>版本，可以用这一版跑。</li>
 <li><code>4S</code>图谱：The 4S atlas combines the Schaefer 2018 cortical atlas at 10 different resolutions (100, 200, 300, 400, 500, 600, 700, 800, 900, and 1000 parcels) with the CIT168 subcortical atlas, the Diedrichson cerebellar atlas, the HCP thalamic atlas, and the amygdala and hippocampus parcels from the HCP CIFTI subcortical parcellation.</li>
 <li><code>4S</code>图谱里的非皮层结构过于复杂，可以无视；如果需要皮层下结构，直接用HCP CIFTI subcortical parcellation就可以，和<code>FreeSurfer</code>定义的皮层下图谱的结构是一致的。适用于<code>Enigma-toolbox</code>的可视化。Enigma-toolbox的皮层下可视化结构：Subcortical input values are ordered as follows: left-accumbens, left-amygdala, left-caudate, left-hippocampus, left-pallidum, left-putamen, left-thalamus, left-ventricles, right-accumbens, right-amygdala, right-caudate, right-hippocampus, right-pallidum, right-putamen, right-thalamus, right-ventricles! You can re-order your subcortical dataset using our reorder_sctx() function. *Ventricles are optional.</li>
-<li><code>--fd-thresh 0</code>：不执行censoring,否则会丢失帧；</li>
+<li><code>--fd-thresh 0</code>：不执行censoring，否则会丢失帧；</li>
 <li>对于<code>--cifti</code>，需要<code>fmriprep</code>里预存fsLR的图谱才可以跑。<code>fmriprep</code>参数加<code>--cifti-output</code>，默认是91k皮层。对于nifti输出结果，很可能有脑区的值是NaN，可以保留NaN进行后续的计算。<a href="https://neurostars.org/t/n-a-timeseries-for-some-roi-when-using-xcp-d-for-postprocessing/27108/3" target="_blank" rel="noopener">讨论参考</a>；</li>
 <li><code>/TEMPLATEFLOW_HOME</code>是<a href="https://github.com/templateflow" target="_blank" rel="noopener">templateflow</a>的本地路径，是为了预加载已下载的<code>templateflow</code>图谱，否则每次容器运行时会从s3.amazon新下载<code>templateflow</code>图谱，速度很慢。<code>templateflow</code>图谱也可在网盘下载：链接：https://pan.baidu.com/s/13bPkN3Vzcyy6LoSwB7UQKg?pwd=9h4i ；提取码：9h4i</li>
 <li>对于脑区水平的BOLD信号和FC计算，xcp-d不推荐做平滑，原因是：Smoothing improves SNR in a given voxel by blurring the signal across voxels, but when you are averaging the signal in an ROI, there’s no reason to do that, since you’re not interested in individual voxels. Smoothing before parcellating could, at worst, blur signals from voxels outside the region into the region.</li>
