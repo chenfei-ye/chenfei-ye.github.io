@@ -318,7 +318,7 @@
         content="2024-06-06T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2024-10-03T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2024-06-06T00:00:00&#43;00:00">
   
 
   
@@ -351,7 +351,7 @@
   ],
   
   "datePublished": "2024-06-06T00:00:00Z",
-  "dateModified": "2024-10-03T00:00:00Z",
+  "dateModified": "2024-06-06T00:00:00Z",
   
   "author": {
     "@type": "Person",
@@ -822,10 +822,8 @@
     
     
       
-          最近更新于
-      
     
-    10月 3, 2024
+    6月 6, 2024
   </span>
   
 
@@ -895,15 +893,16 @@ docker run -it --rm -v /bids_root:/bids_dataset \
 -v /freesurfer_license.txt:/opt/freesurfer/license.txt \
 -v /bids_root:/working_dir nipreps/fmriprep:latest \
 /bids_dataset /bids_dataset/derivatives/fmriprep participant \ 
---skip-bids-validation --ignore fieldmaps \
+--ignore fieldmaps \
 --md-only-boilerplate --output-spaces MNI152NLin2009cAsym:res-2 T1w \
 --nthreads 20 --stop-on-first-crash --mem_mb 5000 \
---use-syn-sdc --fd-spike-threshold 0.5 -v -w /working_dir --cifti-output 
+--use-syn-sdc --fd-spike-threshold 0.5 -v -w /working_dir --cifti-output \
+--skip-bids-validation
 </code></pre><ul>
 <li>指定<code>/working_dir</code>是为了将中间文件缓存到硬盘，否则内存容易爆掉；运行完毕后建议删除以节省空间；</li>
 <li><code>--cifti-output </code>是为了输出cifti结果，便于<code>xcp-d</code>处理；</li>
 <li><code>--nthreads</code>及<code>--mem_mb</code>根据实际服务器资源来确定计算的线程及内存；</li>
-<li><code>--fs-subjects-dir</code>指定已经处理完毕的<code>freesurfer</code>分割输出结果；</li>
+<li><code>--fs-subjects-dir</code>指定已经处理完毕的<code>freesurfer</code>分割输出结果，后面路径默认OUTPUT_DIR/freesurfer，如果不添加该参数会重新运行freesurfer；</li>
 <li><strong>特殊情况</strong>：若bids目录包含<code>session</code>层级，由于<code>bids-freesurfer</code>容器默认会把freesurfer的output处理成类似<code>sub_01_ses_01</code>的文件名，无法被<code>nipreps/fmriprep</code>容器正确识别，因此不建议预先进行freesurfer处理。即不激活<code>--fs-subjects-dir</code>时，<code>nipreps/fmriprep</code>容器将默认融合所有<code>session</code>层级的T1w影像为一个T1w影像，保存在<code>/derivatives/fmriprep/sourcedata/freesurfer</code>路径。</li>
 <li><code>--output-spaces</code>输出空间增加<code>T1w</code>是为了后续可能用到的皮层<a href="https://github.com/edickie/ciftify" target="_blank" rel="noopener">ciftify</a>分析；</li>
 <li>如果提示metadata找不到<code>TotalReadoutTime</code>，则需要在json文件中手动补充该字段；</li>
@@ -916,21 +915,21 @@ docker run -it --rm -v /bids_root:/bids_dataset \
 <pre tabindex="0"><code>docker run --rm -it -v /bids_root/derivatives/fmriprep:/fmriprep:ro \
 -v /bids_root/derivatives/wkdir:/work:rw \
 -v /bids_root/derivatives/xcp_d:/out:rw \
--v /atlases/TEMPLATEFLOW_HOME:/home/xcp_d/.cache/templateflow \
--v /atlases:/fs_license pennlinc/xcp_d:latest \
-/fmriprep /out participant --cifti --despike --head_radius auto \
--w /work --nthreads 10 --mem_gb 10 --fd-thresh 0 \
+-v /AtlasPack:/fs_license pennlinc/xcp_d:latest \
+/fmriprep /out participant --mode linc --file-format cifti --despike --head_radius auto \
+-w /work --nthreads 10 --mem_mb 10240 --fd-thresh 0 \
 --nuisance-regressors 36P --fs-license-file /fs_license/freesurfer_license.txt \
 --min-coverage 0.2 --stop-on-first-crash \
 --atlases 4S156Parcels 4S256Parcels 4S456Parcels 4S1056Parcels HCP
 </code></pre><ul>
 <li>xcp-d pipeline优势：数据可以自动预处理并使用NiPrep风格的容器化代码，在BIDS格式下从原始数据一直分析到功能连接矩阵（也包括BOLD信号、ALFF、REHO等）。XCP-D 正好在 fMRIPrep 结束的地方接手，直接使用 fMRIPrep 的输出。XCP-D 利用 BIDS 和 NiPreps 框架自动生成去噪的 BOLD 图像、分割的时间序列、功能连接矩阵和质量评估报告。XCP-D 还可以处理来自以下来源的输出：NiBabies、ABCD-BIDS、最小预处理的 HCP 数据以及英国生物银行数据。</li>
 <li>目前组里的服务器装的是<code>pennlinc/xcp_d:7.3.0</code>版本，可以用这一版跑。</li>
+<li><code>-mode</code>参数后可以跟4种模式：<code>linc</code>，<code>abcd</code>，<code>hbcd</code>和<code>nichart</code>，使用哪种模式参考(<a href="https://xcp-d.readthedocs.io/en/latest/workflows.html#modes" target="_blank" rel="noopener">https://xcp-d.readthedocs.io/en/latest/workflows.html#modes</a>)</li>
 <li><code>4S</code>图谱：The 4S atlas combines the Schaefer 2018 cortical atlas at 10 different resolutions (100, 200, 300, 400, 500, 600, 700, 800, 900, and 1000 parcels) with the CIT168 subcortical atlas, the Diedrichson cerebellar atlas, the HCP thalamic atlas, and the amygdala and hippocampus parcels from the HCP CIFTI subcortical parcellation.</li>
 <li><code>4S</code>图谱里的非皮层结构过于复杂，可以无视；如果需要皮层下结构，直接用HCP CIFTI subcortical parcellation就可以，和<code>FreeSurfer</code>定义的皮层下图谱的结构是一致的。适用于<code>Enigma-toolbox</code>的可视化。Enigma-toolbox的皮层下可视化结构：Subcortical input values are ordered as follows: left-accumbens, left-amygdala, left-caudate, left-hippocampus, left-pallidum, left-putamen, left-thalamus, left-ventricles, right-accumbens, right-amygdala, right-caudate, right-hippocampus, right-pallidum, right-putamen, right-thalamus, right-ventricles! You can re-order your subcortical dataset using our reorder_sctx() function. *Ventricles are optional.</li>
 <li><code>--fd-thresh 0</code>：不执行censoring，否则会丢失帧；</li>
-<li>对于<code>--cifti</code>，需要<code>fmriprep</code>里预存fsLR的图谱才可以跑。<code>fmriprep</code>参数加<code>--cifti-output</code>，默认是91k皮层。对于nifti输出结果，很可能有脑区的值是NaN，可以保留NaN进行后续的计算。<a href="https://neurostars.org/t/n-a-timeseries-for-some-roi-when-using-xcp-d-for-postprocessing/27108/3" target="_blank" rel="noopener">讨论参考</a>；</li>
-<li><code>/TEMPLATEFLOW_HOME</code>是<a href="https://github.com/templateflow" target="_blank" rel="noopener">templateflow</a>的本地路径，是为了预加载已下载的<code>templateflow</code>图谱，否则每次容器运行时会从s3.amazon新下载<code>templateflow</code>图谱，速度很慢。<code>templateflow</code>图谱也可在网盘下载：链接：https://pan.baidu.com/s/13bPkN3Vzcyy6LoSwB7UQKg?pwd=9h4i ；提取码：9h4i</li>
+<li>对于<code>--file-format cifti</code>，需要<code>fmriprep</code>里预存fsLR的图谱才可以跑。<code>fmriprep</code>参数加<code>--cifti-output</code>，默认是91k皮层。对于nifti输出结果，很可能有脑区的值是NaN，可以保留NaN进行后续的计算。<a href="https://neurostars.org/t/n-a-timeseries-for-some-roi-when-using-xcp-d-for-postprocessing/27108/3" target="_blank" rel="noopener">讨论参考</a>；</li>
+<li><a href="https://github.com/templateflow" target="_blank" rel="noopener">templateflow</a>会从环境变量中查找TEMPLATE_HOME(<a href="https://github.com/PennLINC/xcp_d/blob/main/xcp_d/config.py" target="_blank" rel="noopener">https://github.com/PennLINC/xcp_d/blob/main/xcp_d/config.py</a>)，需要提前将本地TEMPLATE_HOME添加到环境变量中，目前最新版本为0.11.1，每次运行时会重新下载部分文件，大小为几mb。<code>templateflow</code>图谱也可在网盘下载：链接：https://pan.baidu.com/s/13bPkN3Vzcyy6LoSwB7UQKg?pwd=9h4i ；提取码：9h4i</li>
 <li>对于脑区水平的BOLD信号和FC计算，xcp-d不推荐做平滑，原因是：Smoothing improves SNR in a given voxel by blurring the signal across voxels, but when you are averaging the signal in an ROI, there’s no reason to do that, since you’re not interested in individual voxels. Smoothing before parcellating could, at worst, blur signals from voxels outside the region into the region.</li>
 <li>yeo-7和yeo-17的脑区空间定义是一样的，只是同一个脑区不一定对应到一个子网络上。具体对应关系<a href="https://github.com/PennLINC/AtlasPack/blob/main/Schaefer/atlas-Schaefer2018v0143_desc-100ParcelsAllNetworks_dseg.tsv" target="_blank" rel="noopener">见此</a>；</li>
 <li>对于Minimally preprocessed HCP数据的预处理（输入数据需要同时用到subid_3T_rfMRI_REST1_preproc.zip 和subid_3T_Structural_preproc.zip）：</li>
