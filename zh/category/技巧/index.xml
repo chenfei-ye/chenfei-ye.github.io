@@ -5,12 +5,72 @@
     <link>https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/index.xml" rel="self" type="application/rss+xml" />
     <description>技巧</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Thu, 06 Jun 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Tue, 23 Sep 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>技巧</title>
       <link>https://chenfei-ye.github.io/zh/category/%E6%8A%80%E5%B7%A7/</link>
     </image>
+    
+    <item>
+      <title>dMR预处理全流程</title>
+      <link>https://chenfei-ye.github.io/zh/post/202510_dmri_run/</link>
+      <pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/post/202510_dmri_run/</guid>
+      <description>&lt;h3 id=&#34;dmr预处理全流程&#34;&gt;dMR预处理全流程&lt;/h3&gt;
+&lt;p&gt;感谢博士生丛士清参与编撰本文&lt;/p&gt;
+&lt;h4 id=&#34;前提&#34;&gt;前提：&lt;/h4&gt;
+&lt;p&gt;输入数据须整理为&lt;a href=&#34;https://github.com/chenfei-ye/BIDS-fMRIpost/blob/main/resources/dcm2bids.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;BIDS格式&lt;/a&gt;
+示例：BIDS根目录为&lt;code&gt;/bids_root&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;1-bids-dmrirecon安装&#34;&gt;1. BIDS-dMRIrecon安装&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;需要安装docker，可以参考https://github.com/chenfei-ye/BIDS-dMRIrecon/blob/main/resources/docker_install.md
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;方式一：拉取镜像
+docker pull mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/bids-dmrirecon:latest
+docker tag  mindsgo-sz-docker.pkg.coding.net/neuroimage_analysis/base/bids-dmrirecon:latest  bids-dmrirecon:latest&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;方式二：镜像创建
+# git clone下载代码仓库
+cd BIDS-dmrirecon
+docker build -t bids-dmrirecon:latest .
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;2-smriprep批处理t1影像&#34;&gt;2. sMRIPrep批处理T1影像&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -it --rm -v &amp;lt;bids_root&amp;gt;:/bids_dataset bids-smriprep:latest python /run.py /bids_dataset --participant_label 01 02 03 -MNInormalization -hsvs_5ttgen -cleanup
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/bids_dataset&lt;/code&gt;: 容器内输入BIDS路径，通过本地路径挂载（-v）；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;participant_label&lt;/code&gt;: 指定分析某个或者几个被试，后面跟需要处理的被试，否则默认按照顺序分析所有被试；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cleanup&lt;/code&gt;: 删除临时目录；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MNInormalization&lt;/code&gt;: 将个体空间图像配准到标准空间的操作；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hsvs_5ttgen&lt;/code&gt;: 将T1图像划分为5类组织，该选项需要完成freesurfer预处理;&lt;/li&gt;
+&lt;li&gt;必须按照&lt;code&gt;sub-[num]_ses-[num]_[模态]&lt;/code&gt;格式命名，否则会报错。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;3-dmriprep批处理dmri影像&#34;&gt;3. dMRIPrep批处理dMRI影像&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -it --rm --gpus all -v &amp;lt;bids_root&amp;gt;:/bids_dataset bids-dmriprep:latest python /run.py /bids_dataset /bids_dataset/derivatives/dmri_prep participant --participant_label 01 02 03 -mode complete
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;participant_label&lt;/code&gt;: 指定分析某个或者几个被试，后面跟需要处理的被试，否则默认按照顺序分析所有被试；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mode complete&lt;/code&gt;: 进行完整分析。&lt;/li&gt;
+&lt;li&gt;docker中的run.py要求必须有dwi.json文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;4dmrirecon批处理&#34;&gt;4.dMRIrecon批处理&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;默认运行：
+docker run -it --rm -v /bids_root:/bids_dataset bids-dmrirecon:latest python /run.py /bids_dataset /bids_dataset/derivatives/dmri_recon participant -mode connectome -bundle_json /scripts/bundle_list_all72.json -wholebrain_fiber 1000000 -fiber_num 2000 -atlases AAL1PD25_MNI desikan_T1w hcpmmp_T1w schaefer100x7_MNI schaefer100x7_T1w schaefer100x17_MNI schaefer100x17_T1w schaefer200x7_MNI schaefer200x7_T1w schaefer200x17_MNI schaefer200x17_T1w schaefer400x7_MNI schaefer400x7_T1w schaefer400x17_MNI schaefer400x17_T1w  -cleanup
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mode&lt;/code&gt;: 对应不同的分析模式，共有&lt;code&gt;tract&lt;/code&gt;,&lt;code&gt;dti_para&lt;/code&gt;:对应生成DTI参数；&lt;code&gt;alps&lt;/code&gt;:对应生成TDI；&lt;code&gt;dki_para&lt;/code&gt;:对应生成DKI参数；&lt;code&gt;noddi_para&lt;/code&gt;:对应生成NODDI参数；&lt;code&gt;connectome&lt;/code&gt;:对应生成脑结构网络几种，其中默认为&lt;code&gt;tract&lt;/code&gt;，对应白质纤维束自动分割；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/bids_dataset&lt;/code&gt;: 容器内输入BIDS路径，通过本地路径挂载（-v）；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/bids_dataset/derivatives/dmri_prep&lt;/code&gt;: 输出路径；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;participant&lt;/code&gt;: 个体被试水平顺序执行；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bundle_json [str]&lt;/code&gt;: 需要追踪的纤维束名字的json文件（完整纤维束路径/scripts/bundle_list_all72.json）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;wholebrain_fiber_num [int]&lt;/code&gt;: 全脑纤维追踪的streamline数量，默认10000000；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atlases [str]&lt;/code&gt;: 指定分析图谱。对于后缀为T1w的图谱，需要预先对被试进行&lt;code&gt;FreeSurfer&lt;/code&gt;分割！目前预定义的图谱见atlas_config_docker.json；&lt;/li&gt;
+&lt;li&gt;docker中的run.py同样要求&lt;code&gt;dwi.json&lt;/code&gt;文件;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cleanup&lt;/code&gt;: 删除临时目录。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;5输出结果&#34;&gt;5.输出结果&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DTI_mapping&lt;/code&gt;: 包含DTI的参数图，即FA/MD/RD/AD/DEC-map，以及在bundle mask上/纤维束tck上/脑区上的纤维束DTI参数统计信息json。其中DEC-map表示directionally-encoded colour map；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fiber_tracts&lt;/code&gt;: 包含2个文件夹：&lt;code&gt;fiber_tracts/bundle_segmentations&lt;/code&gt;，包含每个纤维束的bundle mask；&lt;code&gt;fiber_tracts/Fibers&lt;/code&gt;包含纤维束tck文件，&lt;code&gt;fiber_streamline.json&lt;/code&gt;是每个纤维束的统计信息；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;connectome&lt;/code&gt;: 包含Lookuptable和每一个脑图谱对应的结构连接网络。对于每一个脑图谱，&lt;code&gt;*_connectome.csv&lt;/code&gt;表示脑连接定义为纤维束数量；&lt;code&gt;*_meanlength.csv&lt;/code&gt;表示脑连接定义为纤维束平均长度；&lt;code&gt;*_invnodevol.csv&lt;/code&gt;表示脑连接定义为纤维束数量+脑区体积矫正；&lt;code&gt;*_dwispace.nii.gz&lt;/code&gt;是DWI空间的Label图；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;visualization&lt;/code&gt;: 可视化文件。其中Fibers_vtp包括每个纤维束；Fibers_bundlemask_vtp包括每个纤维束的整体mask；Fibers_endingmask_vtp包括每个纤维束两端mask。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>rs-fMRI预处理全流程</title>
