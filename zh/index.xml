@@ -33,6 +33,14 @@
     </item>
     
     <item>
+      <title>Mendelian randomization analyses uncover causal relationships between brain structural connectome and risk of psychiatric disorders</title>
+      <link>https://chenfei-ye.github.io/zh/publication/j_2025_gwas/</link>
+      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/publication/j_2025_gwas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>dMR预处理全流程</title>
       <link>https://chenfei-ye.github.io/zh/post/202510_dmri_run/</link>
       <pubDate>Tue, 23 Sep 2025 00:00:00 +0000</pubDate>
@@ -90,6 +98,30 @@ docker run -it --rm -v /bids_root:/bids_dataset bids-dmrirecon:latest python /ru
 &lt;li&gt;&lt;code&gt;visualization&lt;/code&gt;: 可视化文件。其中Fibers_vtp包括每个纤维束；Fibers_bundlemask_vtp包括每个纤维束的整体mask；Fibers_endingmask_vtp包括每个纤维束两端mask。&lt;/li&gt;
 &lt;/ul&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Multiscale Contextual Mamba: Advancing Psychiatric Disorder Detection across Multisite Functional Magnetic Resonance Imaging Datasets via State Space Modeling</title>
+      <link>https://chenfei-ye.github.io/zh/publication/j_2025_hds_mamba/</link>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/publication/j_2025_hds_mamba/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BrainMass: Advancing Brain Network Analysis for Diagnosis with Large-scale Self-Supervised Learning</title>
+      <link>https://chenfei-ye.github.io/zh/publication/j_2025_hds_ssl/</link>
+      <pubDate>Mon, 04 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/publication/j_2025_hds_ssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Neuroverse3D: Developing In-Context Learning Universal Model for Neuroimaging in 3D</title>
+      <link>https://chenfei-ye.github.io/zh/publication/j_2025_c_iccv/</link>
+      <pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/publication/j_2025_c_iccv/</guid>
+      <description></description>
     </item>
     
     <item>
