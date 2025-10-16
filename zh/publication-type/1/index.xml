@@ -5,12 +5,20 @@
     <link>https://chenfei-ye.github.io/zh/publication-type/1/</link>
       <atom:link href="https://chenfei-ye.github.io/zh/publication-type/1/index.xml" rel="self" type="application/rss+xml" />
     <description>1</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Wed, 23 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Fri, 04 Jul 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>1</title>
       <link>https://chenfei-ye.github.io/zh/publication-type/1/</link>
     </image>
+    
+    <item>
+      <title>Neuroverse3D: Developing In-Context Learning Universal Model for Neuroimaging in 3D</title>
+      <link>https://chenfei-ye.github.io/zh/publication/j_2025_c_iccv/</link>
+      <pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/zh/publication/j_2025_c_iccv/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Regularizing Brain Age Prediction via Gated Knowledge Distillation</title>

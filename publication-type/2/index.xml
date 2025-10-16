@@ -5,12 +5,44 @@
     <link>https://chenfei-ye.github.io/publication-type/2/</link>
       <atom:link href="https://chenfei-ye.github.io/publication-type/2/index.xml" rel="self" type="application/rss+xml" />
     <description>2</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 22 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 26 Sep 2025 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://chenfei-ye.github.io/media/icon_hu80a2544e7b046e76dea23103488b26f7_18404_512x512_fill_lanczos_center_3.png</url>
       <title>2</title>
       <link>https://chenfei-ye.github.io/publication-type/2/</link>
     </image>
+    
+    <item>
+      <title>Mendelian randomization analyses uncover causal relationships between brain structural connectome and risk of psychiatric disorders</title>
+      <link>https://chenfei-ye.github.io/publication/j_2025_gwas/</link>
+      <pubDate>Fri, 26 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/publication/j_2025_gwas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Multiscale Contextual Mamba: Advancing Psychiatric Disorder Detection across Multisite Functional Magnetic Resonance Imaging Datasets via State Space Modeling</title>
+      <link>https://chenfei-ye.github.io/publication/j_2025_hds_mamba/</link>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/publication/j_2025_hds_mamba/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Self-Supervised Learning to Unveil Brain Dysfunctional Signatures in Brain Disorders: Methods and Applications</title>
+      <link>https://chenfei-ye.github.io/publication/j_2025_hds_ssl/</link>
+      <pubDate>Mon, 04 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/publication/j_2025_hds_ssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hypercomplex Graph Neural Network: Towards Deep Intersection of Multi-Modal Brain Networks</title>
+      <link>https://chenfei-ye.github.io/publication/j_2024_hypercomplex_jbhi/</link>
+      <pubDate>Thu, 22 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://chenfei-ye.github.io/publication/j_2024_hypercomplex_jbhi/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>BrainMass: Advancing Brain Network Analysis for Diagnosis with Large-scale Self-Supervised Learning</title>
