@@ -897,7 +897,7 @@ docker run -it --rm -v /bids_root:/bids_dataset \
 --md-only-boilerplate --output-spaces MNI152NLin2009cAsym:res-2 T1w \
 --nthreads 20 --stop-on-first-crash --mem_mb 5000 \
 --use-syn-sdc --fd-spike-threshold 0.5 -v -w /working_dir --cifti-output \
---skip-bids-validation
+--skip-bids-validation --fs-subjects-dir OUTPUT_DIR/freesurfer
 </code></pre><ul>
 <li>指定<code>/working_dir</code>是为了将中间文件缓存到硬盘，否则内存容易爆掉；运行完毕后建议删除以节省空间；</li>
 <li><code>--cifti-output </code>是为了输出cifti结果，便于<code>xcp-d</code>处理；</li>
@@ -1204,7 +1204,7 @@ docker run -it --rm -v /bids_root:/bids_dataset \
 
   
   <p class="powered-by copyright-license-text">
-    © 2025 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+    © 2026 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
   </p>
   
 

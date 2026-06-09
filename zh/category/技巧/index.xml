@@ -103,7 +103,7 @@ docker run -it --rm -v /bids_root:/bids_dataset \
 --md-only-boilerplate --output-spaces MNI152NLin2009cAsym:res-2 T1w \
 --nthreads 20 --stop-on-first-crash --mem_mb 5000 \
 --use-syn-sdc --fd-spike-threshold 0.5 -v -w /working_dir --cifti-output \
---skip-bids-validation
+--skip-bids-validation --fs-subjects-dir OUTPUT_DIR/freesurfer
 &lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
 &lt;li&gt;指定&lt;code&gt;/working_dir&lt;/code&gt;是为了将中间文件缓存到硬盘，否则内存容易爆掉；运行完毕后建议删除以节省空间；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;--cifti-output &lt;/code&gt;是为了输出cifti结果，便于&lt;code&gt;xcp-d&lt;/code&gt;处理；&lt;/li&gt;
